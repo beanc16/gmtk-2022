@@ -23,6 +23,7 @@ ExportedObj/
 *.unityproj
 *.booproj
 *.vsconfig
+*.vscode
 
 # ================= #
 # UnityVS generated #
