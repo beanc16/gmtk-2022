@@ -99,34 +99,21 @@
   * Project Manager
   * Quality Assistance
 
-<!--
-* Kevin Jeong - [itch.io](https://kjeong0.itch.io)
+* John - [platform](https://some-url-here.com)
   * Programming
   * Level Design
 
 * Philip (Silevran) - [itch.io](https://silevran.itch.io)
   * Programming
   * Level Design
--->
 
 * Sara Bustamante - [Behance](https://www.behance.net/sarambustama)
     * UI/UX Design
     * Marketing Specialist
 
-<!--
 * Jonathan Michiemo - [Twitter](https://twitter.com/JonaCapt)
   * Art
   * Animation
-
-* Henry - [Instagram](https://www.instagram.com/ctrlaltpaint)
-  * Art
-
-* Chansu Music - [Soundcloud](https://soundcloud.com/not_chance)
-  * Music
-
-* Charles Kieswetter - [Twitter](https://twitter.com/charleswkeys)
-  * SFX
--->
 
 
 
