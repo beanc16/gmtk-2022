@@ -244,6 +244,8 @@ MonoBehaviour:
     type: 3}
   PlayerPrefab: {fileID: 4452868390152528261, guid: e8d97ae447437b140b1066b7a04097b9,
     type: 3}
+  EnemyPrefab: {fileID: 6230842520678212688, guid: cf6f50ebed9487b45be2f35c29f27a16,
+    type: 3}
 --- !u!4 &1952194235
 Transform:
   m_ObjectHideFlags: 0
@@ -312,7 +314,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 30
+  orthographic size: 50
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
