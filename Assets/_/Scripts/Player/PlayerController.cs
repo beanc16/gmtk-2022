@@ -8,6 +8,7 @@ namespace _.Scripts.Player
     {
         [SerializeField] private float playerSpeed;
         [SerializeField] private PlayerInput playerInput;
+        [SerializeField] private Rigidbody2D playerBody;
 
         private Vector2 currentMovement;
 
@@ -18,16 +19,14 @@ namespace _.Scripts.Player
 
         private void OnMovement(InputValue value)
         {
-            currentMovement = value.Get<Vector2>();
+            currentMovement = value.Get<Vector2>() * playerSpeed;
         }
 
         private void Update()
         {
-            var playerTransform = transform;
-            var position = playerTransform.position;
-            position.x += (playerSpeed * currentMovement.x);
-            position.y += (playerSpeed * currentMovement.y);
-            playerTransform.position = position;
+            playerBody.MovePosition(playerBody.position + currentMovement);
+            
+            
         }
     }
 }

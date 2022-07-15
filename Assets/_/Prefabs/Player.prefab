@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2207095191665868547}
   - component: {fileID: -6745055022419267582}
   - component: {fileID: 8146080331493213713}
+  - component: {fileID: 2331237450099897842}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -122,8 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f373372dc3174dde997481d5bc5e726f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 0.3
+  playerSpeed: 2
   playerInput: {fileID: 2207095191665868547}
+  playerBody: {fileID: 2331237450099897842}
 --- !u!114 &8146080331493213713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,3 +138,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d84a7b4ed4e041c79e77d9e15ee31c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &2331237450099897842
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4452868390152528261}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
