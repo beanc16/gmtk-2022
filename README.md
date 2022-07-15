@@ -83,8 +83,9 @@
 
 ### Built With
 
-* [Unity](https://unity.com)
+* [Unity](https://unity.com) (2021.3.6f1)
 * [C#](https://docs.microsoft.com/en-us/dotnet/csharp)
+* [FMOD](https://fmod.com/) (2.02.04)
 
 <br />
 

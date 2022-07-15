@@ -14,6 +14,6 @@ public class EditorButtonTest : MonoBehaviour
 
     private void OnGUI()
     {
-        EditorGUILayout.LabelField("After clicking the button, check the console");
+        //EditorGUILayout.LabelField("After clicking the button, check the console");
     }
 }
