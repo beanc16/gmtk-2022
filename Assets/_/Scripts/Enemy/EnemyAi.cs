@@ -55,10 +55,6 @@ namespace _.Scripts.Enemy
             // Hit projectile
             if (!col.gameObject.CompareTag(Constants.TagPlayerProjectile)) return;
             AttackObject.Hit(col.transform.parent.gameObject, _health);
-            
-            if (_health.GetCurrentHealthPoints() > 0f) return;
-            
-            Die();
         }
 
         private void Update()

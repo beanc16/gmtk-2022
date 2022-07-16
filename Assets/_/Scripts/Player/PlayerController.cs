@@ -1,4 +1,5 @@
 ﻿using System;
+using _.Scripts.AttackSystem;
 using _.Scripts.Core;
 using _.Scripts.HealthSystem;
 using UnityEngine;
@@ -66,6 +67,9 @@ namespace _.Scripts.Player
             currentMovement2d.x = Input.GetAxis("Horizontal");
             currentMovement2d.y = Input.GetAxis("Vertical");
             playerBody2d.velocity = currentMovement2d.normalized * playerData.PlayerSpeed;
+            
+            if (_health.GetCurrentHealthPoints() <= 0) GameController.Instance.GameOver();
+            
         }
 
         private void OnCollisionEnter2D(Collision2D col)
@@ -83,6 +87,14 @@ namespace _.Scripts.Player
             if (other.gameObject.CompareTag(Constants.TagEnemy))
             {
                 enemiesTouchingPlayer--;
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.CompareTag("EnemyProjectile"))
+            {
+                AttackObject.Hit(col.transform.gameObject, _health);
             }
         }
 
