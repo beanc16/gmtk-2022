@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _.Scripts.World
 {
-    [CreateAssetMenu(fileName = "EnemyWave", menuName = "EnemyWave", order = 0)]
+    [CreateAssetMenu(fileName = "EnemyWave", menuName = "GMTK2022/EnemyWaves/EnemyWave", order = 0)]
     public class WaveScriptableObject : ScriptableObject
     {
         public EnemyAi EnemyAi;

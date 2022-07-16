@@ -18,9 +18,14 @@ namespace _.Scripts.AttackSystem
             var projectile = Pool.Get();
             projectile.transform.position = fromTransform.position;
             projectile.transform.rotation = fromTransform.rotation;
+            projectile.transform.localScale = Vector3.one;
 
             while (time < lifeTime)
             {
+                if (projectile == null)
+                {
+                    return;
+                }
                 time += Time.deltaTime;
                 projectile.transform.position += projectile.transform.up * (Time.deltaTime * speed);
                 await UniTask.Yield();

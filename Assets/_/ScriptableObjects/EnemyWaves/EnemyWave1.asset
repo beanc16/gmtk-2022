@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6b1638c180414baf2e20dde0d0b10b, type: 3}
   m_Name: EnemyWave1
   m_EditorClassIdentifier: 
-  EnemyAi: {fileID: -1689620854424203871, guid: cf6f50ebed9487b45be2f35c29f27a16,
-    type: 3}
+  EnemyAi: {fileID: 3655040860972501959, guid: bc5212aafe2c205419974b19ba159a40, type: 3}
   EnemySpeedMin: 0.8
   EnemySpeedMax: 1.2
   EnemiesInWave: 20

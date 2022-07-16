@@ -8,7 +8,7 @@ namespace _.Scripts.Enemy
     {
         [SerializeField] private float enemySpeed;
         [SerializeField] private float damage;
-        [SerializeField] private Rigidbody2D enemyBody;
+        [SerializeField] private Rigidbody2D enemyBody2D;
 
         private Transform playerTransform;
         private Action<EnemyAi> onDeathAction;
@@ -20,16 +20,16 @@ namespace _.Scripts.Enemy
 
         private void Update()
         {
-            var enemyPosition = enemyBody.position;
+            var enemyPosition = enemyBody2D.position;
             var playerPosition = (Vector2)playerTransform.position;
             var normalizedDirection = (playerPosition - enemyPosition).normalized;
-            enemyBody.MovePosition(enemyPosition + normalizedDirection * enemySpeed);
+            enemyBody2D.MovePosition(enemyPosition + normalizedDirection * enemySpeed);
         }
 
         public void Setup(Action<EnemyAi> deathAction, float speed)
         {
             onDeathAction = deathAction;
-            this.enemySpeed = speed;
+            enemySpeed = speed;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace _.Scripts
         public void Awake()
         {
             var world = Instantiate(WorldPrefab);
-            var player = Instantiate(PlayerPrefab, world.transform);
+            Instantiate(PlayerPrefab, world.transform);
         }
     }
 }

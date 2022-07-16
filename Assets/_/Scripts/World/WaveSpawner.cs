@@ -8,6 +8,7 @@ namespace _.Scripts.World
 {
     public class WaveSpawner : MonoBehaviour
     {
+        [SerializeField] private bool disableSpawner;
         [SerializeField] private Transform enemyParent;
         [SerializeField] private WaveScriptableObject waveScriptableObject;
 
@@ -23,6 +24,11 @@ namespace _.Scripts.World
 
         private void Update()
         {
+            if (disableSpawner)
+            {
+                return;
+            }
+            
             timeTillNextSpawn -= Time.deltaTime;
 
             if (timeTillNextSpawn <= 0)
