@@ -12,7 +12,7 @@ namespace _.Scripts.AttackSystem
         [SerializeField] private float lifeTime;
         [SerializeField] private float speed;
 
-        private bool _onCooldown;
+        [NonSerialized] private bool _onCooldown;
         
         public override void Shoot(Transform fromTransform)
         {

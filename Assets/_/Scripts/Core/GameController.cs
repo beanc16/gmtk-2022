@@ -74,7 +74,8 @@ namespace _.Scripts.Core
                 case 2:
                 case 4:
                 case 6:
-                    return PlayerAttackType.Bomb;
+                    return PlayerAttackType.Projectile;
+                    //return PlayerAttackType.Bomb;
             }
             /*switch (roll)
             {
