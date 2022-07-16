@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _.Scripts.AttackSystem
@@ -8,9 +9,16 @@ namespace _.Scripts.AttackSystem
     {
         [SerializeField] private List<AttackSoBase> attacks;
 
+        private readonly Dictionary<int, bool> _cooldownDictionary = new();
+
         private void Start()
         {
-            foreach (var attack in attacks) attack.EnableAttack();
+            for (var i = 0; i < attacks.Count; i++)
+            {
+                var attack = attacks[i];
+                attack.EnableAttack();
+                _cooldownDictionary.Add(i, false);
+            }
         }
 
         private void OnDestroy()
@@ -20,9 +28,21 @@ namespace _.Scripts.AttackSystem
 
         public void Attack(int attackNr)
         {
-            Debug.Log(attacks[attackNr].GetAttackName());
+            if (_cooldownDictionary[attackNr]) return;
             if (attackNr > attacks.Count + 1) return; // value out of bounds
             attacks[attackNr].Shoot(transform);
+
+            if (attacks[attackNr].GetCooldown() > 0f)
+            {
+                CooldownAsync(attackNr);
+            }
+        }
+
+        private async void CooldownAsync(int attackNr)
+        {
+            _cooldownDictionary[attackNr] = true;
+            await UniTask.Delay(TimeSpan.FromSeconds(attacks[attackNr].GetCooldown()), ignoreTimeScale: false);
+            _cooldownDictionary[attackNr] = false;
         }
     }
 }

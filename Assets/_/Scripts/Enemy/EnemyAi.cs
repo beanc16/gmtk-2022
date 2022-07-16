@@ -23,6 +23,7 @@ namespace _.Scripts.Enemy
         [SerializeField] private EnemyData enemyData;
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private int enemyRoomIndex;
+        [SerializeField] private AttackSystem.AttackSystem attackSystem;
 
         private Transform _playerTransform;
         private Health _health;
@@ -70,6 +71,17 @@ namespace _.Scripts.Enemy
             }
             
             agent.SetDestination(_playerTransform.position);
+
+            if (agent.remainingDistance < enemyData.FireDistance)
+            {
+                agent.isStopped = true;
+                attackSystem.Attack(0);
+            }
+            else
+            {
+                agent.isStopped = false;
+            }
+            
             if(_playerTransform == null) _playerTransform = PlayerController.Instance.transform;
             
             if (_health.GetHealthPoints() - _health.GetCurrentHealthPoints() < 0.1f)

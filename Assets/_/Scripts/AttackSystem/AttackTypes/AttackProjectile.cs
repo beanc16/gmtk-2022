@@ -14,22 +14,13 @@ namespace _.Scripts.AttackSystem
 
         public override void Shoot(Transform fromTransform)
         {
-            Debug.Log(OnCooldown);
-            if(OnCooldown) return; 
             Debug.Log("Shoot Projectile");
             var projectile = Pool.Get();
             projectile.transform.position = fromTransform.position;
             var attackObject = new AttackObject(ReleaseTarget, projectile, this);
-
-            if (attackCooldown > 0f) Cooldown();
         }
 
-        private async void Cooldown()
-        {
-            OnCooldown = true;
-            await UniTask.Delay(TimeSpan.FromSeconds(attackCooldown), ignoreTimeScale: false, cancellationToken: CancellationToken);
-            OnCooldown = false;
-        }
+
         
         public override async void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished)
         {
