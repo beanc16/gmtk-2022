@@ -5,6 +5,7 @@ using _.Scripts.HealthSystem;
 using _.Scripts.Player;
 using _.Scripts.World;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -16,10 +17,11 @@ namespace _.Scripts.Enemy
         public static int EnemiesAlive;
         
         [SerializeField] private float enemySpeed;
-        [SerializeField] private Rigidbody2D enemyBody2D;
+        //[SerializeField] private Rigidbody2D enemyBody2D;
         [SerializeField] private GameObject enemyHealthBarContainer;
         [SerializeField] private Image enemyHealthBar;
         [SerializeField] private EnemyData enemyData;
+        [SerializeField] private NavMeshAgent agent;
 
         private Transform _playerTransform;
         private Health _health;
@@ -31,6 +33,8 @@ namespace _.Scripts.Enemy
             _playerTransform = PlayerController.Instance.transform;
             enemySpeed = Random.Range(enemyData.EnemySpeedMin, enemyData.EnemySpeedMax);
             _health = new Health(enemyData.EnemyHp);
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
         }
 
         private void OnEnable()
@@ -50,6 +54,7 @@ namespace _.Scripts.Enemy
             AttackObject.Hit(col.transform.parent.gameObject, _health);
             
             if (_health.GetCurrentHealthPoints() > 0f) return;
+            
             Die();
         }
 
@@ -80,6 +85,8 @@ namespace _.Scripts.Enemy
 
         private void FixedUpdate()
         {
+            agent.SetDestination(_playerTransform.position);
+            /*
             if (GameController.Instance.IsGameActive == false)
             {
                 enemyBody2D.velocity = Vector2.zero;
@@ -94,6 +101,7 @@ namespace _.Scripts.Enemy
             var normalizedDirection = playerDistance.normalized;
             
             enemyBody2D.velocity = normalizedDirection.normalized * enemySpeed;
+            */
         }
 
         private void Die()
