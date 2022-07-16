@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace _.Scripts.World
 {
+    /*
     public class WaveSpawner : MonoBehaviour
     {
         [SerializeField] private bool disableSpawner;
@@ -96,7 +97,7 @@ namespace _.Scripts.World
             if (timeTillNextSpawn <= 0)
             {
                 SpawnNextWave();
-            }*/
+            }
         }
 
         private void Reset()
@@ -175,6 +176,9 @@ namespace _.Scripts.World
             }
             pos.y += yPos;
             return pos;
+            
         }
-    }
+}
+*/
+    
 }

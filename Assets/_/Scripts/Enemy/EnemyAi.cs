@@ -3,51 +3,44 @@ using _.Scripts.AttackSystem;
 using _.Scripts.Core;
 using _.Scripts.HealthSystem;
 using _.Scripts.Player;
+using _.Scripts.World;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace _.Scripts.Enemy
 {
     public class EnemyAi : MonoBehaviour
     {
-        private const float DIST_TO_MIN_VALUE = 5;
-        private const float DIST_TO_MAX_VALUE = 12;
-        private const float DIST_DIFFERENCE = 7;
+        public static int EnemiesAlive;
         
         [SerializeField] private float enemySpeed;
-        [SerializeField] private float damage;
         [SerializeField] private Rigidbody2D enemyBody2D;
         [SerializeField] private GameObject enemyHealthBarContainer;
         [SerializeField] private Image enemyHealthBar;
+        [SerializeField] private EnemyData enemyData;
 
-        private Transform playerTransform;
+        private Transform _playerTransform;
         private Health _health;
-        private UnityAction<EnemyAi> onDeathAction;
-        private bool isAlive;
 
         public Health GetHeath() => _health;
-        
-        private float enemySpeedMin;
-        private float enemySpeedMax;
-        private float enemySpeedMaxChange;
-        private float enemySpeedDifference;
 
-        private void Awake()
+        private void Start()
         {
-            //playerTransform = PlayerController.Instance.transform;
+            _playerTransform = PlayerController.Instance.transform;
+            enemySpeed = Random.Range(enemyData.EnemySpeedMin, enemyData.EnemySpeedMax);
+            _health = new Health(enemyData.EnemyHp);
         }
 
-        public void Init(UnityAction<EnemyAi> deathAction, float health, float speedMin, float speedMax, float changeMax)
+        private void OnEnable()
         {
-            enemySpeedMin = speedMin;
-            enemySpeedMax = speedMax;
-            enemySpeedDifference = speedMax - speedMin;
-            enemySpeedMaxChange = changeMax;
-            onDeathAction = deathAction;
-            _health = new Health(health);
-            Debug.Log(health);
-            isAlive = true;
+            EnemiesAlive++;
+        }
+
+        private void OnDisable()
+        {
+            EnemiesAlive--;
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -57,20 +50,14 @@ namespace _.Scripts.Enemy
             AttackObject.Hit(col.transform.parent.gameObject, _health);
             
             if (_health.GetCurrentHealthPoints() > 0f) return;
-            isAlive = false;
-            onDeathAction(this);
+            Die();
         }
 
         private void Update()
         {
-            if(playerTransform == null)
+            if(_playerTransform == null)
             {
-                playerTransform = PlayerController.Instance.transform;
-            }
-            
-            if (isAlive == false)
-            {
-                return;
+                _playerTransform = PlayerController.Instance.transform;
             }
 
             if (_health.GetHealthPoints() - _health.GetCurrentHealthPoints() < 0.1f)
@@ -88,8 +75,7 @@ namespace _.Scripts.Enemy
             }
             
             if (_health.GetCurrentHealthPoints() > 0f) return;
-            isAlive = false;
-            onDeathAction(this);
+            Die();
         }
 
         private void FixedUpdate()
@@ -101,7 +87,27 @@ namespace _.Scripts.Enemy
             }
             
             var enemyPosition = enemyBody2D.position;
-            var playerPosition = (Vector2)playerTransform.position;
+            var playerPosition = (Vector2)_playerTransform.position;
+
+            var playerDistance = playerPosition - enemyPosition;
+            
+            var normalizedDirection = playerDistance.normalized;
+            
+            enemyBody2D.velocity = normalizedDirection.normalized * enemySpeed;
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
+        }
+    }
+}
+
+/*
+
+            private const float DIST_TO_MIN_VALUE = 5;
+        private const float DIST_TO_MAX_VALUE = 12;
+        private const float DIST_DIFFERENCE = 7;
 
             float totalDistance = Vector2.Distance(playerPosition, enemyPosition);
             if (totalDistance < DIST_TO_MIN_VALUE)
@@ -143,12 +149,4 @@ namespace _.Scripts.Enemy
                     }
                 }
             }
-
-            var playerDistance = playerPosition - enemyPosition;
-            
-            var normalizedDirection = playerDistance.normalized;
-            
-            enemyBody2D.velocity = normalizedDirection.normalized * enemySpeed;
-        }
-    }
-}
+*/
