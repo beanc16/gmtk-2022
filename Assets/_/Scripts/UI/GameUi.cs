@@ -1,7 +1,6 @@
 ﻿using _.Scripts.Core;
 using _.Scripts.Enemy;
 using _.Scripts.Player;
-using _.Scripts.RollingScene;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -43,15 +42,8 @@ namespace _.Scripts.UI
                 currentAttackIconType = GameController.Instance.CurrentPlayerAttackType;
             }
             
-            if (EnemyAi.EnemiesAlive > 0)
-            {
-                nextWaveText.gameObject.SetActive(true);
-                nextWaveText.text = "Enemies Remaining: " + EnemyAi.EnemiesAlive.ToString("N0");
-                return;
-            }
-            
-            //nextWaveText.gameObject.SetActive(waveSpawner.TimeTillNextWave > 0);
-            //nextWaveText.text = "Next wave In: " + waveSpawner.TimeTillNextWave.ToString("N1");
+            nextWaveText.gameObject.SetActive(true); 
+            nextWaveText.text = "Enemies Remaining: " + EnemyAi.EnemiesAlive.ToString("N0");
         }
 
         private void SetPlayerHpBar()
