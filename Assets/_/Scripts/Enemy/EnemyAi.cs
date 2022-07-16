@@ -38,6 +38,7 @@ namespace _.Scripts.Enemy
             _health = new Health(enemyData.EnemyHp);
             agent.updateRotation = false;
             agent.updateUpAxis = false;
+            GameController.Instance.RegisterEnemyInArea(enemyRoomIndex);
         }
 
         private void OnEnable()
@@ -100,6 +101,7 @@ namespace _.Scripts.Enemy
 
         private void Die()
         {
+            GameController.Instance.UnregisterEnemyInArea(enemyRoomIndex);
             Destroy(gameObject);
         }
     }

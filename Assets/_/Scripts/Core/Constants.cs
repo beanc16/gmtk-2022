@@ -14,6 +14,7 @@
         public const string MainScene = "MainMenu";
         
         //Tags
+        public const string TagPlayer = "Player";
         public const string TagPlayerProjectile = "PlayerProjectile";
         public const string TagEnemy = "Enemy";
     }

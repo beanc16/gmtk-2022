@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using _.Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +18,7 @@ namespace _.Scripts.Core
         public double CurrentScore;
         public PlayerAttackType CurrentPlayerAttackType;
         public int AreaActive = 1;
+        public Dictionary<int, int> EnemiesInArea = new Dictionary<int, int>();
 
         //private GameObject rollDiceInstance;
         
@@ -80,6 +82,21 @@ namespace _.Scripts.Core
             }
 
             return PlayerAttackType.None;
+        }
+
+        public void RegisterEnemyInArea(int area)
+        {
+            if (EnemiesInArea.ContainsKey(area) == false)
+            {
+                EnemiesInArea.Add(area, 0);
+            }
+            
+            EnemiesInArea[area]++;
+        }
+        
+        public void UnregisterEnemyInArea(int area)
+        {
+            EnemiesInArea[area]--;
         }
     }
 }
