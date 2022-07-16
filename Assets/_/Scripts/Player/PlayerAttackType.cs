@@ -5,6 +5,7 @@
         None = -1,
         Projectile,
         Bomb,
+        Melee,
         AreaOfEffect,
         Arrow
     }
