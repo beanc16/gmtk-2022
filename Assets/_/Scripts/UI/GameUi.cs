@@ -32,9 +32,9 @@ namespace _.Scripts.UI
 
             if (GameController.Instance.CurrentPlayerAttackType != currentAttackIconType)
             {
-                Debug.Log("GameController.Instance.CurrentPlayerAttackType: " + GameController.Instance.CurrentPlayerAttackType);
                 currentAttackIcon.gameObject.SetActive(GameController.Instance.CurrentPlayerAttackType != PlayerAttackType.None);
                 currentAttackIcon.sprite = playerAttackIconData.GetIconForSprite(GameController.Instance.CurrentPlayerAttackType);
+                currentAttackIconType = GameController.Instance.CurrentPlayerAttackType;
             }
             
             if (EnemyAi.EnemiesAlive > 0)
