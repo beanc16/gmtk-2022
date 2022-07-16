@@ -13,7 +13,7 @@ namespace _.Scripts.Enemy
     {
         private const float DIST_TO_MIN_VALUE = 5;
         private const float DIST_TO_MAX_VALUE = 12;
-        private const float DIST_DIFFERENCE = 3;
+        private const float DIST_DIFFERENCE = 7;
         
         [SerializeField] private float enemySpeed;
         [SerializeField] private float damage;
