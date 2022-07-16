@@ -19,7 +19,7 @@ namespace _.Scripts.HealthSystem
 
         public void Damage(float damageAmount)
         {
-            Debug.Log("Damage!");
+            Debug.Log("Current Health points : " + _currentHeathPoints);
             _currentHeathPoints -= damageAmount;
         }
     }

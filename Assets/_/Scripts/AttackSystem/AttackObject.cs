@@ -32,8 +32,12 @@ namespace _.Scripts.AttackSystem
 
         private void OnHit(GameObject hit, IDamageable<float> toDamage)
         {
-            Debug.Log("Should do damage now .. ");
             toDamage.Damage(_attackData.GetDamage());
+            
+            if (!_attackData.GetDestroyOnHit()) return;
+            
+            ReleaseAttack(hit);
+            ObjectHit -= OnHit;
         }
         
         private void ReleaseAttack(GameObject hit)
