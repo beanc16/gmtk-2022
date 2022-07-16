@@ -66,13 +66,14 @@ namespace _.Scripts.Core
             switch (roll)
             {
                 case 1:
-                case 3:
-                case 5:
-                    return PlayerAttackType.Melee;
                 case 2:
+                    return PlayerAttackType.Projectile;
+                case 3:
                 case 4:
+                    return PlayerAttackType.Bomb;
+                case 5:
                 case 6:
-                    return PlayerAttackType.Melee;
+                    return PlayerAttackType.Bomb;
             }
             /*switch (roll)
             {
