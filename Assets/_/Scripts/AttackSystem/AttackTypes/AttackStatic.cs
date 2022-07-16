@@ -6,22 +6,21 @@ using UnityEngine.Events;
 
 namespace _.Scripts.AttackSystem
 {
-    [CreateAssetMenu(fileName = "Projectile", menuName = "GMTK2022/Attack/Projectile", order = 0)]
-    public class AttackSo : AttackSoBase
+    [CreateAssetMenu(fileName = "Static", menuName = "GMTK2022/Attack/Static", order = 1)]
+    public class AttackStatic : AttackSoBase
     {
         [SerializeField] private float lifeTime;
-        [SerializeField] private float speed;
-
+        [SerializeField] private float range;
+        
         private bool _onCooldown;
         
         public override void Shoot(Transform fromTransform)
         {
             if(_onCooldown) return; 
-            Debug.Log("Shoot Projectile");
+            Debug.Log("Shoot Static");
             var projectile = Pool.Get();
             projectile.transform.position = fromTransform.position;
             var attackObject = new AttackObject(ReleaseTarget, projectile, this);
-
             if (attackCooldown > 0f) Cooldown();
         }
 
@@ -35,18 +34,9 @@ namespace _.Scripts.AttackSystem
         public override async void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished)
         {
             var time = 0f;
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var moveDirection = worldPosition - attackObject.transform.position;
-            moveDirection.z = 0;
-            moveDirection = moveDirection.normalized;
-            
             while (time < lifeTime || !attackObject.activeSelf)
             {
-                if (GameController && !GameController.IsGameActive) break;
-                if (!attackObject || !attackObject.activeSelf) break;
-
                 time += Time.deltaTime;
-                attackObject.transform.position += moveDirection * (Time.deltaTime * speed);
                 await UniTask.Yield();
             }
             onAttackFinished();

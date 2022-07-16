@@ -16,6 +16,6 @@ MonoBehaviour:
     type: 3}
   attackName: Projectile
   attackCooldown: 0.1
-  destroyOnHit: 0
+  destroyOnHit: 1
   lifeTime: 0.5
   speed: 8

@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attacks:
   - {fileID: 11400000, guid: b606c37955f439a4f8bed24d7170fd0e, type: 2}
-  - {fileID: 11400000, guid: cf1b3fdab42fa6a46bd75bf2fb8650a2, type: 2}
+  - {fileID: 11400000, guid: db352261d4e567746afa87615795d8e5, type: 2}
 --- !u!1 &6755973252181445134
 GameObject:
   m_ObjectHideFlags: 0

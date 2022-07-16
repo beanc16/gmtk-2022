@@ -36,6 +36,7 @@ namespace _.Scripts.Player
             {
                 attackSystem.Attack((int)GameController.Instance.CurrentPlayerAttackType);
             }
+            DoDamage();
             return;
             if (GameController.Instance != null && GameController.Instance.IsGameActive == false)
             {
@@ -78,7 +79,7 @@ namespace _.Scripts.Player
             //note : Only move with MovePosition if rigidbody is kinematic.
             //playerBody2d.MovePosition(playerBody2d.position + currentMovement2d);
 
-            DoDamage();
+            
         }
 
         private void FixedUpdate()

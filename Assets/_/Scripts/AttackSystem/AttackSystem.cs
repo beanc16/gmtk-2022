@@ -6,7 +6,7 @@ namespace _.Scripts.AttackSystem
 {
     public class AttackSystem : MonoBehaviour
     {
-        [SerializeField] private List<AttackSo> attacks;
+        [SerializeField] private List<AttackSoBase> attacks;
 
         private void Start()
         {
