@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _.Scripts.HealthSystem
 {
-    public class Health : IDamageable<float>
+    public class Health : IDamageable
     {
         private readonly float _healthPoints;
         private float _currentHeathPoints;
