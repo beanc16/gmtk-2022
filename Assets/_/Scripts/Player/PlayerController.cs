@@ -72,7 +72,7 @@ namespace _.Scripts.Player
                     currentMovement2d.x = playerData.PlayerSpeed;
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
                     attackSystem.Attack(0);
                 }
