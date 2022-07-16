@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   PlayerSpeed: 5
-  PlayerHp: 10
+  PlayerHp: 40
   InvulnerableTime: 0.4

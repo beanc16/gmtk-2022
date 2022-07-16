@@ -1,6 +1,7 @@
 ﻿using _.Scripts.Core;
 using _.Scripts.Enemy;
 using _.Scripts.Player;
+using _.Scripts.RollingScene;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,8 @@ namespace _.Scripts.UI
         [SerializeField] private Image playerTimeToRerollBar;
         [SerializeField] private Image currentAttackIcon;
         [SerializeField] private PlayerController playerController;
+        [SerializeField] private GameObject rollingAbilityContainer;
+        [SerializeField] private GameObject currentAbilityContainer;
 
         //private PlayerController playerController;
         private PlayerAttackType currentAttackIconType;
@@ -29,6 +32,9 @@ namespace _.Scripts.UI
         {
             SetPlayerHpBar();
             SetPlayerTimeToRerollBar();
+            
+            currentAbilityContainer.SetActive(GameController.Instance.IsRolling == false);
+            rollingAbilityContainer.SetActive(GameController.Instance.IsRolling);
 
             if (GameController.Instance.CurrentPlayerAttackType != currentAttackIconType)
             {
