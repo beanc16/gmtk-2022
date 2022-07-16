@@ -20,6 +20,11 @@ namespace _.Scripts.AttackSystem
             projectile.transform.position = fromTransform.position;
             projectile.transform.rotation = fromTransform.rotation;
             projectile.transform.localScale = Vector3.one;
+            
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var moveDirection = worldPosition - projectile.transform.position;
+            moveDirection.z = 0;
+            moveDirection = moveDirection.normalized;
 
             var gameController = GameController.Instance;
 
@@ -36,7 +41,7 @@ namespace _.Scripts.AttackSystem
                 }
                 
                 time += Time.deltaTime;
-                projectile.transform.position += projectile.transform.up * (Time.deltaTime * speed);
+                projectile.transform.position += moveDirection * (Time.deltaTime * speed);
                 await UniTask.Yield();
             }
             

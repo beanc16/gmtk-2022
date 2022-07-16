@@ -15,5 +15,5 @@ MonoBehaviour:
   attackName: Projectile
   attackPrefab: {fileID: 744153610598438701, guid: d1ba736aca9d61d4b9549ce8e2811602,
     type: 3}
-  lifeTime: 2
-  speed: 1
+  lifeTime: 0.7
+  speed: 5
