@@ -65,6 +65,17 @@ namespace _.Scripts.Core
             switch (roll)
             {
                 case 1:
+                case 3:
+                case 5:
+                    return PlayerAttackType.Projectile;
+                case 2:
+                case 4:
+                case 6:
+                    return PlayerAttackType.Bomb;
+            }
+            /*switch (roll)
+            {
+                case 1:
                 case 2:
                     return PlayerAttackType.Projectile;
                 case 3:
@@ -74,7 +85,7 @@ namespace _.Scripts.Core
                     return PlayerAttackType.Arrow;
                 case 6:
                     return PlayerAttackType.AreaOfEffect;
-            }
+            }*/
 
             return PlayerAttackType.None;
         }
