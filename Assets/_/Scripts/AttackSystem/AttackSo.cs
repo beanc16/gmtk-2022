@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using _.Scripts.Core;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace _.Scripts.AttackSystem
@@ -20,12 +21,20 @@ namespace _.Scripts.AttackSystem
             projectile.transform.rotation = fromTransform.rotation;
             projectile.transform.localScale = Vector3.one;
 
+            var gameController = GameController.Instance;
+
             while (time < lifeTime)
             {
+                if (gameController.IsGameActive == false)
+                {
+                    break;
+                }
+                
                 if (projectile == null)
                 {
-                    return;
+                    break;
                 }
+                
                 time += Time.deltaTime;
                 projectile.transform.position += projectile.transform.up * (Time.deltaTime * speed);
                 await UniTask.Yield();

@@ -38,6 +38,11 @@ namespace _.Scripts.Enemy
 
         private void Update()
         {
+            if (GameController.Instance.IsGameActive == false)
+            {
+                return;
+            }
+            
             if (isAlive == false)
             {
                 return;

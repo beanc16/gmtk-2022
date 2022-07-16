@@ -42,6 +42,11 @@ namespace _.Scripts.Player
 
         private void Update()
         {
+            if (GameController.Instance.IsGameActive == false)
+            {
+                return;
+            }
+            
             if (useNewInputSystem == false)
             {
                 currentMovement2d = Vector2.zero;
@@ -109,6 +114,7 @@ namespace _.Scripts.Player
             {
                 //Game Over
                 Debug.LogError("GAME OVER");
+                GameController.Instance.GameOver();
             }
         }
     }
