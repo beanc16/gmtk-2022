@@ -5,11 +5,32 @@ namespace _.Scripts.World
 {
     public class Door : MonoBehaviour
     {
-        public int OpenOnWaveComplete;
-        public GameObject ClosedDoor;
-        public GameObject OpenDoor;
+        [SerializeField] private int openOnWaveComplete;
+        [SerializeField] private GameObject closedDoorPrev;
+        [SerializeField] private GameObject closedDoorNext;
+        [SerializeField] private DoorTrigger prevTrigger;
+        [SerializeField] private DoorTrigger nextTrigger;
 
         private bool forcedClose;
+
+        private void Awake()
+        {
+            prevTrigger.OnTriggerAction(OnBetweenRooms);
+            nextTrigger.OnTriggerAction(OnNextRoom);
+        }
+
+        private void OnBetweenRooms()
+        {
+            closedDoorPrev.SetActive(true);
+            closedDoorNext.SetActive(false);
+        }
+        
+        private void OnNextRoom()
+        {
+            closedDoorNext.SetActive(true);
+            
+            GameController.Instance.UpdateAreaActive(openOnWaveComplete + 1);
+        }
 
         private void Update()
         {
@@ -20,26 +41,12 @@ namespace _.Scripts.World
             
             if (GameController.Instance != null)
             {
-                if (GameController.Instance.EnemiesInArea[OpenOnWaveComplete] <= 0)
+                if (GameController.Instance.EnemiesInArea[openOnWaveComplete] <= 0)
                 {
-                    ClosedDoor.SetActive(false);
-                    OpenDoor.SetActive(true);
-                }
-                else
-                {
-                    ClosedDoor.SetActive(true);
-                    OpenDoor.SetActive(false);
+                    closedDoorPrev.SetActive(false);
+                    forcedClose = true;
                 }
             }
-        }
-        
-        private void OnTriggerExit2D(Collider2D col)
-        {
-            if (!col.gameObject.CompareTag(Constants.TagPlayer)) return;
-
-            forcedClose = true;
-
-            ClosedDoor.gameObject.SetActive(true);
         }
     }
 }

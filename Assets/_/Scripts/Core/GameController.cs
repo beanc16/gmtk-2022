@@ -12,7 +12,6 @@ namespace _.Scripts.Core
         public static GameController Instance { get; private set; }
 
         [SerializeField] private GameObject gameOverPrefab;
-        //[SerializeField] private GameObject rollDicePrefab;
 
         public bool IsGameActive;
         public double CurrentScore;
@@ -20,8 +19,6 @@ namespace _.Scripts.Core
         public int AreaActive = 1;
         public Dictionary<int, int> EnemiesInArea = new Dictionary<int, int>();
 
-        //private GameObject rollDiceInstance;
-        
         private void Awake()
         {
             if (Instance != null)
@@ -30,7 +27,6 @@ namespace _.Scripts.Core
             }
             Instance = this;
 
-            //rollDiceInstance = Instantiate(rollDicePrefab);
             RollForRandomEffect();
         }
 
@@ -54,7 +50,6 @@ namespace _.Scripts.Core
             IsGameActive = false;
             
             this.RollFinished(Random.Range(1,7));
-            //rollDiceInstance.SetActive(true);
         }
 
         public void RollFinished(int currentFace)
@@ -62,8 +57,6 @@ namespace _.Scripts.Core
             IsGameActive = true;
 
             CurrentPlayerAttackType = GetAttackTypeForRoll(currentFace);
-            
-            //rollDiceInstance.SetActive(false);
         }
 
         private PlayerAttackType GetAttackTypeForRoll(int roll)
@@ -82,6 +75,11 @@ namespace _.Scripts.Core
             }
 
             return PlayerAttackType.None;
+        }
+
+        public void UpdateAreaActive(int newAres)
+        {
+            AreaActive = newAres;
         }
 
         public void RegisterEnemyInArea(int area)
