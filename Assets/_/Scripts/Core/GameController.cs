@@ -27,7 +27,7 @@ namespace _.Scripts.Core
         {
             IsGameActive = false;
 
-            Instantiate(gameOverPrefab);
+            Instantiate(gameOverPrefab).GetComponentInChildren<GameOverScoreHandler>().SetScoreText(CurrentScore.ToString("N0"));
         }
 
         private void Update()

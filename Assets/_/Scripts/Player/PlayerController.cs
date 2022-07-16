@@ -120,7 +120,6 @@ namespace _.Scripts.Player
             if (playerCurrentHp <= 0)
             {
                 //Game Over
-                Debug.LogError("GAME OVER");
                 GameController.Instance.GameOver();
             }
         }
