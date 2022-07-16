@@ -12,11 +12,10 @@ namespace _.Scripts.AttackSystem
         [SerializeField] private float lifeTime;
         [SerializeField] private float speed;
 
-        [NonSerialized] private bool _onCooldown;
-        
         public override void Shoot(Transform fromTransform)
         {
-            if(_onCooldown) return; 
+            Debug.Log(OnCooldown);
+            if(OnCooldown) return; 
             Debug.Log("Shoot Projectile");
             var projectile = Pool.Get();
             projectile.transform.position = fromTransform.position;
@@ -27,9 +26,9 @@ namespace _.Scripts.AttackSystem
 
         private async void Cooldown()
         {
-            _onCooldown = true;
+            OnCooldown = true;
             await UniTask.Delay(TimeSpan.FromSeconds(attackCooldown), ignoreTimeScale: false, cancellationToken: CancellationToken);
-            _onCooldown = false;
+            OnCooldown = false;
         }
         
         public override async void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished)

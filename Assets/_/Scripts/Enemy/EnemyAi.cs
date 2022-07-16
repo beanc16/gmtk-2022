@@ -26,6 +26,8 @@ namespace _.Scripts.Enemy
         private UnityAction<EnemyAi> onDeathAction;
         private bool isAlive;
 
+        public Health GetHeath() => _health;
+        
         private float enemySpeedMin;
         private float enemySpeedMax;
         private float enemySpeedMaxChange;

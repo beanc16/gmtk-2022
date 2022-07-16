@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,13 +9,12 @@ namespace _.Scripts.AttackSystem
     public class AttackStatic : AttackSoBase
     {
         [SerializeField] private float lifeTime;
-        [SerializeField] private float range;
-        
-        private bool _onCooldown;
-        
+
         public override void Shoot(Transform fromTransform)
         {
-            if(_onCooldown) return; 
+            if(!GameController.IsGameActive) return;
+            Debug.Log(OnCooldown);
+            if(OnCooldown) return; 
             Debug.Log("Shoot Static");
             var projectile = Pool.Get();
             projectile.transform.position = fromTransform.position;
@@ -26,9 +24,9 @@ namespace _.Scripts.AttackSystem
 
         private async void Cooldown()
         {
-            _onCooldown = true;
+            OnCooldown = true;
             await UniTask.Delay(TimeSpan.FromSeconds(attackCooldown), ignoreTimeScale: false, cancellationToken: CancellationToken);
-            _onCooldown = false;
+            OnCooldown = false;
         }
         
         public override async void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished)

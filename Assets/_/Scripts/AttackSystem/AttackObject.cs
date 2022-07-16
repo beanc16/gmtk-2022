@@ -1,4 +1,6 @@
-﻿using _.Scripts.HealthSystem.Interfaces;
+﻿using _.Scripts.Enemy;
+using _.Scripts.HealthSystem;
+using _.Scripts.HealthSystem.Interfaces;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +12,6 @@ namespace _.Scripts.AttackSystem
             => ObjectHit?.Invoke(gameObject, toDamage);
         
         private static event UnityAction<GameObject, IDamageable> ObjectHit;
-
         private readonly UnityAction<GameObject> _onHitTarget;
         private readonly GameObject _thisObject;
         private readonly AttackSoBase _attackData;
@@ -31,7 +32,7 @@ namespace _.Scripts.AttackSystem
 
         private void OnHit(GameObject hit, IDamageable toDamage)
         {
-            toDamage.Damage(_attackData.GetDamage());
+            if(_attackData.GetDamageOnHit()) toDamage.Damage(_attackData.GetDamage());
             if (!_attackData.GetDestroyOnHit()) return;
             ReleaseAttack(hit);
         }
@@ -42,7 +43,25 @@ namespace _.Scripts.AttackSystem
             if (hit != _thisObject) return;
             _finished = true;
             _onHitTarget?.Invoke(hit);
+            if(!_attackData.GetDamageOnHit()) DoAoEDamage();
             ObjectHit -= OnHit;
+        }
+
+        private void DoAoEDamage()
+        {
+            var pos = (Vector2)_thisObject.transform.position;
+            var size = new Vector2(_attackData.GetAoeRange(), _attackData.GetAoeRange());
+            
+            var hits = Physics2D.BoxCastAll(pos, size, 0f, Vector2.up);
+            Debug.Log(hits.Length +  " <-- Hits!");
+            foreach (var hit in hits)
+            {
+                var damageable = hit.transform.GetComponent<IDamageable>();
+                if (hit.transform.TryGetComponent<EnemyAi>(out var health))
+                {
+                    health.GetHeath().Damage(_attackData.GetDamage());
+                }
+            }
         }
     }
 }

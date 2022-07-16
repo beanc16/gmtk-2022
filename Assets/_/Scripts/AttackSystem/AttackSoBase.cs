@@ -13,19 +13,26 @@ namespace _.Scripts.AttackSystem
         
         [SerializeField] protected string attackName;
         [SerializeField] protected bool destroyOnHit;
+        [SerializeField] protected bool damageOnHit;
         [SerializeField] protected float attackCooldown;
         [SerializeField] protected float damage;
+        [SerializeField] protected float aoeRange;
         public string GetAttackName() => attackName;
         public bool GetDestroyOnHit() => destroyOnHit;
+        public bool GetDamageOnHit() => damageOnHit;
+        public float GetAoeRange() => aoeRange;
         public float GetDamage() => damage; // expand upon this for variations.
         
         protected IObjectPool<GameObject> Pool;
         protected static GameController GameController;
         protected CancellationToken CancellationToken;
+        protected bool OnCooldown;
         
         public virtual void EnableAttack()
         {
+            OnCooldown = false;
             if(GameController == null) GameController = GameController.Instance;
+            
             CancellationToken = GameController.gameObject.GetCancellationTokenOnDestroy();
             Pool = new ObjectPool<GameObject>(() 
                 => Instantiate(attackPrefab),
@@ -39,6 +46,7 @@ namespace _.Scripts.AttackSystem
 
         public virtual void DisableAttack()
         {
+            OnCooldown = false;
             Pool.Clear();
         }
 
@@ -54,7 +62,5 @@ namespace _.Scripts.AttackSystem
 
         public abstract void Shoot(Transform fromTransform);
         public abstract void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished);
-
-
     }
 }

@@ -16,7 +16,9 @@ MonoBehaviour:
     type: 3}
   attackName: Projectile
   destroyOnHit: 1
+  damageOnHit: 1
   attackCooldown: 0.1
   damage: 1
+  aoeRange: 0
   lifeTime: 0.5
   speed: 8

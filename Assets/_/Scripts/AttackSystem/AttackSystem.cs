@@ -20,8 +20,8 @@ namespace _.Scripts.AttackSystem
 
         public void Attack(int attackNr)
         {
-            if (attackNr > attacks.Count) return; // value out of bounds
-            
+            Debug.Log(attacks[attackNr].GetAttackName());
+            if (attackNr > attacks.Count + 1) return; // value out of bounds
             attacks[attackNr].Shoot(transform);
         }
     }
