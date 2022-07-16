@@ -1,4 +1,5 @@
 ﻿using _.Scripts.Core;
+using _.Scripts.Enemy;
 using _.Scripts.Player;
 using _.Scripts.World;
 using TMPro;
@@ -14,15 +15,13 @@ namespace _.Scripts.UI
         [SerializeField] private Canvas uiCanvas;
         [SerializeField] private Image playerHealthBar;
         [SerializeField] private Image currentAttackIcon;
-
-        //private WaveSpawner waveSpawner;
+        
         private PlayerController playerController;
         private PlayerAttackType currentAttackIconType;
 
         private void Awake()
         {
             uiCanvas.worldCamera = Camera.main;
-            //waveSpawner = FindObjectOfType<WaveSpawner>();
             playerController = PlayerController.Instance;
         }
 
@@ -36,16 +35,15 @@ namespace _.Scripts.UI
                 currentAttackIcon.sprite = playerAttackIconData.GetIconForSprite(GameController.Instance.CurrentPlayerAttackType);
             }
             
-            nextWaveText.gameObject.SetActive(false);
-            /*if (waveSpawner.EnemiesLeftAlive > 0)
+            if (EnemyAi.EnemiesAlive > 0)
             {
                 nextWaveText.gameObject.SetActive(true);
-                nextWaveText.text = "Enemies Remaining: " + waveSpawner.EnemiesLeftAlive.ToString("N0");
+                nextWaveText.text = "Enemies Remaining: " + EnemyAi.EnemiesAlive.ToString("N0");
                 return;
             }
             
-            nextWaveText.gameObject.SetActive(waveSpawner.TimeTillNextWave > 0);
-            nextWaveText.text = "Next wave In: " + waveSpawner.TimeTillNextWave.ToString("N1");*/
+            //nextWaveText.gameObject.SetActive(waveSpawner.TimeTillNextWave > 0);
+            //nextWaveText.text = "Next wave In: " + waveSpawner.TimeTillNextWave.ToString("N1");
         }
 
         private void SetPlayerHpBar()
