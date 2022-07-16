@@ -81,6 +81,10 @@ namespace _.Scripts.Enemy
                     enemyHealthBar.fillAmount = fill;
                 }
             }
+            
+            if (_health.GetCurrentHealthPoints() > 0f) return;
+            isAlive = false;
+            onDeathAction(this);
         }
 
         private void FixedUpdate()
