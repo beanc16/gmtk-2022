@@ -1,7 +1,6 @@
 ﻿using _.Scripts.Core;
 using _.Scripts.Enemy;
 using _.Scripts.Player;
-using _.Scripts.World;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,20 +13,22 @@ namespace _.Scripts.UI
         [SerializeField] private TextMeshProUGUI nextWaveText;
         [SerializeField] private Canvas uiCanvas;
         [SerializeField] private Image playerHealthBar;
+        [SerializeField] private Image playerTimeToRerollBar;
         [SerializeField] private Image currentAttackIcon;
-        
-        private PlayerController playerController;
+        [SerializeField] private PlayerController playerController;
+
+        //private PlayerController playerController;
         private PlayerAttackType currentAttackIconType;
 
         private void Awake()
         {
             uiCanvas.worldCamera = Camera.main;
-            playerController = PlayerController.Instance;
         }
 
         private void Update()
         {
             SetPlayerHpBar();
+            SetPlayerTimeToRerollBar();
 
             if (GameController.Instance.CurrentPlayerAttackType != currentAttackIconType)
             {
@@ -56,6 +57,18 @@ namespace _.Scripts.UI
             }
 
             playerHealthBar.fillAmount = fill;
+        }
+        
+        private void SetPlayerTimeToRerollBar()
+        {
+            float fill = 1f - (playerController.GetRerollAbilityTotalTime() -playerController.GetTimeTillNewAbility()) / playerController.GetRerollAbilityTotalTime();
+
+            if (Mathf.Abs(playerTimeToRerollBar.fillAmount - fill) < 0.1f)
+            {
+                return;
+            }
+
+            playerTimeToRerollBar.fillAmount = fill;
         }
     }
 }
