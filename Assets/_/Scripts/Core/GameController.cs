@@ -2,6 +2,7 @@
 using _.Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace _.Scripts.Core
 {
@@ -10,14 +11,14 @@ namespace _.Scripts.Core
         public static GameController Instance { get; private set; }
 
         [SerializeField] private GameObject gameOverPrefab;
-        [SerializeField] private GameObject rollDicePrefab;
+        //[SerializeField] private GameObject rollDicePrefab;
 
         public bool IsGameActive;
         public double CurrentScore;
         public PlayerAttackType CurrentPlayerAttackType;
         public int AreaActive = 1;
 
-        private GameObject rollDiceInstance;
+        //private GameObject rollDiceInstance;
         
         private void Awake()
         {
@@ -27,7 +28,8 @@ namespace _.Scripts.Core
             }
             Instance = this;
 
-            rollDiceInstance = Instantiate(rollDicePrefab);
+            //rollDiceInstance = Instantiate(rollDicePrefab);
+            RollForRandomEffect();
         }
 
         private void Update()
@@ -49,7 +51,8 @@ namespace _.Scripts.Core
         {
             IsGameActive = false;
             
-            rollDiceInstance.SetActive(true);
+            this.RollFinished(Random.Range(1,7));
+            //rollDiceInstance.SetActive(true);
         }
 
         public void RollFinished(int currentFace)
@@ -58,7 +61,7 @@ namespace _.Scripts.Core
 
             CurrentPlayerAttackType = GetAttackTypeForRoll(currentFace);
             
-            rollDiceInstance.SetActive(false);
+            //rollDiceInstance.SetActive(false);
         }
 
         private PlayerAttackType GetAttackTypeForRoll(int roll)
@@ -70,24 +73,11 @@ namespace _.Scripts.Core
                     return PlayerAttackType.Projectile;
                 case 3:
                 case 4:
-                    return PlayerAttackType.Bomb;
+                    return PlayerAttackType.Melee;
                 case 5:
                 case 6:
                     return PlayerAttackType.Bomb;
             }
-            /*switch (roll)
-            {
-                case 1:
-                case 2:
-                    return PlayerAttackType.Projectile;
-                case 3:
-                case 4:
-                    return PlayerAttackType.Bomb;
-                case 5:
-                    return PlayerAttackType.Arrow;
-                case 6:
-                    return PlayerAttackType.AreaOfEffect;
-            }*/
 
             return PlayerAttackType.None;
         }

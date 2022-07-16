@@ -12,10 +12,12 @@ namespace _.Scripts.Player
         [SerializeField] private PlayerScriptableObject playerData;
         [SerializeField] private AttackSystem.AttackSystem attackSystem;
         [SerializeField] private Rigidbody2D playerBody2d;
+        [SerializeField] private float rerollAbilityTime;
 
         //private Vector2 currentMovement2d;
         private float enemiesTouchingPlayer;
         private float invulnerableTime;
+        private float timeTillNewAbility;
 
         private Health _health;
         public float GetTotalHp() => _health.GetHealthPoints();
@@ -32,6 +34,13 @@ namespace _.Scripts.Player
             if (GameController.Instance.IsGameActive == false)
             {
                 return;
+            }
+
+            timeTillNewAbility -= Time.deltaTime;
+            if (timeTillNewAbility <= 0)
+            {
+                timeTillNewAbility = rerollAbilityTime;
+                GameController.Instance.RollForRandomEffect();
             }
             
             if (Input.GetMouseButtonDown(0))

@@ -111,6 +111,7 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: f0491001252845d498897aaa8cffb62f, type: 2}
   attackSystem: {fileID: 1430879342407403563}
   playerBody2d: {fileID: 8944182071794124512}
+  rerollAbilityTime: 2
 --- !u!50 &8944182071794124512
 Rigidbody2D:
   serializedVersion: 4
