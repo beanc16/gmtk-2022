@@ -15,7 +15,8 @@ MonoBehaviour:
   attackPrefab: {fileID: 744153610598438701, guid: d1ba736aca9d61d4b9549ce8e2811602,
     type: 3}
   attackName: Projectile
-  attackCooldown: 0.1
   destroyOnHit: 1
+  attackCooldown: 0.1
+  damage: 1
   lifeTime: 0.5
   speed: 8
