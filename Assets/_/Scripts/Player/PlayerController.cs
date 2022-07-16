@@ -1,6 +1,5 @@
 ﻿using _.Scripts.Core;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace _.Scripts.Player
 {
@@ -28,22 +27,6 @@ namespace _.Scripts.Player
             Instance = this;
             playerCurrentHp = playerData.PlayerHp;
             playerMaxHp = playerData.PlayerHp;
-        }
-
-        private void OnMovement(InputValue value)
-        {
-            if (useNewInputSystem)
-            {
-                currentMovement2d = value.Get<Vector2>() * playerData.PlayerSpeed;
-            }
-        }
-
-        private void OnAttack(InputValue value)
-        {
-            if (useNewInputSystem)
-            {
-                attackSystem.Attack(0);
-            }
         }
 
         private void Update()
