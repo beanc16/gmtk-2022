@@ -11,6 +11,10 @@ namespace _.Scripts.Enemy
 {
     public class EnemyAi : MonoBehaviour
     {
+        private const float DIST_TO_MIN_VALUE = 5;
+        private const float DIST_TO_MAX_VALUE = 12;
+        private const float DIST_DIFFERENCE = 3;
+        
         [SerializeField] private float enemySpeed;
         [SerializeField] private float damage;
         [SerializeField] private Rigidbody2D enemyBody2D;
@@ -22,15 +26,23 @@ namespace _.Scripts.Enemy
         private UnityAction<EnemyAi> onDeathAction;
         private bool isAlive;
 
+        private float enemySpeedMin;
+        private float enemySpeedMax;
+        private float enemySpeedMaxChange;
+        private float enemySpeedDifference;
+
         private void Awake()
         {
             playerTransform = PlayerController.Instance.transform;
         }
 
-        public void Init(UnityAction<EnemyAi> deathAction, float health, float speed)
+        public void Init(UnityAction<EnemyAi> deathAction, float health, float speedMin, float speedMax, float changeMax)
         {
+            enemySpeedMin = speedMin;
+            enemySpeedMax = speedMax;
+            enemySpeedDifference = speedMax - speedMin;
+            enemySpeedMaxChange = changeMax;
             onDeathAction = deathAction;
-            enemySpeed = speed;
             _health = new Health(health);
             Debug.Log(health);
             isAlive = true;
@@ -49,13 +61,6 @@ namespace _.Scripts.Enemy
 
         private void Update()
         {
-            /*
-            if (GameController.Instance.IsGameActive == false)
-            {
-                enemyBody2D.velocity = Vector2.zero;
-                return;
-            }
-            */
             if (isAlive == false)
             {
                 return;
@@ -74,17 +79,6 @@ namespace _.Scripts.Enemy
                     enemyHealthBar.fillAmount = fill;
                 }
             }
-            /*
-            var enemyPosition = enemyBody2D.position;
-            var playerPosition = (Vector2)playerTransform.position;
-            var playerDistance = playerPosition - enemyPosition;
-            if (Vector2.Distance(enemyPosition, playerPosition) < 1.2f)
-            {
-                return;
-            }
-            var normalizedDirection = playerDistance.normalized;
-            enemyBody2D.MovePosition(enemyPosition + normalizedDirection * enemySpeed);
-            */
         }
 
         private void FixedUpdate()
@@ -97,10 +91,53 @@ namespace _.Scripts.Enemy
             
             var enemyPosition = enemyBody2D.position;
             var playerPosition = (Vector2)playerTransform.position;
+
+            float totalDistance = Vector2.Distance(playerPosition, enemyPosition);
+            if (totalDistance < DIST_TO_MIN_VALUE)
+            {
+                enemySpeed -= enemySpeedMaxChange;
+                if (enemySpeed < enemySpeedMin)
+                {
+                    enemySpeed = enemySpeedMin;
+                }
+            } else if (totalDistance > DIST_TO_MAX_VALUE)
+            {
+                enemySpeed += enemySpeedMaxChange;
+                if (enemySpeed > enemySpeedMax)
+                {
+                    enemySpeed = enemySpeedMax;
+                }
+            }
+            else
+            {
+                totalDistance -= DIST_TO_MIN_VALUE;
+                
+                float destSpeed = enemySpeedMin +
+                                 enemySpeedDifference * (DIST_DIFFERENCE - totalDistance) / DIST_DIFFERENCE;
+
+                if (destSpeed < enemySpeed)
+                {
+                    enemySpeed -= enemySpeedMaxChange;
+                    if (enemySpeed < destSpeed)
+                    {
+                        enemySpeed = destSpeed;
+                    }
+                }
+                else
+                {
+                    enemySpeed += enemySpeedMaxChange;
+                    if (enemySpeed > destSpeed)
+                    {
+                        enemySpeed = destSpeed;
+                    }
+                }
+            }
+
             var playerDistance = playerPosition - enemyPosition;
+            
             var normalizedDirection = playerDistance.normalized;
             
-            enemyBody2D.velocity = normalizedDirection * enemySpeed;
+            enemyBody2D.velocity = normalizedDirection.normalized * enemySpeed;
         }
     }
 }

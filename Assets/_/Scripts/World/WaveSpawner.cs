@@ -48,7 +48,10 @@ namespace _.Scripts.World
             enemyAi.Init(
                 DespawnEnemy,
                 waveScriptableObject.EnemyHp + GameController.Instance.Wave * waveScriptableObject.EnemyHpIncrease,
-                Random.Range(waveScriptableObject.EnemySpeedMin, waveScriptableObject.EnemySpeedMax));
+                //Random.Range(waveScriptableObject.EnemySpeedMin, waveScriptableObject.EnemySpeedMax));
+                waveScriptableObject.EnemySpeedMin, 
+                waveScriptableObject.EnemySpeedMax,
+                waveScriptableObject.EnemySpeedChangeMax);
         }
 
         private void OnRelease(EnemyAi enemyAi)
@@ -143,10 +146,30 @@ namespace _.Scripts.World
         {
             var pos = enemyAi.transform.position;
             var playerPosition = PlayerController.Instance.transform.position;
-            pos.x += Random.Range(playerPosition.x - waveScriptableObject.PositionRandomizer.x,
+
+            float xPos = Random.Range(playerPosition.x - waveScriptableObject.PositionRandomizer.x,
                 playerPosition.x + waveScriptableObject.PositionRandomizer.x);
-            pos.y += Random.Range(playerPosition.y - waveScriptableObject.PositionRandomizer.y,
+            if (xPos < playerPosition.x)
+            {
+                xPos -= waveScriptableObject.PositionRandomizerMin.x;
+            }
+            else
+            {
+                xPos += waveScriptableObject.PositionRandomizerMin.x;
+            }
+            pos.x += xPos;
+            
+            float yPos = Random.Range(playerPosition.y - waveScriptableObject.PositionRandomizer.y,
                 playerPosition.y + waveScriptableObject.PositionRandomizer.y);
+            if (yPos < playerPosition.x)
+            {
+                yPos -= waveScriptableObject.PositionRandomizerMin.y;
+            }
+            else
+            {
+                yPos += waveScriptableObject.PositionRandomizerMin.y;
+            }
+            pos.y += yPos;
             return pos;
         }
     }

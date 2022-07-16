@@ -9,6 +9,7 @@ namespace _.Scripts.World
         public EnemyAi EnemyAi;
         public float EnemySpeedMin;
         public float EnemySpeedMax;
+        public float EnemySpeedChangeMax;
         public int EnemiesInWave;
         public int EnemiesInWaveIncrease;
         public int AmountSpawnedPerCycle;
@@ -17,5 +18,6 @@ namespace _.Scripts.World
         public float EnemyHp;
         public float EnemyHpIncrease;
         public Vector2 PositionRandomizer;
+        public Vector2 PositionRandomizerMin;
     }
 }
