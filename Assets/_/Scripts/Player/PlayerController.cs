@@ -13,11 +13,14 @@ namespace _.Scripts.Player
         [SerializeField] private AttackSystem.AttackSystem attackSystem;
         [SerializeField] private Rigidbody2D playerBody2d;
         [SerializeField] private float rerollAbilityTime;
+        public float GetRerollAbilityTotalTime() => rerollAbilityTime;
 
         //private Vector2 currentMovement2d;
         private float enemiesTouchingPlayer;
         private float invulnerableTime;
+        
         private float timeTillNewAbility;
+        public float GetTimeTillNewAbility() => timeTillNewAbility;
 
         private Health _health;
         public float GetTotalHp() => _health.GetHealthPoints();
