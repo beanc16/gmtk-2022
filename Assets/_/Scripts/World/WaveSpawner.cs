@@ -47,8 +47,8 @@ namespace _.Scripts.World
             enemyAi.transform.position = GetSpawnPosition(enemyAi);
             enemyAi.Init(
                 DespawnEnemy,
-                Random.Range(waveScriptableObject.EnemySpeedMin, waveScriptableObject.EnemySpeedMax),
-                waveScriptableObject.EnemyHp + GameController.Instance.Wave * waveScriptableObject.EnemyHpIncrease);
+                waveScriptableObject.EnemyHp + GameController.Instance.Wave * waveScriptableObject.EnemyHpIncrease,
+                Random.Range(waveScriptableObject.EnemySpeedMin, waveScriptableObject.EnemySpeedMax));
         }
 
         private void OnRelease(EnemyAi enemyAi)

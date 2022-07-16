@@ -1,6 +1,6 @@
 ﻿namespace _.Scripts.HealthSystem.Interfaces
 {
-    public interface IDamageable<T>
+    public interface IDamageable
     {
         void Damage(float damageAmount);
     }

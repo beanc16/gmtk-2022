@@ -39,6 +39,7 @@ namespace _.Scripts.AttackSystem
                 time += Time.deltaTime;
                 await UniTask.Yield();
             }
+            
             onAttackFinished();
         }
 

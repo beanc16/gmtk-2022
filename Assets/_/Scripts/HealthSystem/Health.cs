@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _.Scripts.HealthSystem
 {
-    public class Health : IDamageable<float>
+    public class Health : IDamageable
     {
         private readonly float _healthPoints;
         private float _currentHeathPoints;
@@ -19,7 +19,7 @@ namespace _.Scripts.HealthSystem
 
         public void Damage(float damageAmount)
         {
-            Debug.Log("Damage!");
+            Debug.Log("Current Health points : " + _currentHeathPoints);
             _currentHeathPoints -= damageAmount;
         }
     }
