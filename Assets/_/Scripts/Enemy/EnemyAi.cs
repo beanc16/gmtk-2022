@@ -1,4 +1,5 @@
 ﻿using System;
+using _.Scripts.Core;
 using _.Scripts.Player;
 using UnityEngine;
 
@@ -43,13 +44,11 @@ namespace _.Scripts.Enemy
         private void OnTriggerEnter2D(Collider2D col)
         {
             // Hit projectile
-            if (col.gameObject.CompareTag("Projectile"))
+            if (col.gameObject.CompareTag(Constants.TagProjectile))
             {
-                Debug.Log("Hit projectile" + col.gameObject.name);
                 enemyRemainingHp -= 1;
                 if (enemyRemainingHp <= 0)
                 {
-                    Debug.Log("Killed enemy" + col.gameObject.name);
                     isAlive = false;
                     onDeathAction(this);
                 }

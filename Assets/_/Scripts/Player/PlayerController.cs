@@ -7,23 +7,25 @@ namespace _.Scripts.Player
     {
         public static PlayerController Instance { get; private set; }
 
-        [SerializeField] private float playerSpeed;
+        [SerializeField] private PlayerScriptableObject playerData;
         [SerializeField] private AttackSystem.AttackSystem attackSystem;
         [SerializeField] private Rigidbody2D playerBody2d;
         [SerializeField] private bool useNewInputSystem;
 
         private Vector2 currentMovement2d;
+        private float currentHp;
 
         private void Awake()
         {
             Instance = this;
+            currentHp = playerData.PlayerHp;
         }
 
         private void OnMovement(InputValue value)
         {
             if (useNewInputSystem)
             {
-                currentMovement2d = value.Get<Vector2>() * playerSpeed;
+                currentMovement2d = value.Get<Vector2>() * playerData.PlayerSpeed;
             }
         }
 
@@ -43,22 +45,22 @@ namespace _.Scripts.Player
 
                 if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
                 {
-                    currentMovement2d.y = playerSpeed;
+                    currentMovement2d.y = playerData.PlayerSpeed;
                 }
 
                 if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
                 {
-                    currentMovement2d.y = -playerSpeed;
+                    currentMovement2d.y = -playerData.PlayerSpeed;
                 }
 
                 if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                 {
-                    currentMovement2d.x = -playerSpeed;
+                    currentMovement2d.x = -playerData.PlayerSpeed;
                 }
 
                 if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                 {
-                    currentMovement2d.x = playerSpeed;
+                    currentMovement2d.x = playerData.PlayerSpeed;
                 }
 
                 if (Input.GetKeyDown(KeyCode.Space))
