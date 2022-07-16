@@ -11,6 +11,7 @@ namespace _.Scripts.Core
         public static GameController Instance { get; private set; }
 
         [SerializeField] private GameObject gameOverPrefab;
+        [SerializeField] private GameObject pauseScreen;
 
         public bool IsGameActive;
         public bool IsRolling;
@@ -26,6 +27,8 @@ namespace _.Scripts.Core
                 Destroy(Instance.gameObject);
             }
             Instance = this;
+            
+            pauseScreen.SetActive(false);
         }
 
         private void Start()
@@ -38,8 +41,15 @@ namespace _.Scripts.Core
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SceneManager.LoadScene(Constants.MainScene);
+                //SceneManager.LoadScene(Constants.MainScene);
+                pauseScreen.SetActive(true);
+                IsGameActive = false;
             }
+        }
+
+        public void ResumeGame()
+        {
+            IsGameActive = true;
         }
         
         public void GameOver()

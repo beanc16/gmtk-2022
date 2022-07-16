@@ -63,6 +63,11 @@ namespace _.Scripts.Enemy
             {
                 return;
             }
+
+            if (agent.isStopped)
+            {
+                return;
+            }
             
             agent.SetDestination(_playerTransform.position);
 
