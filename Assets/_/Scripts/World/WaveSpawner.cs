@@ -12,6 +12,8 @@ namespace _.Scripts.World
     {
         [SerializeField] private bool disableSpawner;
         [SerializeField] private Transform enemyParent;
+        [SerializeField] private Transform playerSpawnPoint;
+        [SerializeField] private Transform enemySpawnPoint;
         [SerializeField] private WaveScriptableObject waveScriptableObject;
 
         private IObjectPool<EnemyAi> enemyPool;
@@ -36,6 +38,11 @@ namespace _.Scripts.World
                 10,
                 20);
             Reset();
+        }
+
+        public void SpawnPlayer(GameObject playerPrefab)
+        {
+            Instantiate(playerPrefab, playerSpawnPoint);
         }
 
         private void OnGet(EnemyAi enemyAi)

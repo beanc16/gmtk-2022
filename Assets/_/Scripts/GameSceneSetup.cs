@@ -1,4 +1,5 @@
 ﻿using _.Scripts.Core;
+using _.Scripts.World;
 using UnityEngine;
 
 namespace _.Scripts
@@ -6,7 +7,7 @@ namespace _.Scripts
     public class GameSceneSetup : MonoBehaviour
     {
         [SerializeField] private GameController gameController;
-        public GameObject WorldPrefab;
+        public WaveSpawner WorldPrefab;
         public GameObject PlayerPrefab;
         public GameObject OverlayPrefab;
 
@@ -15,7 +16,7 @@ namespace _.Scripts
             gameController.CurrentScore = 0;
             
             var world = Instantiate(WorldPrefab);
-            Instantiate(PlayerPrefab, world.transform);
+            world.SpawnPlayer(PlayerPrefab);
             Instantiate(OverlayPrefab);
         }
     }
