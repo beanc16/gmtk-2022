@@ -17,3 +17,4 @@ MonoBehaviour:
     type: 3}
   lifeTime: 1.2
   speed: 0
+  timeBetweenAttacks: 0.8

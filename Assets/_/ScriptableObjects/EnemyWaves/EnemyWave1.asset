@@ -16,8 +16,10 @@ MonoBehaviour:
   EnemySpeedMin: 0.07
   EnemySpeedMax: 0.09
   EnemiesInWave: 20
+  EnemiesInWaveIncrease: 5
   AmountSpawnedPerCycle: 4
   TimeBetweenCycles: 3
   TimeBetweenWaves: 5
   EnemyHp: 5
+  EnemyHpIncrease: 1
   PositionRandomizer: {x: 20, y: 20}

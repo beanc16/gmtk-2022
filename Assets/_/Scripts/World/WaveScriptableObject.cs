@@ -10,10 +10,12 @@ namespace _.Scripts.World
         public float EnemySpeedMin;
         public float EnemySpeedMax;
         public int EnemiesInWave;
+        public int EnemiesInWaveIncrease;
         public int AmountSpawnedPerCycle;
         public float TimeBetweenCycles;
         public float TimeBetweenWaves;
         public float EnemyHp;
+        public float EnemyHpIncrease;
         public Vector2 PositionRandomizer;
     }
 }

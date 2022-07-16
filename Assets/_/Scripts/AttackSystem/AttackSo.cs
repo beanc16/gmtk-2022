@@ -9,6 +9,8 @@ namespace _.Scripts.AttackSystem
     {
         [SerializeField] private float lifeTime;
         [SerializeField] private float speed;
+        [SerializeField] private float timeBetweenAttacks;
+        public float TimeBetweenAttacks => timeBetweenAttacks;
 
         public override async void Shoot(Transform fromTransform)
         {

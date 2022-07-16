@@ -67,10 +67,17 @@ namespace _.Scripts.World
         
         private void Reset()
         {
+            int wave = 0;
+            if (GameController.Instance != null)
+            {
+                wave = GameController.Instance.Wave;
+            }
             timeTillNextSpawn = waveScriptableObject.TimeBetweenCycles;
             timeTillNextWave = waveScriptableObject.TimeBetweenWaves;
-            enemiesLeftInWave = waveScriptableObject.EnemiesInWave;
-            enemiesLeftAlive = waveScriptableObject.EnemiesInWave;
+            enemiesLeftInWave = waveScriptableObject.EnemiesInWave +
+                                wave * waveScriptableObject.EnemiesInWaveIncrease;
+            enemiesLeftAlive = waveScriptableObject.EnemiesInWave +
+                               wave * waveScriptableObject.EnemiesInWaveIncrease;
         }
 
         private void SpawnNextWave()
@@ -84,6 +91,7 @@ namespace _.Scripts.World
 
             int amountSpawnedInWave = Math.Min(waveScriptableObject.AmountSpawnedPerCycle, enemiesLeftInWave);
             enemiesLeftInWave -= amountSpawnedInWave;
+            int wave = GameController.Instance.Wave;
 
             for (int i = 0; i < amountSpawnedInWave; i++)
             {
@@ -108,7 +116,7 @@ namespace _.Scripts.World
                 
                 newEnemy.Setup(DespawnEnemy, 
                     Random.Range(waveScriptableObject.EnemySpeedMin, waveScriptableObject.EnemySpeedMax),
-                    waveScriptableObject.EnemyHp);
+                    waveScriptableObject.EnemyHp + wave * waveScriptableObject.EnemyHpIncrease);
             }
         }
         
