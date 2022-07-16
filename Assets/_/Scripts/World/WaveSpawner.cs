@@ -14,11 +14,12 @@ namespace _.Scripts.World
 
         private Queue<EnemyAi> enemyPool = new Queue<EnemyAi>();
         private int enemiesLeftInWave;
-        private float timeTillNextSpawn;
+        
+        public float TimeTillNextSpawn;
 
         private void Awake()
         {
-            timeTillNextSpawn = waveScriptableObject.TimeBetweenCycles;
+            TimeTillNextSpawn = waveScriptableObject.TimeBetweenCycles;
             enemiesLeftInWave = waveScriptableObject.EnemiesInWave;
         }
 
@@ -29,9 +30,9 @@ namespace _.Scripts.World
                 return;
             }
             
-            timeTillNextSpawn -= Time.deltaTime;
+            TimeTillNextSpawn -= Time.deltaTime;
 
-            if (timeTillNextSpawn <= 0)
+            if (TimeTillNextSpawn <= 0)
             {
                 SpawnNextWave();
             }
@@ -39,7 +40,7 @@ namespace _.Scripts.World
 
         private void SpawnNextWave()
         {
-            timeTillNextSpawn = waveScriptableObject.TimeBetweenCycles;
+            TimeTillNextSpawn = waveScriptableObject.TimeBetweenCycles;
 
             if (enemiesLeftInWave == 0)
             {

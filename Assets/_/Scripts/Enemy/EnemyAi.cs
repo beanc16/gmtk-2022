@@ -21,30 +21,10 @@ namespace _.Scripts.Enemy
             playerTransform = PlayerController.Instance.transform;
         }
 
-        /*
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            // Hit projectile
-            if (col.gameObject.name == "SpriteEnemy")
-            {
-                enemyRemainingHp -= 1;
-                if (enemyRemainingHp <= 0)
-                {
-                    isAlive = false;
-                    onDeathAction(this);
-                }
-                return;
-            }
-
-            // Hit player
-            Debug.Log("BulletCollision " + col.gameObject.name);
-        }
-        */
-
         private void OnTriggerEnter2D(Collider2D col)
         {
             // Hit projectile
-            if (col.gameObject.CompareTag(Constants.TagProjectile))
+            if (col.gameObject.CompareTag(Constants.TagPlayerProjectile))
             {
                 enemyRemainingHp -= 1;
                 if (enemyRemainingHp <= 0)
@@ -54,20 +34,27 @@ namespace _.Scripts.Enemy
                 }
                 return;
             }
-
-            // Hit player
-            //Debug.Log("BulletCollision " + col.gameObject.name);
         }
 
         private void Update()
         {
+            if (GameController.Instance.IsGameActive == false)
+            {
+                return;
+            }
+            
             if (isAlive == false)
             {
                 return;
             }
             var enemyPosition = enemyBody2D.position;
             var playerPosition = (Vector2)playerTransform.position;
-            var normalizedDirection = (playerPosition - enemyPosition).normalized;
+            var playerDistance = playerPosition - enemyPosition;
+            if (Math.Abs(playerDistance.x) + Math.Abs(playerDistance.y) < 1.5f)
+            {
+                return;
+            }
+            var normalizedDirection = playerDistance.normalized;
             enemyBody2D.MovePosition(enemyPosition + normalizedDirection * enemySpeed);
         }
 

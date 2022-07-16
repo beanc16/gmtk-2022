@@ -221,6 +221,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1952194235}
   - component: {fileID: 1952194234}
+  - component: {fileID: 1952194236}
   m_Layer: 0
   m_Name: WorldLoader
   m_TagString: Untagged
@@ -244,6 +245,8 @@ MonoBehaviour:
     type: 3}
   PlayerPrefab: {fileID: 347867838043487300, guid: 1f8ed16ae38b4c349bcd04e075f79edd,
     type: 3}
+  OverlayPrefab: {fileID: 6337703587862986540, guid: 591b0d1fbc3655c4e8e0f0fa7124331c,
+    type: 3}
 --- !u!4 &1952194235
 Transform:
   m_ObjectHideFlags: 0
@@ -259,6 +262,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1952194236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952194233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe197f2bca94db4a843105e58bec0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverPrefab: {fileID: 1595503729363138366, guid: fe1b37f96b14abcb08b0b7315ed5d8cf,
+    type: 3}
+  IsGameActive: 0
 --- !u!1 &1983968604
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +330,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
