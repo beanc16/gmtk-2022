@@ -15,7 +15,7 @@ namespace _.Scripts.Core
         public bool IsGameActive;
         public double CurrentScore;
         public PlayerAttackType CurrentPlayerAttackType;
-        public int Wave;
+        public int AreaActive = 1;
 
         private GameObject rollDiceInstance;
         
@@ -28,7 +28,6 @@ namespace _.Scripts.Core
             Instance = this;
 
             rollDiceInstance = Instantiate(rollDicePrefab);
-            Wave = 0;
         }
 
         private void Update()
@@ -48,7 +47,6 @@ namespace _.Scripts.Core
 
         public void RollForRandomEffect()
         {
-            Wave++;
             IsGameActive = false;
             
             rollDiceInstance.SetActive(true);
@@ -70,11 +68,11 @@ namespace _.Scripts.Core
                 case 1:
                 case 3:
                 case 5:
-                    return PlayerAttackType.Projectile;
+                    return PlayerAttackType.Melee;
                 case 2:
                 case 4:
                 case 6:
-                    return PlayerAttackType.Bomb;
+                    return PlayerAttackType.Melee;
             }
             /*switch (roll)
             {

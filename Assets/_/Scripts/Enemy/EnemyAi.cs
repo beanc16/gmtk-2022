@@ -22,6 +22,7 @@ namespace _.Scripts.Enemy
         [SerializeField] private Image enemyHealthBar;
         [SerializeField] private EnemyData enemyData;
         [SerializeField] private NavMeshAgent agent;
+        [SerializeField] private int enemyRoomIndex;
 
         private Transform _playerTransform;
         private Health _health;
@@ -62,6 +63,12 @@ namespace _.Scripts.Enemy
         private void Update()
         {
             agent.isStopped = !GameController.Instance.IsGameActive;
+
+            if (GameController.Instance.AreaActive != enemyRoomIndex)
+            {
+                return;
+            }
+            
             agent.SetDestination(_playerTransform.position);
             if(_playerTransform == null) _playerTransform = PlayerController.Instance.transform;
             
