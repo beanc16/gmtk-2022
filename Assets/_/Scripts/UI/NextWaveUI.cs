@@ -24,9 +24,21 @@ namespace _.Scripts.UI
 
         private void Update()
         {
-            nextWaveText.gameObject.SetActive(waveSpawner.TimeTillNextSpawn > 0);
-            nextWaveText.text = "Next set In :" + waveSpawner.TimeTillNextSpawn.ToString("N1");
+            SetPlayerHpBar();
             
+            if (waveSpawner.EnemiesLeftAlive > 0)
+            {
+                nextWaveText.gameObject.SetActive(true);
+                nextWaveText.text = "Enemies Remaining :" + waveSpawner.EnemiesLeftAlive.ToString("N0");
+                return;
+            }
+            
+            nextWaveText.gameObject.SetActive(waveSpawner.TimeTillNextWave > 0);
+            nextWaveText.text = "Next wave In :" + waveSpawner.TimeTillNextWave.ToString("N1");
+        }
+
+        private void SetPlayerHpBar()
+        {
             float fill = 1f - (playerController.PlayerMaxHp -playerController.PlayerCurrentHp) / playerController.PlayerMaxHp;
 
             if (Mathf.Abs(playerHealthBar.fillAmount - fill) < 0.1f)

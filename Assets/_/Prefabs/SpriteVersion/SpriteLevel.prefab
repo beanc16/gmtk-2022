@@ -702,7 +702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5241538178848030316
 Transform:
   m_ObjectHideFlags: 0
@@ -1705,7 +1705,6 @@ MonoBehaviour:
   enemyParent: {fileID: 7677409094889736088}
   waveScriptableObject: {fileID: 11400000, guid: 66e03fb2d48b4d643ac6bbc9618f391a,
     type: 2}
-  TimeTillNextSpawn: 0
 --- !u!1 &6658150412410445302
 GameObject:
   m_ObjectHideFlags: 0

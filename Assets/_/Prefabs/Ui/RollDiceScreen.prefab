@@ -753,9 +753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DicePanel: {fileID: 8587687949737125417}
-  timeToRoll: 8
-  timeForFastChange: 4
-  timeToSlowdown: 2
+  diceRollData: {fileID: 11400000, guid: 87f9c4f227575f947849d75c11686498, type: 2}
   rollDie: {fileID: 2448597511027804215}
   timeRemainingBar: {fileID: 4975057864908961998}
 --- !u!1 &6481685433012901389

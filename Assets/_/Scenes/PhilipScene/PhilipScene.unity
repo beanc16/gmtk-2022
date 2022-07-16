@@ -257,6 +257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPrefab: {fileID: 1595503729363138366, guid: fe1b37f96b14abcb08b0b7315ed5d8cf,
     type: 3}
+  rollDicePrefab: {fileID: 1595503729363138366, guid: cecb928631557583fa06fee933b33a25,
+    type: 3}
   IsGameActive: 0
   CurrentScore: 0
 --- !u!1 &1983968604

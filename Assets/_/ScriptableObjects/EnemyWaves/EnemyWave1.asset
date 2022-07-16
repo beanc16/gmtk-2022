@@ -18,5 +18,6 @@ MonoBehaviour:
   EnemiesInWave: 20
   AmountSpawnedPerCycle: 4
   TimeBetweenCycles: 3
+  TimeBetweenWaves: 5
   EnemyHp: 5
-  PositionRandomizer: {x: 25, y: 25}
+  PositionRandomizer: {x: 20, y: 20}

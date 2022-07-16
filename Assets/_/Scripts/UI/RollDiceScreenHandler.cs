@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _.Scripts.Core;
 using _.Scripts.RollingScene;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,9 +11,7 @@ public class RollDiceScreenHandler : MonoBehaviour
     private const float SLOW_CHANGE_TIME = 0.8f;
     
     [SerializeField] private GameObject DicePanel;
-    [SerializeField] private float timeToRoll;
-    [SerializeField] private float timeForFastChange;
-    [SerializeField] private float timeToSlowdown;
+    [SerializeField] private DiceRollScriptableObject diceRollData;
     [SerializeField] private Button rollDie;
     [SerializeField] private Image timeRemainingBar;
 
@@ -57,7 +56,7 @@ public class RollDiceScreenHandler : MonoBehaviour
     private void OnRollDie()
     {
         startRolling = true;
-        timeRemaining = timeToRoll;
+        timeRemaining = diceRollData.TimeToRoll;
         timeToChange = FAST_CHANGE_TIME;
     }
     
@@ -70,20 +69,22 @@ public class RollDiceScreenHandler : MonoBehaviour
 
         timeRemaining -= Time.deltaTime;
 
-        timeRemainingBar.fillAmount = 1f - (timeToRoll - timeRemaining) / timeToRoll;
+        timeRemainingBar.fillAmount = 1f - (diceRollData.TimeToRoll - timeRemaining) / diceRollData.TimeToRoll;
 
         if (timeRemaining <= 0)
         {
             startRolling = false;
+            GameController.Instance.RollFinished();
+            return;
         }
         
         timeToChange -= Time.deltaTime;
         if (timeToChange <= 0)
         {
-            if (timeRemaining > timeForFastChange)
+            if (timeRemaining > diceRollData.TimeForFastChange)
             {
                 timeToChange = FAST_CHANGE_TIME;
-            } else if (timeRemaining < timeToSlowdown)
+            } else if (timeRemaining < diceRollData.TimeToSlowdown)
             {
                 timeToChange = SLOW_CHANGE_TIME;
             }

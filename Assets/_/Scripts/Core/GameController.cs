@@ -9,9 +9,12 @@ namespace _.Scripts.Core
         public static GameController Instance { get; private set; }
 
         [SerializeField] private GameObject gameOverPrefab;
+        [SerializeField] private GameObject rollDicePrefab;
 
         public bool IsGameActive;
         public double CurrentScore;
+
+        private GameObject rollDiceInstance;
         
         private void Awake()
         {
@@ -21,13 +24,9 @@ namespace _.Scripts.Core
             }
             Instance = this;
             IsGameActive = true;
-        }
 
-        public void GameOver()
-        {
-            IsGameActive = false;
-
-            Instantiate(gameOverPrefab).GetComponentInChildren<GameOverScoreHandler>().SetScoreText(CurrentScore.ToString("N0"));
+            rollDiceInstance = Instantiate(rollDicePrefab);
+            rollDiceInstance.SetActive(false);
         }
 
         private void Update()
@@ -36,6 +35,27 @@ namespace _.Scripts.Core
             {
                 SceneManager.LoadScene(Constants.MainScene);
             }
+        }
+        
+        public void GameOver()
+        {
+            IsGameActive = false;
+
+            Instantiate(gameOverPrefab).GetComponentInChildren<GameOverScoreHandler>().SetScoreText(CurrentScore.ToString("N0"));
+        }
+
+        public void RollForRandomEffect()
+        {
+            IsGameActive = false;
+            
+            rollDiceInstance.SetActive(true);
+        }
+
+        public void RollFinished()
+        {
+            IsGameActive = true;
+            
+            rollDiceInstance.SetActive(false);
         }
     }
 }
