@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PlayerAttackIcon
   m_EditorClassIdentifier: 
   AttackToIcons:
-  - AttackType: 1
+  - AttackType: 0
     AttackIcon: {fileID: 21300000, guid: e844498e21970bd4795a4cc96d20a982, type: 3}
-  - AttackType: 2
+  - AttackType: 1
     AttackIcon: {fileID: 21300000, guid: 235bfd7c05fc8584f8b06cfdbe4d0d71, type: 3}
-  - AttackType: 3
+  - AttackType: 2
     AttackIcon: {fileID: 21300000, guid: 22630bcc77af324408884dcd0d4ce0a5, type: 3}
-  - AttackType: 4
+  - AttackType: 3
     AttackIcon: {fileID: 21300000, guid: fbec23e30cbbaec43a1bf9e1c29c60b9, type: 3}

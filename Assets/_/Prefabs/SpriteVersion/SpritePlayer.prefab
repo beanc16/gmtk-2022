@@ -237,6 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attacks:
   - {fileID: 11400000, guid: b606c37955f439a4f8bed24d7170fd0e, type: 2}
+  - {fileID: 11400000, guid: cf1b3fdab42fa6a46bd75bf2fb8650a2, type: 2}
 --- !u!1 &2452831456784562785
 GameObject:
   m_ObjectHideFlags: 0

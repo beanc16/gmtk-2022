@@ -2,7 +2,7 @@
 {
     public enum PlayerAttackType
     {
-        None = 0,
+        None = -1,
         Projectile,
         Bomb,
         AreaOfEffect,

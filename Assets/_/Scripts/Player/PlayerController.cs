@@ -80,7 +80,7 @@ namespace _.Scripts.Player
 
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
                 {
-                    attackSystem.Attack(0);
+                    attackSystem.Attack((int)GameController.Instance.CurrentPlayerAttackType);
                 }
             }
 

@@ -15,6 +15,11 @@ namespace _.Scripts.AttackSystem
 
         public void Attack(int attackNr)
         {
+            if (attackNr > attacks.Count)
+            {
+                //Failsafe for out of bounds exception
+                attackNr = 0;
+            }
             attacks[attackNr].Shoot(transform);
         }
     }
