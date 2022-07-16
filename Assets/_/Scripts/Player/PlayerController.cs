@@ -14,14 +14,20 @@ namespace _.Scripts.Player
         [SerializeField] private bool useNewInputSystem;
 
         private Vector2 currentMovement2d;
-        private float playerCurrentHp;
         private float enemiesTouchingPlayer;
         private float invulnerableTime;
+        
+        private float playerCurrentHp;
+        public float PlayerCurrentHp => playerCurrentHp;
+        
+        private float playerMaxHp;
+        public float PlayerMaxHp => playerMaxHp;
 
         private void Awake()
         {
             Instance = this;
             playerCurrentHp = playerData.PlayerHp;
+            playerMaxHp = playerData.PlayerHp;
         }
 
         private void OnMovement(InputValue value)

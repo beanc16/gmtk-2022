@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _.Scripts.Core;
 using _.Scripts.Enemy;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -80,6 +81,8 @@ namespace _.Scripts.World
             enemyPool.Enqueue(enemyAi);
             //Might need to set position as well;
             enemyAi.gameObject.SetActive(false);
+            
+            GameController.Instance.CurrentScore++;
         }
     }
 }

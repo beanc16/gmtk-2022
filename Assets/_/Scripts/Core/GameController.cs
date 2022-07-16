@@ -11,9 +11,14 @@ namespace _.Scripts.Core
         [SerializeField] private GameObject gameOverPrefab;
 
         public bool IsGameActive;
+        public double CurrentScore;
         
         private void Awake()
         {
+            if (Instance != null)
+            {
+                Destroy(Instance.gameObject);
+            }
             Instance = this;
             IsGameActive = true;
         }

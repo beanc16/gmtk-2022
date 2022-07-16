@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5119ce8d4b148a9b22f647113626067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameController: {fileID: 1952194236}
   WorldPrefab: {fileID: 6520048136861915607, guid: f2fe0ab04f744b340a398eee50688386,
     type: 3}
   PlayerPrefab: {fileID: 347867838043487300, guid: 1f8ed16ae38b4c349bcd04e075f79edd,
@@ -257,6 +258,7 @@ MonoBehaviour:
   gameOverPrefab: {fileID: 1595503729363138366, guid: fe1b37f96b14abcb08b0b7315ed5d8cf,
     type: 3}
   IsGameActive: 0
+  CurrentScore: 0
 --- !u!1 &1983968604
 GameObject:
   m_ObjectHideFlags: 0

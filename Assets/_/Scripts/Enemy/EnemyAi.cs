@@ -2,6 +2,7 @@
 using _.Scripts.Core;
 using _.Scripts.Player;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace _.Scripts.Enemy
 {
@@ -10,8 +11,11 @@ namespace _.Scripts.Enemy
         [SerializeField] private float enemySpeed;
         [SerializeField] private float damage;
         [SerializeField] private Rigidbody2D enemyBody2D;
+        [SerializeField] private GameObject enemyHealthBarContainer;
+        [SerializeField] private Image enemyHealthBar;
 
         private Transform playerTransform;
+        private float enemyMaxHp;
         private float enemyRemainingHp;
         private Action<EnemyAi> onDeathAction;
         private bool isAlive;
@@ -48,10 +52,25 @@ namespace _.Scripts.Enemy
             {
                 return;
             }
+
+            if (enemyMaxHp - enemyRemainingHp < 0.1f)
+            {
+                enemyHealthBarContainer.SetActive(false);
+            }
+            else
+            {
+                enemyHealthBarContainer.SetActive(true);
+                float fill = 1f - (enemyMaxHp - enemyRemainingHp) / enemyMaxHp;
+                if (Mathf.Abs(enemyHealthBar.fillAmount - fill) > 0.1f)
+                {
+                    enemyHealthBar.fillAmount = fill;
+                }
+            }
+
             var enemyPosition = enemyBody2D.position;
             var playerPosition = (Vector2)playerTransform.position;
             var playerDistance = playerPosition - enemyPosition;
-            if (Math.Abs(playerDistance.x) + Math.Abs(playerDistance.y) < 1.5f)
+            if (Vector2.Distance(enemyPosition, playerPosition) < 1.2f)
             {
                 return;
             }
@@ -64,6 +83,7 @@ namespace _.Scripts.Enemy
             onDeathAction = deathAction;
             enemySpeed = speed;
             enemyRemainingHp = maxHp;
+            enemyMaxHp = maxHp;
             isAlive = true;
         }
     }
