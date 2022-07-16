@@ -50,10 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 0.4
-  damage: 1
   enemyBody2D: {fileID: 7746286134379246388}
   enemyHealthBarContainer: {fileID: 4359094521265109189}
   enemyHealthBar: {fileID: 2099088317675958711}
+  enemyData: {fileID: 11400000, guid: 66e03fb2d48b4d643ac6bbc9618f391a, type: 2}
 --- !u!61 &1013830776218896160
 BoxCollider2D:
   m_ObjectHideFlags: 0
