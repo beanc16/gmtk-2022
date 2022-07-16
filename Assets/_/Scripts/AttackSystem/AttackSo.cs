@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace _.Scripts.AttackSystem
 {
@@ -9,52 +10,38 @@ namespace _.Scripts.AttackSystem
         [SerializeField] private float lifeTime;
         [SerializeField] private float speed;
 
-        public override async void Shoot(Transform fromTransform)
+        public override void Shoot(Transform fromTransform)
         {
             Debug.Log("Shoot Projectile");
-            
-            var time = 0f;
             //var projectile = Instantiate(attackPrefab, fromTransform.position, fromTransform.rotation);
             var projectile = Pool.Get();
             projectile.transform.position = fromTransform.position;
 
-            if (projectile.gameObject.TryGetComponent(out AttackObject attackObject))
-            {
-                attackObject.SetOnHitTarget(HitTarget);
-            }
-            else
-            {
-                var newAttackObject = projectile.gameObject.AddComponent(typeof(AttackObject)) as AttackObject;
-                // ReSharper disable once Unity.NoNullPropagation
-                newAttackObject?.SetOnHitTarget(HitTarget);
-            }
+            var attackObject = new AttackObject(ReleaseTarget, projectile, this);
 
-            void HitTarget()
-            {
-                Debug.Log("Happens!");
-                Pool.Release(projectile);
-            }
-            
-            
             //todo: Do we want it to shoot towards cursor or have character move towards cursor ? 
-            
+        }
+
+        public override async void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished)
+        {
+            var time = 0f;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var moveDirection = worldPosition - projectile.transform.position;
+            var moveDirection = worldPosition - attackObject.transform.position;
             moveDirection.z = 0;
             moveDirection = moveDirection.normalized;
-
-            while (time < lifeTime || !projectile.activeSelf)
+            
+            while (time < lifeTime || !attackObject.activeSelf)
             {
                 if (GameController && !GameController.IsGameActive) break;
-                if (!projectile || !projectile.activeSelf) break;
+                if (!attackObject || !attackObject.activeSelf) break;
 
                 time += Time.deltaTime;
-                projectile.transform.position += moveDirection * (Time.deltaTime * speed);
+                attackObject.transform.position += moveDirection * (Time.deltaTime * speed);
                 await UniTask.Yield();
             }
-            
-            if(projectile && projectile.activeSelf) Pool.Release(projectile);
-            Debug.Log($"Projectile life ended after : {(int)time} sec");
+            onAttackFinished();
         }
+
+        private void ReleaseTarget(GameObject projectile) => Pool.Release(projectile);
     }
 }

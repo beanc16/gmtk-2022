@@ -10,6 +10,7 @@ namespace _.Scripts.AttackSystem
         [SerializeField] protected GameObject attackPrefab;
         [SerializeField] protected string attackName;
         [SerializeField] protected float attackCooldown;
+        [SerializeField] protected bool destroyOnHit;
         public string GetAttackName() => attackName;
         public float GetAttackCooldown() => attackCooldown;
         
@@ -23,7 +24,7 @@ namespace _.Scripts.AttackSystem
                 => Instantiate(attackPrefab),
                 OnGet,
                 OnRelease,
-                DestroyImmediate,
+                Destroy,
                 false,
                 10,
                 20);
@@ -45,5 +46,8 @@ namespace _.Scripts.AttackSystem
         }
 
         public abstract void Shoot(Transform fromTransform);
+        public abstract void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished);
+
+
     }
 }

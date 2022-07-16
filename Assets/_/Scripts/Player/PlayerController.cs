@@ -1,4 +1,5 @@
-﻿using _.Scripts.Core;
+﻿using System;
+using _.Scripts.Core;
 using UnityEngine;
 
 namespace _.Scripts.Player
@@ -12,7 +13,7 @@ namespace _.Scripts.Player
         [SerializeField] private Rigidbody2D playerBody2d;
         [SerializeField] private bool useNewInputSystem;
 
-        private Vector2 currentMovement2d;
+        //private Vector2 currentMovement2d;
         private float enemiesTouchingPlayer;
         private float invulnerableTime;
         
@@ -31,6 +32,11 @@ namespace _.Scripts.Player
 
         private void Update()
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                attackSystem.Attack((int)GameController.Instance.CurrentPlayerAttackType);
+            }
+            return;
             if (GameController.Instance != null && GameController.Instance.IsGameActive == false)
             {
                 playerBody2d.velocity = Vector2.zero;
@@ -39,8 +45,11 @@ namespace _.Scripts.Player
             
             if (useNewInputSystem == false)
             {
-                currentMovement2d = Vector2.zero;
+                var currentMovement2d = Vector2.zero;
 
+                currentMovement2d.x = Input.GetAxis("Horizontal");
+                currentMovement2d.y = Input.GetAxis("Vertical");
+                /*
                 if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
                 {
                     currentMovement2d.y = playerData.PlayerSpeed;
@@ -60,19 +69,28 @@ namespace _.Scripts.Player
                 {
                     currentMovement2d.x = playerData.PlayerSpeed;
                 }
+                */
 
-                if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
-                {
-                    attackSystem.Attack((int)GameController.Instance.CurrentPlayerAttackType);
-                }
+                //Input.GetKeyDown(KeyCode.Space) ||
+                
             }
 
-            playerBody2d.MovePosition(playerBody2d.position + currentMovement2d);
+            //note : Only move with MovePosition if rigidbody is kinematic.
+            //playerBody2d.MovePosition(playerBody2d.position + currentMovement2d);
 
             DoDamage();
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private void FixedUpdate()
+        {
+            var currentMovement2d = Vector2.zero;
+
+            currentMovement2d.x = Input.GetAxis("Horizontal");
+            currentMovement2d.y = Input.GetAxis("Vertical");
+            playerBody2d.velocity = currentMovement2d * playerData.PlayerSpeed;
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
         {
             // Hit enemy
             if (col.gameObject.CompareTag(Constants.TagEnemy))
@@ -80,11 +98,11 @@ namespace _.Scripts.Player
                 enemiesTouchingPlayer++;
             }
         }
-        
-        private void OnTriggerExit2D(Collider2D col)
+
+        private void OnCollisionExit2D(Collision2D other)
         {
             // Enemy gotten away from
-            if (col.gameObject.CompareTag(Constants.TagEnemy))
+            if (other.gameObject.CompareTag(Constants.TagEnemy))
             {
                 enemiesTouchingPlayer--;
             }

@@ -1,17 +1,43 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using JetBrains.Annotations;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace _.Scripts.AttackSystem
 {
-    public class AttackObject : MonoBehaviour
+    public class AttackObject
     {
-        private UnityAction onHitTarget;
+        public static void Hit(GameObject gameObject) => ObjectHit?.Invoke(gameObject);
+        private static event UnityAction<GameObject> ObjectHit; 
 
-        public void SetOnHitTarget(UnityAction onHitAction) => onHitTarget = onHitAction;
-
-        public void AttackHit()
+        private readonly UnityAction<GameObject> _onHitTarget;
+        private readonly GameObject _thisObject;
+        private readonly AttackSoBase _attackData;
+        private bool _finished;
+        
+        public AttackObject(UnityAction<GameObject> onHitAction, GameObject thisObject, AttackSoBase attackData)
         {
-            onHitTarget?.Invoke();
+            _onHitTarget = onHitAction;
+            _thisObject = thisObject;
+            _attackData = attackData;
+            ObjectHit += ReleaseAttack;
+            UpdateAttack();
+        }
+
+        private void UpdateAttack() => _attackData.AttackUpdate(_thisObject, OnAttackFinished);
+
+        private void OnAttackFinished() => ReleaseAttack(_thisObject);
+        
+
+        private void ReleaseAttack([NotNull] GameObject hit)
+        {
+            if(_finished) return;
+            if (hit == null) throw new ArgumentNullException(nameof(hit));
+            if (hit != _thisObject) return;
+            _finished = true;
+            _onHitTarget?.Invoke(hit);
         }
     }
 }

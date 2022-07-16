@@ -29,9 +29,7 @@ namespace _.Scripts.Enemy
         private void OnTriggerEnter2D(Collider2D col)
         {
             // Hit projectile
-            Debug.Log("Hit Enemy!");
-            //if (col.transform.TryGetComponent(out AttackObject attackObject)) attackObject.AttackHit();
-            if(col.transform.parent.TryGetComponent(out AttackObject attackObject)) attackObject.AttackHit();
+            AttackObject.Hit(col.transform.parent.gameObject);
             if (!col.gameObject.CompareTag(Constants.TagPlayerProjectile)) return;
             enemyRemainingHp -= 1;
             
