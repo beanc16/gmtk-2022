@@ -44,6 +44,7 @@ namespace _.Scripts.Player
         {
             if (GameController.Instance.IsGameActive == false)
             {
+                playerBody2d.velocity = Vector2.zero;
                 return;
             }
             

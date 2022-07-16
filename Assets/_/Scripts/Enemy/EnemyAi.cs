@@ -40,6 +40,7 @@ namespace _.Scripts.Enemy
         {
             if (GameController.Instance.IsGameActive == false)
             {
+                enemyBody2D.velocity = Vector2.zero;
                 return;
             }
             
