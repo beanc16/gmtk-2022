@@ -32,6 +32,7 @@ namespace _.Scripts.Enemy
         {
             _playerTransform = PlayerController.Instance.transform;
             enemySpeed = Random.Range(enemyData.EnemySpeedMin, enemyData.EnemySpeedMax);
+            agent.speed = enemySpeed;
             _health = new Health(enemyData.EnemyHp);
             agent.updateRotation = false;
             agent.updateUpAxis = false;
@@ -60,11 +61,10 @@ namespace _.Scripts.Enemy
 
         private void Update()
         {
-            if(_playerTransform == null)
-            {
-                _playerTransform = PlayerController.Instance.transform;
-            }
-
+            agent.isStopped = !GameController.Instance.IsGameActive;
+            agent.SetDestination(_playerTransform.position);
+            if(_playerTransform == null) _playerTransform = PlayerController.Instance.transform;
+            
             if (_health.GetHealthPoints() - _health.GetCurrentHealthPoints() < 0.1f)
             {
                 enemyHealthBarContainer.SetActive(false);
@@ -83,78 +83,9 @@ namespace _.Scripts.Enemy
             Die();
         }
 
-        private void FixedUpdate()
-        {
-            agent.SetDestination(_playerTransform.position);
-            /*
-            if (GameController.Instance.IsGameActive == false)
-            {
-                enemyBody2D.velocity = Vector2.zero;
-                return;
-            }
-            
-            var enemyPosition = enemyBody2D.position;
-            var playerPosition = (Vector2)_playerTransform.position;
-
-            var playerDistance = playerPosition - enemyPosition;
-            
-            var normalizedDirection = playerDistance.normalized;
-            
-            enemyBody2D.velocity = normalizedDirection.normalized * enemySpeed;
-            */
-        }
-
         private void Die()
         {
             Destroy(gameObject);
         }
     }
 }
-
-/*
-
-            private const float DIST_TO_MIN_VALUE = 5;
-        private const float DIST_TO_MAX_VALUE = 12;
-        private const float DIST_DIFFERENCE = 7;
-
-            float totalDistance = Vector2.Distance(playerPosition, enemyPosition);
-            if (totalDistance < DIST_TO_MIN_VALUE)
-            {
-                enemySpeed -= enemySpeedMaxChange;
-                if (enemySpeed < enemySpeedMin)
-                {
-                    enemySpeed = enemySpeedMin;
-                }
-            } else if (totalDistance > DIST_TO_MAX_VALUE)
-            {
-                enemySpeed += enemySpeedMaxChange;
-                if (enemySpeed > enemySpeedMax)
-                {
-                    enemySpeed = enemySpeedMax;
-                }
-            }
-            else
-            {
-                totalDistance -= DIST_TO_MIN_VALUE;
-                
-                float destSpeed = enemySpeedMin +
-                                 enemySpeedDifference * (DIST_DIFFERENCE - totalDistance) / DIST_DIFFERENCE;
-
-                if (destSpeed < enemySpeed)
-                {
-                    enemySpeed -= enemySpeedMaxChange;
-                    if (enemySpeed < destSpeed)
-                    {
-                        enemySpeed = destSpeed;
-                    }
-                }
-                else
-                {
-                    enemySpeed += enemySpeedMaxChange;
-                    if (enemySpeed > destSpeed)
-                    {
-                        enemySpeed = destSpeed;
-                    }
-                }
-            }
-*/
