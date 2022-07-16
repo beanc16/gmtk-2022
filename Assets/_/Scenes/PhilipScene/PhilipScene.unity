@@ -224,6 +224,7 @@ MonoBehaviour:
   gameController: {fileID: 1952194236}
   WorldPrefab: {fileID: 6520048136861915607, guid: f2fe0ab04f744b340a398eee50688386,
     type: 3}
+  PlayerPrefab: {fileID: 0}
   OverlayPrefab: {fileID: 6337703587862986540, guid: 591b0d1fbc3655c4e8e0f0fa7124331c,
     type: 3}
 --- !u!4 &1952194235
