@@ -1,12 +1,10 @@
-﻿using System;
-using _.Scripts.AttackSystem;
+﻿using _.Scripts.AttackSystem;
 using _.Scripts.Core;
 using _.Scripts.HealthSystem;
 using _.Scripts.Player;
 using _.Scripts.World;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -17,7 +15,6 @@ namespace _.Scripts.Enemy
         public static int EnemiesAlive;
         
         [SerializeField] private float enemySpeed;
-        //[SerializeField] private Rigidbody2D enemyBody2D;
         [SerializeField] private GameObject enemyHealthBarContainer;
         [SerializeField] private Image enemyHealthBar;
         [SerializeField] private EnemyData enemyData;
