@@ -39,12 +39,12 @@ namespace _.Scripts.UI
             if (waveSpawner.EnemiesLeftAlive > 0)
             {
                 nextWaveText.gameObject.SetActive(true);
-                nextWaveText.text = "Enemies Remaining :" + waveSpawner.EnemiesLeftAlive.ToString("N0");
+                nextWaveText.text = "Enemies Remaining: " + waveSpawner.EnemiesLeftAlive.ToString("N0");
                 return;
             }
             
             nextWaveText.gameObject.SetActive(waveSpawner.TimeTillNextWave > 0);
-            nextWaveText.text = "Next wave In :" + waveSpawner.TimeTillNextWave.ToString("N1");
+            nextWaveText.text = "Next wave In: " + waveSpawner.TimeTillNextWave.ToString("N1");
         }
 
         private void SetPlayerHpBar()
