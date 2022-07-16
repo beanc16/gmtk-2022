@@ -1,4 +1,5 @@
-﻿using _.Scripts.Player;
+﻿using _.Scripts.Core;
+using _.Scripts.Player;
 using _.Scripts.World;
 using TMPro;
 using UnityEngine;
@@ -6,14 +7,17 @@ using UnityEngine.UI;
 
 namespace _.Scripts.UI
 {
-    public class NextWaveUI : MonoBehaviour
+    public class GameUi : MonoBehaviour
     {
+        [SerializeField] private PlayerAttackToIconScriptableObject playerAttackIconData;
         [SerializeField] private TextMeshProUGUI nextWaveText;
         [SerializeField] private Canvas uiCanvas;
         [SerializeField] private Image playerHealthBar;
+        [SerializeField] private Image currentAttackIcon;
 
         private WaveSpawner waveSpawner;
         private PlayerController playerController;
+        private PlayerAttackType currentAttackIconType;
 
         private void Awake()
         {
@@ -25,6 +29,12 @@ namespace _.Scripts.UI
         private void Update()
         {
             SetPlayerHpBar();
+
+            if (GameController.Instance.CurrentPlayerAttackType != currentAttackIconType)
+            {
+                currentAttackIcon.gameObject.SetActive(GameController.Instance.CurrentPlayerAttackType != PlayerAttackType.None);
+                currentAttackIcon.sprite = playerAttackIconData.GetIconForSprite(GameController.Instance.CurrentPlayerAttackType);
+            }
             
             if (waveSpawner.EnemiesLeftAlive > 0)
             {

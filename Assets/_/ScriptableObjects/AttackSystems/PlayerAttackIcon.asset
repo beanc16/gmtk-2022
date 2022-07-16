@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4639babe76f74e38a8395eb521d2eb3c, type: 3}
+  m_Name: PlayerAttackIcon
+  m_EditorClassIdentifier: 
+  AttackToIcons:
+  - AttackType: 1
+    AttackIcon: {fileID: 21300000, guid: e844498e21970bd4795a4cc96d20a982, type: 3}
+  - AttackType: 2
+    AttackIcon: {fileID: 21300000, guid: 235bfd7c05fc8584f8b06cfdbe4d0d71, type: 3}
+  - AttackType: 3
+    AttackIcon: {fileID: 21300000, guid: 22630bcc77af324408884dcd0d4ce0a5, type: 3}
+  - AttackType: 4
+    AttackIcon: {fileID: 21300000, guid: fbec23e30cbbaec43a1bf9e1c29c60b9, type: 3}

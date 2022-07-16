@@ -74,7 +74,7 @@ public class RollDiceScreenHandler : MonoBehaviour
         if (timeRemaining <= 0)
         {
             startRolling = false;
-            GameController.Instance.RollFinished();
+            GameController.Instance.RollFinished(currentFace);
             return;
         }
         

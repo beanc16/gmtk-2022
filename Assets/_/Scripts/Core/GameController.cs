@@ -1,4 +1,5 @@
 ﻿using System;
+using _.Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +14,7 @@ namespace _.Scripts.Core
 
         public bool IsGameActive;
         public double CurrentScore;
+        public PlayerAttackType CurrentPlayerAttackType; 
 
         private GameObject rollDiceInstance;
         
@@ -23,10 +25,8 @@ namespace _.Scripts.Core
                 Destroy(Instance.gameObject);
             }
             Instance = this;
-            IsGameActive = true;
 
             rollDiceInstance = Instantiate(rollDicePrefab);
-            rollDiceInstance.SetActive(false);
         }
 
         private void Update()
@@ -51,11 +51,32 @@ namespace _.Scripts.Core
             rollDiceInstance.SetActive(true);
         }
 
-        public void RollFinished()
+        public void RollFinished(int currentFace)
         {
             IsGameActive = true;
+
+            CurrentPlayerAttackType = GetAttackTypeForRoll(currentFace);
             
             rollDiceInstance.SetActive(false);
+        }
+
+        private PlayerAttackType GetAttackTypeForRoll(int roll)
+        {
+            switch (roll)
+            {
+                case 1:
+                case 2:
+                    return PlayerAttackType.Projectile;
+                case 3:
+                case 4:
+                    return PlayerAttackType.Bomb;
+                case 5:
+                    return PlayerAttackType.Arrow;
+                case 6:
+                    return PlayerAttackType.AreaOfEffect;
+            }
+
+            return PlayerAttackType.None;
         }
     }
 }
