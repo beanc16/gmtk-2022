@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using _.Scripts.Core;
 using _.Scripts.Enemy;
-using _.Scripts.HealthSystem;
 using _.Scripts.Player;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Pool;
 using Random = UnityEngine.Random;
 
