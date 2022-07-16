@@ -222,9 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameController: {fileID: 1952194236}
-  WorldPrefab: {fileID: -3136596211210783834, guid: f2fe0ab04f744b340a398eee50688386,
-    type: 3}
-  PlayerPrefab: {fileID: 347867838043487300, guid: 1f8ed16ae38b4c349bcd04e075f79edd,
+  WorldPrefab: {fileID: 6520048136861915607, guid: f2fe0ab04f744b340a398eee50688386,
     type: 3}
   OverlayPrefab: {fileID: 6337703587862986540, guid: 591b0d1fbc3655c4e8e0f0fa7124331c,
     type: 3}

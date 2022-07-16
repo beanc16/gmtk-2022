@@ -15,14 +15,14 @@ namespace _.Scripts.UI
         [SerializeField] private Image playerHealthBar;
         [SerializeField] private Image currentAttackIcon;
 
-        private WaveSpawner waveSpawner;
+        //private WaveSpawner waveSpawner;
         private PlayerController playerController;
         private PlayerAttackType currentAttackIconType;
 
         private void Awake()
         {
             uiCanvas.worldCamera = Camera.main;
-            waveSpawner = FindObjectOfType<WaveSpawner>();
+            //waveSpawner = FindObjectOfType<WaveSpawner>();
             playerController = PlayerController.Instance;
         }
 
@@ -36,7 +36,8 @@ namespace _.Scripts.UI
                 currentAttackIcon.sprite = playerAttackIconData.GetIconForSprite(GameController.Instance.CurrentPlayerAttackType);
             }
             
-            if (waveSpawner.EnemiesLeftAlive > 0)
+            nextWaveText.gameObject.SetActive(false);
+            /*if (waveSpawner.EnemiesLeftAlive > 0)
             {
                 nextWaveText.gameObject.SetActive(true);
                 nextWaveText.text = "Enemies Remaining: " + waveSpawner.EnemiesLeftAlive.ToString("N0");
@@ -44,7 +45,7 @@ namespace _.Scripts.UI
             }
             
             nextWaveText.gameObject.SetActive(waveSpawner.TimeTillNextWave > 0);
-            nextWaveText.text = "Next wave In: " + waveSpawner.TimeTillNextWave.ToString("N1");
+            nextWaveText.text = "Next wave In: " + waveSpawner.TimeTillNextWave.ToString("N1");*/
         }
 
         private void SetPlayerHpBar()
