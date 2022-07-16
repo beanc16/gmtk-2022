@@ -35,7 +35,7 @@ namespace _.Scripts.Enemy
 
         private void Awake()
         {
-            playerTransform = PlayerController.Instance.transform;
+            //playerTransform = PlayerController.Instance.transform;
         }
 
         public void Init(UnityAction<EnemyAi> deathAction, float health, float speedMin, float speedMax, float changeMax)
@@ -63,6 +63,11 @@ namespace _.Scripts.Enemy
 
         private void Update()
         {
+            if(playerTransform == null)
+            {
+                playerTransform = PlayerController.Instance.transform;
+            }
+            
             if (isAlive == false)
             {
                 return;

@@ -65,7 +65,7 @@ namespace _.Scripts.World
 
         private void Update()
         {
-            if (GameController.Instance.IsGameActive == false)
+            /*if (GameController.Instance.IsGameActive == false)
             {
                 return;
             }
@@ -96,7 +96,7 @@ namespace _.Scripts.World
             if (timeTillNextSpawn <= 0)
             {
                 SpawnNextWave();
-            }
+            }*/
         }
 
         private void Reset()
