@@ -1,4 +1,5 @@
-﻿using _.Scripts.AttackSystem;
+﻿using System;
+using _.Scripts.AttackSystem;
 using _.Scripts.Core;
 using _.Scripts.HealthSystem;
 using _.Scripts.Player;
@@ -21,6 +22,9 @@ namespace _.Scripts.Enemy
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private int enemyRoomIndex;
         [SerializeField] private AttackSystem.AttackSystem attackSystem;
+        
+        [SerializeField] private SpriteRenderer enemySprite;
+        [SerializeField] private Sprite[] spriteToDirection;
 
         private Transform _playerTransform;
         private Health _health;
@@ -70,6 +74,8 @@ namespace _.Scripts.Enemy
             }
             
             agent.SetDestination(_playerTransform.position);
+            
+            DoFacing();
 
             if (agent.remainingDistance < enemyData.FireDistance)
             {
@@ -80,9 +86,7 @@ namespace _.Scripts.Enemy
             {
                 agent.isStopped = false;
             }
-            
-            if(_playerTransform == null) _playerTransform = PlayerController.Instance.transform;
-            
+
             if (_health.GetHealthPoints() - _health.GetCurrentHealthPoints() < 0.1f)
             {
                 enemyHealthBarContainer.SetActive(false);
@@ -99,6 +103,61 @@ namespace _.Scripts.Enemy
             
             if (_health.GetCurrentHealthPoints() > 0f) return;
             Die();
+        }
+
+        private void DoFacing()
+        {
+            var direction = agent.velocity;
+
+            //We are facing left or right
+            if (Math.Abs(direction.y) < 0.1f)
+            {
+                if (direction.x < 0)
+                {
+                    enemySprite.sprite = spriteToDirection[6];
+                    return;
+                }
+                
+                enemySprite.sprite = spriteToDirection[2];
+                return;
+            }
+            
+            //We are facing up or down
+            if (Math.Abs(direction.x) < 0.1f)
+            {
+                if (direction.y < 0)
+                {
+                    enemySprite.sprite = spriteToDirection[0];
+                    return;
+                }
+                
+                enemySprite.sprite = spriteToDirection[4];
+                return;
+            }
+
+            //Up left
+            if (direction.x < 0 && direction.y < 0)
+            {
+                enemySprite.sprite = spriteToDirection[7];
+                return;
+            }
+            
+            //Down Left
+            if (direction.x < 0 && direction.y > 0)
+            {
+                enemySprite.sprite = spriteToDirection[5];
+                return;
+            }
+            
+            //Up right
+            if (direction.x > 0 && direction.y < 0)
+            {
+                enemySprite.sprite = spriteToDirection[1];
+                return;
+            }
+            
+            //Down Right
+            enemySprite.sprite = spriteToDirection[3];
         }
 
         private void Die()

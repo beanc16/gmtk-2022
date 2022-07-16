@@ -86,7 +86,8 @@ public class RollDiceController : MonoBehaviour
                 timeToChange = diceRollData.MediumChangeTime;
             }
                 
-            int randomFace = Random.Range(diceFaceMin, diceFaceMax);
+            //Need +1 since Random excludes the upper value
+            int randomFace = Random.Range(diceFaceMin, diceFaceMax + 1);
 
             if (randomFace == currentFace)
             {
