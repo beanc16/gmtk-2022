@@ -144,9 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7ec731531705c4bab4ea7cd34a8a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody2D: {fileID: 8944182071794124512}
-  animator: {fileID: 3828688893418484392}
-  renderer: {fileID: 3088880807097096021}
+  rigidbody2D: {fileID: 0}
 --- !u!1 &1107170534540766071
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,6 +192,7 @@ MonoBehaviour:
   attacks:
   - {fileID: 11400000, guid: b606c37955f439a4f8bed24d7170fd0e, type: 2}
   - {fileID: 11400000, guid: db352261d4e567746afa87615795d8e5, type: 2}
+  - {fileID: 11400000, guid: 5fc4e12db2b11864a9ba457759a60d1f, type: 2}
 --- !u!1 &6755973252181445134
 GameObject:
   m_ObjectHideFlags: 0
