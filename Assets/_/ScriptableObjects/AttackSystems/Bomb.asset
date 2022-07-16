@@ -15,7 +15,8 @@ MonoBehaviour:
   attackPrefab: {fileID: 744153610598438701, guid: ff8f8aa82fd48584886cca9192d5b46c,
     type: 3}
   attackName: Bomb
-  attackCooldown: 1
   destroyOnHit: 0
+  attackCooldown: 1
+  damage: 3
   lifeTime: 2
   range: 3
