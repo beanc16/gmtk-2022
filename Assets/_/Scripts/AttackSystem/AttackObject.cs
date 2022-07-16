@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using JetBrains.Annotations;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 namespace _.Scripts.AttackSystem
@@ -22,19 +18,17 @@ namespace _.Scripts.AttackSystem
             _onHitTarget = onHitAction;
             _thisObject = thisObject;
             _attackData = attackData;
-            ObjectHit += ReleaseAttack;
+            if(attackData.GetDestroyOnHit()) ObjectHit += ReleaseAttack;
             UpdateAttack();
         }
 
         private void UpdateAttack() => _attackData.AttackUpdate(_thisObject, OnAttackFinished);
 
         private void OnAttackFinished() => ReleaseAttack(_thisObject);
-        
 
-        private void ReleaseAttack([NotNull] GameObject hit)
+        private void ReleaseAttack(GameObject hit)
         {
             if(_finished) return;
-            if (hit == null) throw new ArgumentNullException(nameof(hit));
             if (hit != _thisObject) return;
             _finished = true;
             _onHitTarget?.Invoke(hit);

@@ -1,4 +1,6 @@
-﻿using _.Scripts.Core;
+﻿using System.Threading;
+using _.Scripts.Core;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
@@ -8,18 +10,21 @@ namespace _.Scripts.AttackSystem
     public abstract class AttackSoBase : ScriptableObject
     {
         [SerializeField] protected GameObject attackPrefab;
+        
         [SerializeField] protected string attackName;
+        public string GetAttackName() => attackName;
         [SerializeField] protected float attackCooldown;
         [SerializeField] protected bool destroyOnHit;
-        public string GetAttackName() => attackName;
-        public float GetAttackCooldown() => attackCooldown;
+        public bool GetDestroyOnHit() => destroyOnHit;
         
         protected IObjectPool<GameObject> Pool;
         protected static GameController GameController;
+        protected CancellationToken CancellationToken;
         
         public virtual void EnableAttack()
         {
             if(GameController == null) GameController = GameController.Instance;
+            CancellationToken = GameController.gameObject.GetCancellationTokenOnDestroy();
             Pool = new ObjectPool<GameObject>(() 
                 => Instantiate(attackPrefab),
                 OnGet,

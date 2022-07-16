@@ -1,4 +1,6 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,18 +12,26 @@ namespace _.Scripts.AttackSystem
         [SerializeField] private float lifeTime;
         [SerializeField] private float speed;
 
+        private bool _onCooldown;
+        
         public override void Shoot(Transform fromTransform)
         {
+            if(_onCooldown) return; 
             Debug.Log("Shoot Projectile");
-            //var projectile = Instantiate(attackPrefab, fromTransform.position, fromTransform.rotation);
             var projectile = Pool.Get();
             projectile.transform.position = fromTransform.position;
-
             var attackObject = new AttackObject(ReleaseTarget, projectile, this);
 
-            //todo: Do we want it to shoot towards cursor or have character move towards cursor ? 
+            if (attackCooldown > 0f) Cooldown();
         }
 
+        private async void Cooldown()
+        {
+            _onCooldown = true;
+            await UniTask.Delay(TimeSpan.FromSeconds(attackCooldown), ignoreTimeScale: false, cancellationToken: CancellationToken);
+            _onCooldown = false;
+        }
+        
         public override async void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished)
         {
             var time = 0f;

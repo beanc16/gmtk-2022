@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0861ee28266a1554796bbe3669c7aa1f, type: 3}
   m_Name: Bomb
   m_EditorClassIdentifier: 
-  attackName: Bomb
   attackPrefab: {fileID: 744153610598438701, guid: ff8f8aa82fd48584886cca9192d5b46c,
     type: 3}
+  attackName: Bomb
+  attackCooldown: 0.5
+  destroyOnHit: 0
   lifeTime: 1.2
   speed: 0
-  timeBetweenAttacks: 0.8
