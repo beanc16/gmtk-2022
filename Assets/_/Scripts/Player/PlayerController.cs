@@ -1,5 +1,6 @@
 ﻿using System;
 using _.Scripts.Core;
+using _.Scripts.HealthSystem;
 using UnityEngine;
 
 namespace _.Scripts.Player
@@ -16,18 +17,15 @@ namespace _.Scripts.Player
         //private Vector2 currentMovement2d;
         private float enemiesTouchingPlayer;
         private float invulnerableTime;
-        
-        private float playerCurrentHp;
-        public float PlayerCurrentHp => playerCurrentHp;
-        
-        private float playerMaxHp;
-        public float PlayerMaxHp => playerMaxHp;
+
+        private Health _health;
+        public float GetTotalHp() => _health.GetHealthPoints();
+        public float GetCurrentHp() => _health.GetCurrentHealthPoints();
 
         private void Awake()
         {
             Instance = this;
-            playerCurrentHp = playerData.PlayerHp;
-            playerMaxHp = playerData.PlayerHp;
+            _health = new Health(playerData.PlayerHp);
         }
 
         private void Update()
@@ -118,8 +116,9 @@ namespace _.Scripts.Player
             }
 
             invulnerableTime = playerData.InvulnerableTime;
-            playerCurrentHp -= enemiesTouchingPlayer;
-            if (playerCurrentHp <= 0)
+            if (enemiesTouchingPlayer == 0) return;
+            _health.Damage(enemiesTouchingPlayer);
+            if (_health.GetCurrentHealthPoints() <= 0)
             {
                 //Game Over
                 GameController.Instance.GameOver();

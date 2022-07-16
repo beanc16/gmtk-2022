@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using _.Scripts.HealthSystem.Interfaces;
+using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 namespace _.Scripts.AttackSystem
 {
     public class AttackObject
     {
-        public static void Hit(GameObject gameObject) => ObjectHit?.Invoke(gameObject);
-        private static event UnityAction<GameObject> ObjectHit; 
+        public static void Hit(GameObject gameObject, IDamageable<float> toDamage) 
+            => ObjectHit?.Invoke(gameObject, toDamage);
+        
+        private static event UnityAction<GameObject, IDamageable<float>> ObjectHit;
 
         private readonly UnityAction<GameObject> _onHitTarget;
         private readonly GameObject _thisObject;
@@ -18,7 +22,7 @@ namespace _.Scripts.AttackSystem
             _onHitTarget = onHitAction;
             _thisObject = thisObject;
             _attackData = attackData;
-            if(attackData.GetDestroyOnHit()) ObjectHit += ReleaseAttack;
+            ObjectHit += OnHit;
             UpdateAttack();
         }
 
@@ -26,6 +30,12 @@ namespace _.Scripts.AttackSystem
 
         private void OnAttackFinished() => ReleaseAttack(_thisObject);
 
+        private void OnHit(GameObject hit, IDamageable<float> toDamage)
+        {
+            Debug.Log("Should do damage now .. ");
+            toDamage.Damage(_attackData.GetDamage());
+        }
+        
         private void ReleaseAttack(GameObject hit)
         {
             if(_finished) return;

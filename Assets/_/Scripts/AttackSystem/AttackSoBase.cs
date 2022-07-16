@@ -12,10 +12,12 @@ namespace _.Scripts.AttackSystem
         [SerializeField] protected GameObject attackPrefab;
         
         [SerializeField] protected string attackName;
-        public string GetAttackName() => attackName;
-        [SerializeField] protected float attackCooldown;
         [SerializeField] protected bool destroyOnHit;
+        [SerializeField] protected float attackCooldown;
+        [SerializeField] protected float damage;
+        public string GetAttackName() => attackName;
         public bool GetDestroyOnHit() => destroyOnHit;
+        public float GetDamage() => damage; // expand upon this for variations.
         
         protected IObjectPool<GameObject> Pool;
         protected static GameController GameController;

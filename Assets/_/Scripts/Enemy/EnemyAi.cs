@@ -1,8 +1,10 @@
 ﻿using System;
 using _.Scripts.AttackSystem;
 using _.Scripts.Core;
+using _.Scripts.HealthSystem;
 using _.Scripts.Player;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace _.Scripts.Enemy
@@ -16,9 +18,8 @@ namespace _.Scripts.Enemy
         [SerializeField] private Image enemyHealthBar;
 
         private Transform playerTransform;
-        private float enemyMaxHp;
-        private float enemyRemainingHp;
-        private Action<EnemyAi> onDeathAction;
+        private Health _health;
+        private UnityAction<EnemyAi> onDeathAction;
         private bool isAlive;
 
         private void Awake()
@@ -26,46 +27,54 @@ namespace _.Scripts.Enemy
             playerTransform = PlayerController.Instance.transform;
         }
 
+        public void Init(UnityAction<EnemyAi> deathAction, float health, float speed)
+        {
+            onDeathAction = deathAction;
+            enemySpeed = speed;
+            _health = new Health(health);
+            Debug.Log(health);
+            isAlive = true;
+        }
+
         private void OnTriggerEnter2D(Collider2D col)
         {
             // Hit projectile
-            AttackObject.Hit(col.transform.parent.gameObject);
             if (!col.gameObject.CompareTag(Constants.TagPlayerProjectile)) return;
-            enemyRemainingHp -= 1;
+            AttackObject.Hit(col.transform.parent.gameObject, _health);
             
-            if (!(enemyRemainingHp <= 0)) return;
-            
+            if (_health.GetCurrentHealthPoints() > 0f) return;
             isAlive = false;
             onDeathAction(this);
         }
 
         private void Update()
         {
+            /*
             if (GameController.Instance.IsGameActive == false)
             {
                 enemyBody2D.velocity = Vector2.zero;
                 return;
             }
-            
+            */
             if (isAlive == false)
             {
                 return;
             }
 
-            if (enemyMaxHp - enemyRemainingHp < 0.1f)
+            if (_health.GetHealthPoints() - _health.GetCurrentHealthPoints() < 0.1f)
             {
                 enemyHealthBarContainer.SetActive(false);
             }
             else
             {
                 enemyHealthBarContainer.SetActive(true);
-                float fill = 1f - (enemyMaxHp - enemyRemainingHp) / enemyMaxHp;
+                float fill = 1f - (_health.GetHealthPoints() - _health.GetCurrentHealthPoints()) / _health.GetHealthPoints();
                 if (Mathf.Abs(enemyHealthBar.fillAmount - fill) > 0.1f)
                 {
                     enemyHealthBar.fillAmount = fill;
                 }
             }
-
+            /*
             var enemyPosition = enemyBody2D.position;
             var playerPosition = (Vector2)playerTransform.position;
             var playerDistance = playerPosition - enemyPosition;
@@ -75,15 +84,23 @@ namespace _.Scripts.Enemy
             }
             var normalizedDirection = playerDistance.normalized;
             enemyBody2D.MovePosition(enemyPosition + normalizedDirection * enemySpeed);
+            */
         }
 
-        public void Setup(Action<EnemyAi> deathAction, float speed, float maxHp)
+        private void FixedUpdate()
         {
-            onDeathAction = deathAction;
-            enemySpeed = speed;
-            enemyRemainingHp = maxHp;
-            enemyMaxHp = maxHp;
-            isAlive = true;
+            if (GameController.Instance.IsGameActive == false)
+            {
+                enemyBody2D.velocity = Vector2.zero;
+                return;
+            }
+            
+            var enemyPosition = enemyBody2D.position;
+            var playerPosition = (Vector2)playerTransform.position;
+            var playerDistance = playerPosition - enemyPosition;
+            var normalizedDirection = playerDistance.normalized;
+            
+            enemyBody2D.velocity = normalizedDirection * enemySpeed;
         }
     }
 }
