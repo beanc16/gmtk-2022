@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88be290e208c407aa7cac595bad2f1ed, type: 3}
   m_Name: DiceRoll
   m_EditorClassIdentifier: 
-  TimeToRoll: 8
-  TimeForFastChange: 4
-  TimeToSlowdown: 2
+  TimeToRoll: 1
+  TimeForFastChange: 0.5
+  TimeToSlowdown: 0.2

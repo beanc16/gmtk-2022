@@ -1,4 +1,5 @@
 ﻿using System;
+using _.Scripts.AttackSystem;
 using _.Scripts.Core;
 using _.Scripts.Player;
 using UnityEngine;
@@ -28,16 +29,16 @@ namespace _.Scripts.Enemy
         private void OnTriggerEnter2D(Collider2D col)
         {
             // Hit projectile
-            if (col.gameObject.CompareTag(Constants.TagPlayerProjectile))
-            {
-                enemyRemainingHp -= 1;
-                if (enemyRemainingHp <= 0)
-                {
-                    isAlive = false;
-                    onDeathAction(this);
-                }
-                return;
-            }
+            Debug.Log("Hit Enemy!");
+            //if (col.transform.TryGetComponent(out AttackObject attackObject)) attackObject.AttackHit();
+            if(col.transform.parent.TryGetComponent(out AttackObject attackObject)) attackObject.AttackHit();
+            if (!col.gameObject.CompareTag(Constants.TagPlayerProjectile)) return;
+            enemyRemainingHp -= 1;
+            
+            if (!(enemyRemainingHp <= 0)) return;
+            
+            isAlive = false;
+            onDeathAction(this);
         }
 
         private void Update()

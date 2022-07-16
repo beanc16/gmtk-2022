@@ -8,32 +8,21 @@ namespace _.Scripts.AttackSystem
     {
         [SerializeField] private List<AttackSo> attacks;
 
-        private float timeTillNextAttack;
-
         private void Start()
         {
-            foreach (var attack in attacks) attack.InitAttack();
+            foreach (var attack in attacks) attack.EnableAttack();
         }
 
-        private void Update()
+        private void OnDestroy()
         {
-            timeTillNextAttack -= Time.deltaTime;
+            foreach (var attack in attacks) attack.DisableAttack();
         }
 
         public void Attack(int attackNr)
         {
-            if (timeTillNextAttack > 0)
-            {
-                return;
-            }
+            if (attackNr > attacks.Count) return; // value out of bounds
             
-            if (attackNr > attacks.Count)
-            {
-                //Failsafe for out of bounds exception
-                attackNr = 0;
-            }
             attacks[attackNr].Shoot(transform);
-            timeTillNextAttack = attacks[attackNr].TimeBetweenAttacks;
         }
     }
 }

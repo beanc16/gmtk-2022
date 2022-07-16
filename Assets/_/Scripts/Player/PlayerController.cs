@@ -31,7 +31,7 @@ namespace _.Scripts.Player
 
         private void Update()
         {
-            if (GameController.Instance.IsGameActive == false)
+            if (GameController.Instance != null && GameController.Instance.IsGameActive == false)
             {
                 playerBody2d.velocity = Vector2.zero;
                 return;
