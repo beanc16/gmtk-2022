@@ -12,6 +12,7 @@ namespace _.Scripts.World
         public int EnemiesInWave;
         public int AmountSpawnedPerCycle;
         public float TimeBetweenCycles;
+        public float EnemyHp;
         public Vector2 PositionRandomizer;
     }
 }

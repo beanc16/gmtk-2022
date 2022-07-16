@@ -12,7 +12,7 @@ namespace _.Scripts.World
         [SerializeField] private Transform enemyParent;
         [SerializeField] private WaveScriptableObject waveScriptableObject;
 
-        private List<EnemyAi> enemyPool = new List<EnemyAi>();
+        private Queue<EnemyAi> enemyPool = new Queue<EnemyAi>();
         private int enemiesLeftInWave;
         private float timeTillNextSpawn;
 
@@ -51,7 +51,16 @@ namespace _.Scripts.World
 
             for (int i = 0; i < amountSpawnedInWave; i++)
             {
-                var newEnemy = Instantiate(waveScriptableObject.EnemyAi, enemyParent);
+                EnemyAi newEnemy;
+                if (enemyPool.Count > 0)
+                {
+                    newEnemy = enemyPool.Dequeue();
+                }
+                else
+                {
+                    newEnemy = Instantiate(waveScriptableObject.EnemyAi, enemyParent);
+                }
+
                 var pos = newEnemy.transform.position;
                 pos.x += Random.Range(-waveScriptableObject.PositionRandomizer.x,
                     waveScriptableObject.PositionRandomizer.x);
@@ -60,13 +69,14 @@ namespace _.Scripts.World
                 newEnemy.transform.position = pos;
                 
                 newEnemy.Setup(DespawnEnemy, 
-                    Random.Range(waveScriptableObject.EnemySpeedMin, waveScriptableObject.EnemySpeedMax));
+                    Random.Range(waveScriptableObject.EnemySpeedMin, waveScriptableObject.EnemySpeedMax),
+                    waveScriptableObject.EnemyHp);
             }
         }
         
         private void DespawnEnemy(EnemyAi enemyAi)
         {
-            enemyPool.Add(enemyAi);
+            enemyPool.Enqueue(enemyAi);
             //Might need to set position as well;
             enemyAi.gameObject.SetActive(false);
         }

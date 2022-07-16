@@ -240,11 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5119ce8d4b148a9b22f647113626067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  is2d: 0
-  WorldPrefab2d: {fileID: 2961443088370947111, guid: f66e41632b1dfad4fbac3214ac0b124c,
-    type: 3}
-  PlayerPrefab2d: {fileID: 4452868390152528261, guid: e8d97ae447437b140b1066b7a04097b9,
-    type: 3}
   WorldPrefab: {fileID: 6520048136861915607, guid: f2fe0ab04f744b340a398eee50688386,
     type: 3}
   PlayerPrefab: {fileID: 347867838043487300, guid: 1f8ed16ae38b4c349bcd04e075f79edd,
@@ -317,7 +312,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 50
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
