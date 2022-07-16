@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f373372dc3174dde997481d5bc5e726f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 0.5
+  playerData: {fileID: 11400000, guid: f0491001252845d498897aaa8cffb62f, type: 2}
   attackSystem: {fileID: 1430879342407403563}
   playerBody2d: {fileID: 8944182071794124512}
   useNewInputSystem: 0
