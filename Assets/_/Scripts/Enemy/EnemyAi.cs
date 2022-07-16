@@ -20,8 +20,10 @@ namespace _.Scripts.Enemy
             playerTransform = PlayerController.Instance.transform;
         }
 
+        /*
         private void OnCollisionEnter2D(Collision2D col)
         {
+            // Hit projectile
             if (col.gameObject.name == "SpriteEnemy")
             {
                 enemyRemainingHp -= 1;
@@ -32,7 +34,30 @@ namespace _.Scripts.Enemy
                 }
                 return;
             }
+
+            // Hit player
             Debug.Log("BulletCollision " + col.gameObject.name);
+        }
+        */
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            // Hit projectile
+            if (col.gameObject.CompareTag("Projectile"))
+            {
+                Debug.Log("Hit projectile" + col.gameObject.name);
+                enemyRemainingHp -= 1;
+                if (enemyRemainingHp <= 0)
+                {
+                    Debug.Log("Killed enemy" + col.gameObject.name);
+                    isAlive = false;
+                    onDeathAction(this);
+                }
+                return;
+            }
+
+            // Hit player
+            //Debug.Log("BulletCollision " + col.gameObject.name);
         }
 
         private void Update()

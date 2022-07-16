@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8944182071794124512}
   m_Layer: 7
   m_Name: SpritePlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   playerSpeed: 0.5
   attackSystem: {fileID: 1430879342407403563}
   playerBody2d: {fileID: 8944182071794124512}
+  useNewInputSystem: 0
 --- !u!114 &6740021257207540398
 MonoBehaviour:
   m_ObjectHideFlags: 0
