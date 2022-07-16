@@ -22,15 +22,14 @@ namespace _.Scripts.AttackSystem
         public bool GetDamageOnHit() => damageOnHit;
         public float GetAoeRange() => aoeRange;
         public float GetDamage() => damage; // expand upon this for variations.
+        public float GetCooldown() => attackCooldown;
         
         protected IObjectPool<GameObject> Pool;
         protected static GameController GameController;
         protected CancellationToken CancellationToken;
-        protected bool OnCooldown;
         
         public virtual void EnableAttack()
         {
-            OnCooldown = false;
             if(GameController == null) GameController = GameController.Instance;
             
             CancellationToken = GameController.gameObject.GetCancellationTokenOnDestroy();
@@ -46,7 +45,6 @@ namespace _.Scripts.AttackSystem
 
         public virtual void DisableAttack()
         {
-            OnCooldown = false;
             Pool.Clear();
         }
 
