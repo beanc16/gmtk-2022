@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3723500052948464815}
   m_Layer: 0
   m_Name: TestProjectile
-  m_TagString: Projectile
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6595217136191782284}
   m_Layer: 8
   m_Name: ProjectileSprite
-  m_TagString: Projectile
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

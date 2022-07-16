@@ -7,5 +7,6 @@ namespace _.Scripts.Player
     {
         public float PlayerSpeed;
         public float PlayerHp;
+        public float InvulnerableTime;
     }
 }

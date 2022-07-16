@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _.Scripts.Core;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _.Scripts.Player
@@ -13,12 +14,14 @@ namespace _.Scripts.Player
         [SerializeField] private bool useNewInputSystem;
 
         private Vector2 currentMovement2d;
-        private float currentHp;
+        private float playerCurrentHp;
+        private float enemiesTouchingPlayer;
+        private float invulnerableTime;
 
         private void Awake()
         {
             Instance = this;
-            currentHp = playerData.PlayerHp;
+            playerCurrentHp = playerData.PlayerHp;
         }
 
         private void OnMovement(InputValue value)
@@ -70,6 +73,43 @@ namespace _.Scripts.Player
             }
 
             playerBody2d.MovePosition(playerBody2d.position + currentMovement2d);
+
+            DoDamage();
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            // Hit enemy
+            if (col.gameObject.CompareTag(Constants.TagEnemy))
+            {
+                enemiesTouchingPlayer++;
+            }
+        }
+        
+        private void OnTriggerExit2D(Collider2D col)
+        {
+            // Enemy gotten away from
+            if (col.gameObject.CompareTag(Constants.TagEnemy))
+            {
+                enemiesTouchingPlayer--;
+            }
+        }
+
+        private void DoDamage()
+        {
+            invulnerableTime -= Time.deltaTime;
+            if (invulnerableTime > 0)
+            {
+                return;
+            }
+
+            invulnerableTime = playerData.InvulnerableTime;
+            playerCurrentHp -= enemiesTouchingPlayer;
+            if (playerCurrentHp <= 0)
+            {
+                //Game Over
+                Debug.LogError("GAME OVER");
+            }
         }
     }
 }

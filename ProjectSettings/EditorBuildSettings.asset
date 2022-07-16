@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_/Scenes/Menus/Credits.unity
     guid: bec250b5e8a5f75b08adb482ff8bae22
+  - enabled: 1
+    path: Assets/_/Scenes/PhilipScene/PhilipScene.unity
+    guid: 9927c5125087c954588cbfda9583b9e9
   m_configObjects:
     addressableimportsettings: {fileID: 11400000, guid: 4a229829b6b0b8e48abf1678dff27b0d,
       type: 2}

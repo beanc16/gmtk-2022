@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: EnemyWave1
   m_EditorClassIdentifier: 
   EnemyAi: {fileID: 3655040860972501959, guid: bc5212aafe2c205419974b19ba159a40, type: 3}
-  EnemySpeedMin: 0.1
-  EnemySpeedMax: 0.3
+  EnemySpeedMin: 0.07
+  EnemySpeedMax: 0.09
   EnemiesInWave: 20
   AmountSpawnedPerCycle: 4
   TimeBetweenCycles: 3
-  EnemyHp: 0
+  EnemyHp: 5
   PositionRandomizer: {x: 25, y: 25}

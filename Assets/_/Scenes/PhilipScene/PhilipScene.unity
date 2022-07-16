@@ -244,6 +244,8 @@ MonoBehaviour:
     type: 3}
   PlayerPrefab: {fileID: 347867838043487300, guid: 1f8ed16ae38b4c349bcd04e075f79edd,
     type: 3}
+  OverlayPrefab: {fileID: 6337703587862986540, guid: 591b0d1fbc3655c4e8e0f0fa7124331c,
+    type: 3}
 --- !u!4 &1952194235
 Transform:
   m_ObjectHideFlags: 0
@@ -312,7 +314,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

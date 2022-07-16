@@ -4,7 +4,9 @@
     {
         // Scene Names
         public const string MainScene = "MainScene";
+        
         //Tags
-        public const string TagProjectile = "Projectile";
+        public const string TagPlayerProjectile = "PlayerProjectile";
+        public const string TagEnemy = "Enemy";
     }
 }
