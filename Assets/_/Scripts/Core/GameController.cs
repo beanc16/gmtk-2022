@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace _.Scripts.Core
 {
@@ -22,6 +23,14 @@ namespace _.Scripts.Core
             IsGameActive = false;
 
             Instantiate(gameOverPrefab);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene(Constants.MainScene);
+            }
         }
     }
 }

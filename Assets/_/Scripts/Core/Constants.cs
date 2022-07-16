@@ -3,7 +3,7 @@
     public static class Constants
     {
         // Scene Names
-        public const string MainScene = "MainScene";
+        public const string MainScene = "MainMenu";
         
         //Tags
         public const string TagPlayerProjectile = "PlayerProjectile";
