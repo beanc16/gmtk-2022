@@ -43,7 +43,7 @@ namespace _.Scripts.UI
             }
             
             nextWaveText.gameObject.SetActive(true); 
-            nextWaveText.text = "Enemies Remaining: " + EnemyAi.EnemiesAlive.ToString("N0");
+            nextWaveText.text = "Enemies Remaining In Room: " + GameController.Instance.GetEnemiesInCurrentArea(); //EnemyAi.EnemiesAlive.ToString("N0");
         }
 
         private void SetPlayerHpBar()

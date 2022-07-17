@@ -147,5 +147,10 @@ namespace _.Scripts.Core
             
             Instantiate(gameWonPrefab).GetComponentInChildren<WinTimeHandler>().SetTimeText(timeSpent);
         }
+
+        public int GetEnemiesInCurrentArea()
+        {
+            return EnemiesInArea[AreaActive];
+        }
     }
 }
