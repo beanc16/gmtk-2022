@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using _.Scripts.Player;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,22 +12,30 @@ namespace _.Scripts.AttackSystem
     {
         [SerializeField] private float lifeTime;
         [SerializeField] private float speed;
+        [SerializeField] private bool attackPlayer;
 
         public override void Shoot(Transform fromTransform)
         {
-            Debug.Log("Shoot Projectile");
+            //Debug.Log("Shoot Projectile");
             var projectile = Pool.Get();
             projectile.transform.position = fromTransform.position;
             var attackObject = new AttackObject(ReleaseTarget, projectile, this);
         }
-
-
         
         public override async void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished)
         {
             var time = 0f;
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var moveDirection = worldPosition - attackObject.transform.position;
+            Vector3 targetPosition;
+            if (attackPlayer == false)
+            {
+                targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+            else
+            {
+                targetPosition = PlayerController.Instance.transform.position;
+            }
+
+            var moveDirection = targetPosition - attackObject.transform.position;
             moveDirection.z = 0;
             moveDirection = moveDirection.normalized;
             
