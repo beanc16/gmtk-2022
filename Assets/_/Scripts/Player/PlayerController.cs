@@ -55,7 +55,7 @@ namespace _.Scripts.Player
             {
                 attackSystem.Attack((int)GameController.Instance.CurrentPlayerAttackType);
             }
-            DoDamage();
+            //DoDamage();
         }
 
         private void FixedUpdate()
@@ -102,6 +102,7 @@ namespace _.Scripts.Player
             }
         }
 
+        /*
         private void DoDamage()
         {
             invulnerableTime -= Time.deltaTime;
@@ -132,6 +133,7 @@ namespace _.Scripts.Player
                 GameController.Instance.GameOver();
             }
         }
+        */
 
         public void RemoveDeadEnemies(GameObject enemy)
         {
