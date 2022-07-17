@@ -61,14 +61,14 @@ MonoBehaviour:
   enemySprite: {fileID: 6320291416174750225}
   hasChangingSprite: 1
   spriteToDirection:
-  - {fileID: 21300000, guid: 5f75f408a9afd27468dfe2f73809d49f, type: 3}
-  - {fileID: 21300000, guid: 3bb2a51d454f6dd4294a2e9b37132311, type: 3}
-  - {fileID: 21300000, guid: e2fa0e69ce90ce74b9925c9fd147e497, type: 3}
-  - {fileID: 21300000, guid: 618fb10fbe7e11d498ee0395f51a531a, type: 3}
-  - {fileID: 21300000, guid: 50230553571284741a60cbf41a5d8e0e, type: 3}
-  - {fileID: 21300000, guid: 4425fab5aa3ee8c4c9938659a88ac390, type: 3}
-  - {fileID: 21300000, guid: 1583a7ebbfc06b8418771a8609e53f4d, type: 3}
-  - {fileID: 21300000, guid: 27afe469d9cf9114bb47a8667a2c6f1f, type: 3}
+  - {fileID: 21300000, guid: f950bebb7f4bb4c4784d270ee57e001d, type: 3}
+  - {fileID: 21300000, guid: 51207580f7d08ed499369bf51c59c863, type: 3}
+  - {fileID: 21300000, guid: a9d7983ce6c266f4ba1c8e5e79122354, type: 3}
+  - {fileID: 21300000, guid: 84519e56c2442ce429bd6942ec294925, type: 3}
+  - {fileID: 21300000, guid: 1ff87a4fb577ab347925e4e69fb97b5b, type: 3}
+  - {fileID: 21300000, guid: cf1c8fff2afb094469f5a199febfa01b, type: 3}
+  - {fileID: 21300000, guid: 5b494e7199fb9aa4ca6664ab0d2a2528, type: 3}
+  - {fileID: 21300000, guid: 02f4f29895f7b004a89dc4411281b95b, type: 3}
 --- !u!61 &1013830776218896160
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 500
-  m_Sprite: {fileID: 21300000, guid: 50230553571284741a60cbf41a5d8e0e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ff87a4fb577ab347925e4e69fb97b5b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
