@@ -131,10 +131,10 @@ namespace _.Scripts.Enemy
                 return;
             }
             
-            var direction = agent.velocity;
+            var direction = transform.position - PlayerController.Instance.transform.position;
 
             //We are facing left or right
-            if (Math.Abs(direction.y) < 0.1f)
+            if (Math.Abs(direction.y) < 0.24f)
             {
                 if (direction.x < 0)
                 {
@@ -147,7 +147,7 @@ namespace _.Scripts.Enemy
             }
             
             //We are facing up or down
-            if (Math.Abs(direction.x) < 0.1f)
+            if (Math.Abs(direction.x) < 0.24f)
             {
                 if (direction.y < 0)
                 {
@@ -162,26 +162,26 @@ namespace _.Scripts.Enemy
             //Up left
             if (direction.x < 0 && direction.y < 0)
             {
-                enemySprite.sprite = spriteToDirection[7];
+                enemySprite.sprite = spriteToDirection[1];
                 return;
             }
             
             //Down Left
             if (direction.x < 0 && direction.y > 0)
             {
-                enemySprite.sprite = spriteToDirection[5];
+                enemySprite.sprite = spriteToDirection[3];
                 return;
             }
             
             //Up right
             if (direction.x > 0 && direction.y < 0)
             {
-                enemySprite.sprite = spriteToDirection[1];
+                enemySprite.sprite = spriteToDirection[7];
                 return;
             }
             
             //Down Right
-            enemySprite.sprite = spriteToDirection[3];
+            enemySprite.sprite = spriteToDirection[5];
         }
 
         private void DamageFlash()
