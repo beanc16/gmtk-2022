@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d912c9ba30a24924b0ac7616ae002b91, type: 3}
   m_Name: Melee_enemy
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 744153610598438701, guid: 73ad61c017673f64696e3012b55bec1a,
+  attackPrefab: {fileID: 744153610598438701, guid: 4a342dc5c9b70074598e9ecce3edd7f3,
     type: 3}
   attackName: MeleeAttack
   destroyOnHit: 0
