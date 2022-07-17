@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 8944182071794124512}
   - component: {fileID: 9052333300582131895}
   - component: {fileID: 1537713248122559180}
+  - component: {fileID: 2844384002647293276}
   m_Layer: 7
   m_Name: SpritePlayer
   m_TagString: Player
@@ -180,6 +181,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.69, y: 1.492785}
   m_EdgeRadius: 0
+--- !u!114 &2844384002647293276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347867838043487300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.42926788, y: -0.35835958, z: 0}
+  - {x: -0.31816196, y: -0.1971761, z: 0}
+  - {x: -0.3056774, y: 0.043144703, z: 0}
+  - {x: -0.18707752, y: 0.2709813, z: 0}
+  - {x: -0.11217308, y: 0.6205387, z: 0}
+  - {x: 0.042010307, y: 0.7598996, z: 0}
+  - {x: 0.18432713, y: 0.78595424, z: 0}
+  - {x: 0.20767403, y: 0.62881565, z: 0}
+  - {x: 0.2810793, y: 0.093081474, z: 0}
+  - {x: 0.3762102, y: -0.38020682, z: 0}
+  - {x: 0.1250267, y: -0.47494948, z: 0}
+  - {x: -0.18707752, y: -0.47494948, z: 0}
+  m_ShapePathHash: -1022642875
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -1286302
 --- !u!1 &1107170534540766071
 GameObject:
   m_ObjectHideFlags: 0

@@ -56,7 +56,7 @@ MonoBehaviour:
   enemyHealthBar: {fileID: 2099088317675958711}
   enemyData: {fileID: 11400000, guid: 66e03fb2d48b4d643ac6bbc9618f391a, type: 2}
   agent: {fileID: 2289018085336610559}
-  enemyRoomIndex: 0
+  enemyRoomIndex: 1
   attackSystem: {fileID: 6477175195209311133}
   enemySprite: {fileID: 6320291416174750225}
   hasChangingSprite: 1
