@@ -42,8 +42,8 @@ namespace _.Scripts.Core
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 //SceneManager.LoadScene(Constants.MainScene);
-                pauseScreen.SetActive(true);
-                IsGameActive = false;
+                pauseScreen.SetActive(!pauseScreen.activeSelf);
+                IsGameActive = !IsGameActive;
             }
         }
 
