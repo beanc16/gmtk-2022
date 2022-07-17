@@ -47,10 +47,10 @@ namespace _.Scripts.UI
 
             var enemiesInRoom = GameController.Instance.GetEnemiesInCurrentArea();
 
+            nextWaveText.text = "Enemies Remaining In Room: " + enemiesInRoom;
             if (enemiesInRoom > 0)
             {
                 goToNextRoomIndicator.SetActive(false);
-                nextWaveText.text = "Enemies Remaining In Room: " + enemiesInRoom;
                 return;
             }
 
