@@ -24,7 +24,7 @@ public class RollDiceController : MonoBehaviour
     {
         Instance = this;
         
-        var components = GetComponentsInChildren<DiceFace>();
+        var components = GetComponentsInChildren<DiceFace>(true);
 
         foreach (var face in components)
         {

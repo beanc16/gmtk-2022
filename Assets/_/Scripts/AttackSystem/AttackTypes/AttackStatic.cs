@@ -26,6 +26,11 @@ namespace _.Scripts.AttackSystem
             {
                 time += Time.deltaTime;
                 await UniTask.Yield();
+
+                if (attackObject == null)
+                {
+                    break;
+                }
             }
             
             onAttackFinished();
