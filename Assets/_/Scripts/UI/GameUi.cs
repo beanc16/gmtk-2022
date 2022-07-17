@@ -60,14 +60,17 @@ namespace _.Scripts.UI
         
         private void SetPlayerTimeToRerollBar()
         {
-            float fill = 1f - (playerController.GetRerollAbilityTotalTime() -playerController.GetTimeTillNewAbility()) / playerController.GetRerollAbilityTotalTime();
-
-            if (Mathf.Abs(playerTimeToRerollBar.fillAmount - fill) < 0.1f)
+            if (!GameController.Instance.IsRolling)
             {
-                return;
-            }
+                float fill = 1f - (playerController.GetRerollAbilityTotalTime() -playerController.GetTimeTillNewAbility()) / playerController.GetRerollAbilityTotalTime();
 
-            playerTimeToRerollBar.fillAmount = fill;
+                if (Mathf.Abs(playerTimeToRerollBar.fillAmount - fill) < 0.01f)
+                {
+                    return;
+                }
+
+                playerTimeToRerollBar.fillAmount = fill;
+            }
         }
     }
 }

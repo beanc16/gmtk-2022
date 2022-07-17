@@ -40,11 +40,14 @@ namespace _.Scripts.Player
                 return;
             }
 
-            timeTillNewAbility -= Time.deltaTime;
-            if (timeTillNewAbility <= 0)
+            if (!GameController.Instance.IsRolling)
             {
-                timeTillNewAbility = rerollAbilityTime;
-                RollDiceController.Instance.RollDie();
+                timeTillNewAbility -= Time.deltaTime;
+                if (timeTillNewAbility <= 0)
+                {
+                    timeTillNewAbility = rerollAbilityTime;
+                    RollDiceController.Instance.RollDie();
+                }
             }
             
             if (Input.GetMouseButtonDown(0))
