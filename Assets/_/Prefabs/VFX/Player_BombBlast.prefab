@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 7487039905914647797}
   - component: {fileID: 6375566529149879018}
   m_Layer: 11
-  m_Name: BombBlast
+  m_Name: Player_BombBlast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -67,6 +67,28 @@ public class RollDiceController : MonoBehaviour
         if (timeRemaining <= 0)
         {
             startRolling = false;
+
+            int previousRoll = (int)GameController.Instance.CurrentPlayerAttackType + 1;
+            int maxAttempts = 5;
+            int tempFace = currentFace;
+            
+            while (tempFace == previousRoll)
+            {
+                maxAttempts--;
+                tempFace = Random.Range(diceFaceMin, diceFaceMax + 1);
+                if (maxAttempts <= 0)
+                {
+                    break;
+                }
+            }
+
+            if (currentFace != tempFace)
+            {
+                diceFaces[currentFace].gameObject.SetActive(false);
+                currentFace = tempFace;
+                diceFaces[currentFace].gameObject.SetActive(true);
+            }
+
             GameController.Instance.RollFinished(currentFace);
             return;
         }

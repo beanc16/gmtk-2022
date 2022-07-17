@@ -112,9 +112,9 @@ namespace _.Scripts.Core
                 case 1:
                     return PlayerAttackType.Projectile;
                 case 2:
-                    return PlayerAttackType.Melee;
-                case 3:
                     return PlayerAttackType.Bomb;
+                case 3:
+                    return PlayerAttackType.Melee;
             }
 
             return PlayerAttackType.None;

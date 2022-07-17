@@ -2,6 +2,7 @@
 using _.Scripts.AttackSystem;
 using _.Scripts.Core;
 using _.Scripts.HealthSystem;
+using Beanc16.Common.UI;
 using UnityEngine;
 
 namespace _.Scripts.Player
@@ -13,6 +14,9 @@ namespace _.Scripts.Player
         [SerializeField] private PlayerScriptableObject playerData;
         [SerializeField] private AttackSystem.AttackSystem attackSystem;
         [SerializeField] private Rigidbody2D playerBody2d;
+        [SerializeField] private TempFadeHandler tutorialHandler;
+        [SerializeField] private float wasdFadeTime;
+        [SerializeField] private float mouseFadeTime;
         [SerializeField] private float rerollAbilityTime;
         public float GetRerollAbilityTotalTime() => rerollAbilityTime;
         
@@ -39,6 +43,24 @@ namespace _.Scripts.Player
             if (GameController.Instance.IsGameActive == false)
             {
                 return;
+            }
+
+            if (wasdFadeTime > 0)
+            {
+                wasdFadeTime -= Time.deltaTime;
+                if (wasdFadeTime <= 0)
+                {
+                    tutorialHandler.FadeOutAllBut(4);
+                }
+            }
+            
+            if (mouseFadeTime > 0)
+            {
+                mouseFadeTime -= Time.deltaTime;
+                if (mouseFadeTime <= 0)
+                {
+                    tutorialHandler.FadeOut(4);
+                }
             }
 
             if (!GameController.Instance.IsRolling)
