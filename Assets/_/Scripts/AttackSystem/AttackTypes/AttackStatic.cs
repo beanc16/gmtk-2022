@@ -3,6 +3,7 @@ using _.Scripts.Player;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 namespace _.Scripts.AttackSystem
 {
@@ -12,6 +13,8 @@ namespace _.Scripts.AttackSystem
         [SerializeField] private float travelTime;
         [SerializeField] private float travelDistance;
         [SerializeField] private AnimationCurve travelCurve;
+        [SerializeField] private GameObject onFinishedObject;
+        [SerializeField] private bool finishedObjectHasRandomRotation;
         
         public override void Shoot(Transform fromTransform)
         {
@@ -51,7 +54,14 @@ namespace _.Scripts.AttackSystem
                     break;
                 }
             }
-            
+
+            if (onFinishedObject)
+            {
+                var finishObject = Instantiate(onFinishedObject, attackObject.transform.position, Quaternion.identity);
+                if (finishedObjectHasRandomRotation)
+                    finishObject.transform.eulerAngles = new Vector3(0f, 0f, Random.Range(0f, 360f));
+            }
+
             onAttackFinished();
         }
 

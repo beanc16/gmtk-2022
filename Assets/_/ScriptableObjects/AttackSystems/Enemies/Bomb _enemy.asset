@@ -53,3 +53,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  onFinishedObject: {fileID: 5338733074269163338, guid: 63c976aa2c3717d46a25bdc2c90bbcc8,
+    type: 3}
+  finishedObjectHasRandomRotation: 1
