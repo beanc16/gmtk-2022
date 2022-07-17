@@ -10,33 +10,27 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <!--
   <a href="https://github.com/beanc16/gmtk-2022">
-    <img src="./Assets/_/Sprites/Promotional/favicon.png" alt="Logo" width="80" height="80">
+    <img src="./Assets/_/Sprites/Character/EnemyEye/Eye_Down.PNG" alt="Character" width="80" height="160">
   </a>
-  -->
 
-  <h3 align="center">Game Title Here</h3>
+  <h3 align="center">The Dicematurge</h3>
 
   <p align="center">
-    Game description here
+    Cursed with randomness, a dicemage must make their way through the dungeon or perish within.
     <br />
-    <!--
-    <a href="https://itch.io/jam/gmtk-2021/rate/1078608"><strong>Play the Game »</strong></a>
-    -->
+    <a href="https://itch.io/jam/gmtk-jam-2022/rate/1618446"><strong>Play the Game »</strong></a>
     <br />
     <br />
   </p>
 </p>
 
 <!-- GAMEPLAY GIF -->
-<!--
 <div align="center">
   <a href="https://github.com/beanc16/gmtk-2022">
-    <img src="./Assets/_/Sprites/Promotional/Gameplay.gif" alt="Gameplay" width="75%">
+    <img src="./Assets/_/Sprites/Promo/dicematurge-promo-1-jukes.gif" alt="Gameplay" width="75%">
   </a>
 </div>
--->
 <br />
 <br />
 
@@ -66,15 +60,13 @@
 ## About The Project
 <div align="center">
   <!-- cover image -->
-  <!--
   <a href="https://github.com/beanc16/gmtk-2022">
-    <img src="./Assets/_/Sprites/Promotional/Cover_Image.png" alt="Cover Image" width="75%">
+    <img src="./Assets/_/Sprites/Promo/Itch Cover Image.png" alt="Cover Image" width="75%">
   </a>
-  -->
 </div>
 
 <p align="center">
-  Game Title Here is a genres here that was made in 48 hours for the 
+  The Dicematurge is a top-down shooter that was made in 48 hours for the 
   <a href="https://itch.io/jam/gmtk-jam-2022">
     GTMK 2022 Game Jam
   </a>
@@ -99,7 +91,7 @@
   * Project Manager
   * Quality Assistance
 
-* John - [platform](https://some-url-here.com)
+* John Hauge - [itch.io](https://jhauge.itch.io)
   * Programming
   * Level Design
 
@@ -134,9 +126,7 @@ Project Link: [https://github.com/beanc16/gmtk-2022](https://github.com/beanc16/
 
 
 <!-- Play the Game -->
-<!--
-## [Play the Game](https://itch.io/jam/gmtk-2021/rate/1078608)
--->
+## [Play the Game](https://itch.io/jam/gmtk-jam-2022/rate/1618446)
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
