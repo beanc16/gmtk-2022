@@ -73,6 +73,62 @@ namespace Beanc16.Common.UI
 
 
 
+        public void FadeInAllBut(int index)
+        {
+            for (int i = 0; i < imagesToFade.Count; i++)
+            {
+                if (i == index) continue;
+                this.FadeIn(i);
+            }
+        }
+
+        public void FadeOutAllBut(int index)
+        {
+            for (int i = 0; i < imagesToFade.Count; i++)
+            {
+                if (i == index) continue;
+                this.FadeOut(i);
+            }
+        }
+
+        public void FadeStopAllBut(int index)
+        {
+            for (int i = 0; i < imagesToFade.Count; i++)
+            {
+                if (i == index) continue;
+                this.FadeStop(i);
+            }
+        }
+
+        public void ShowAllBut(int index)
+        {
+            for (int i = 0; i < imagesToFade.Count; i++)
+            {
+                if (i == index) continue;
+                this.Show(i);
+            }
+        }
+
+        public void HideAllBut(int index)
+        {
+            for (int i = 0; i < imagesToFade.Count; i++)
+            {
+                if (i == index) continue;
+                this.Hide(i);
+            }
+        }
+
+        public void SetOpacityAllBut(int index, float alpha)
+        {
+            for (int i = 0; i < imagesToFade.Count; i++)
+            {
+                if (i == index) continue;
+                this.SetOpacity(i, alpha);
+            }
+        }
+
+
+
         public void FadeIn(int index)
         {
             imagesToFade[index].FadeIn();
