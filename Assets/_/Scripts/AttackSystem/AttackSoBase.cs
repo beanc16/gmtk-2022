@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using _.Scripts.Core;
+using _.Scripts.Player;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,6 +18,9 @@ namespace _.Scripts.AttackSystem
         [SerializeField] protected float attackCooldown;
         [SerializeField] protected float damage;
         [SerializeField] protected float aoeRange;
+        [SerializeField] protected bool attackPlayer;
+        [SerializeField] protected float lifeTime;
+        [SerializeField] protected float speed;
         public string GetAttackName() => attackName;
         public bool GetDestroyOnHit() => destroyOnHit;
         public bool GetDamageOnHit() => damageOnHit;
@@ -63,5 +67,14 @@ namespace _.Scripts.AttackSystem
 
         public abstract void Shoot(Transform fromTransform);
         public abstract void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished);
+
+        protected Vector3 GetMoveDirection(Vector3 attackObject)
+        {
+            var targetPosition = attackPlayer == false ? Camera.main.ScreenToWorldPoint(Input.mousePosition) : PlayerController.Instance.transform.position;
+            
+            var moveDirection = targetPosition - attackObject;
+            moveDirection.z = 0;
+            return moveDirection.normalized;
+        }
     }
 }

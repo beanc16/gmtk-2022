@@ -10,9 +10,6 @@ namespace _.Scripts.AttackSystem
     [CreateAssetMenu(fileName = "Projectile", menuName = "GMTK2022/Attack/Projectile", order = 0)]
     public class AttackProjectile : AttackSoBase
     {
-        [SerializeField] private float lifeTime;
-        [SerializeField] private float speed;
-        [SerializeField] private bool attackPlayer;
         [SerializeField] private bool doDamageOnce;
 
         public override void Shoot(Transform fromTransform)
@@ -26,20 +23,8 @@ namespace _.Scripts.AttackSystem
         public override async void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished)
         {
             var time = 0f;
-            Vector3 targetPosition;
-            if (attackPlayer == false)
-            {
-                targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            }
-            else
-            {
-                targetPosition = PlayerController.Instance.transform.position;
-            }
+            var moveDirection = GetMoveDirection(attackObject.transform.position);
 
-            var moveDirection = targetPosition - attackObject.transform.position;
-            moveDirection.z = 0;
-            moveDirection = moveDirection.normalized;
-            
             while (time < lifeTime || !attackObject.activeSelf)
             {
                 if (GameController && !GameController.IsGameActive) break;
