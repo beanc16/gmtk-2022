@@ -1,12 +1,12 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Beanc16.Common.UI
 {
-    public class ImageFadeHandler : MonoBehaviour
+    public class TempFadeHandler : MonoBehaviour
     {
-        [SerializeField] private List<ImageFadeContainer> imagesToFade;
+        [SerializeField] private List<TempFadeContainer> imagesToFade;
 
 
 
@@ -162,11 +162,11 @@ namespace Beanc16.Common.UI
 
 
     [System.Serializable]
-    public class ImageFadeContainer
+    public class TempFadeContainer
     {
         [SerializeField] private Image imageToFade;
         [SerializeField, Range(0f, 5f)] private float fadeSpeed = 1f;
-        [SerializeField] private ImageFadeState state = ImageFadeState.NONE;
+        [SerializeField] private TempFadeState state = TempFadeState.NONE;
 
         [HideInInspector]
         public float FadeMultiplier { get => this.fadeSpeed * Time.deltaTime; }
@@ -176,7 +176,7 @@ namespace Beanc16.Common.UI
 
         public void Update()
         {
-            if (this.state != ImageFadeState.NONE)
+            if (this.state != TempFadeState.NONE)
             {
                 float newOpacity = GetNewOpacity();
                 this.SetOpacity(newOpacity);
@@ -187,11 +187,11 @@ namespace Beanc16.Common.UI
         {
             float newOpacity = this.CurOpacity;
 
-            if (state == ImageFadeState.FADE_IN)
+            if (state == TempFadeState.FADE_IN)
             {
                 newOpacity += this.FadeMultiplier;
             }
-            else if (state == ImageFadeState.FADE_OUT)
+            else if (state == TempFadeState.FADE_OUT)
             {
                 newOpacity -= this.FadeMultiplier;
             }
@@ -207,12 +207,12 @@ namespace Beanc16.Common.UI
             if (newOpacity > 1f)
             {
                 newOpacity = 1f;
-                this.state = ImageFadeState.NONE;
+                this.state = TempFadeState.NONE;
             }
             else if (newOpacity < 0f)
             {
                 newOpacity = 0f;
-                this.state = ImageFadeState.NONE;
+                this.state = TempFadeState.NONE;
             }
 
             return newOpacity;
@@ -222,17 +222,17 @@ namespace Beanc16.Common.UI
 
         public void FadeIn()
         {
-            this.state = ImageFadeState.FADE_IN;
+            this.state = TempFadeState.FADE_IN;
         }
 
         public void FadeOut()
         {
-            this.state = ImageFadeState.FADE_OUT;
+            this.state = TempFadeState.FADE_OUT;
         }
 
         public void FadeStop()
         {
-            this.state = ImageFadeState.NONE;
+            this.state = TempFadeState.NONE;
         }
 
 
@@ -260,7 +260,7 @@ namespace Beanc16.Common.UI
 
 
 
-    public enum ImageFadeState
+    public enum TempFadeState
     {
         NONE,
         FADE_IN,
