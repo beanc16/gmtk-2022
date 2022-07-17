@@ -15,6 +15,6 @@ MonoBehaviour:
   HasRangeAttack: 0
   EnemySpeedMin: 4
   EnemySpeedMax: 6
-  EnemyHp: 1
+  EnemyHp: 6
   StopDistance: 1
   MaxRange: 1

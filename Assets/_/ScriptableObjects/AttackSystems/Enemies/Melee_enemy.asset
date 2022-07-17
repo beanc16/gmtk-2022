@@ -22,7 +22,7 @@ MonoBehaviour:
   aoeRange: 0
   damagePlayer: 0
   lifeTime: 0.12
-  speed: 0
+  speed: 8
   attacker: 1
   layerMask:
     serializedVersion: 2
