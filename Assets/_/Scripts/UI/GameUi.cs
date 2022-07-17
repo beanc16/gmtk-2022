@@ -18,6 +18,9 @@ namespace _.Scripts.UI
         [SerializeField] private PlayerController playerController;
         [SerializeField] private GameObject rollingAbilityContainer;
         [SerializeField] private GameObject currentAbilityContainer;
+        
+        [SerializeField] private GameObject goToNextRoomIndicator;
+        [SerializeField] private bool useNextRoomIndicator;
 
         //private PlayerController playerController;
         private PlayerAttackType currentAttackIconType;
@@ -41,9 +44,17 @@ namespace _.Scripts.UI
                 currentAttackIcon.sprite = playerAttackIconData.GetIconForSprite(GameController.Instance.CurrentPlayerAttackType);
                 currentAttackIconType = GameController.Instance.CurrentPlayerAttackType;
             }
-            
-            nextWaveText.gameObject.SetActive(true); 
-            nextWaveText.text = "Enemies Remaining In Room: " + GameController.Instance.GetEnemiesInCurrentArea(); //EnemyAi.EnemiesAlive.ToString("N0");
+
+            var enemiesInRoom = GameController.Instance.GetEnemiesInCurrentArea();
+
+            if (enemiesInRoom > 0)
+            {
+                goToNextRoomIndicator.SetActive(false);
+                nextWaveText.text = "Enemies Remaining In Room: " + enemiesInRoom;
+                return;
+            }
+
+            goToNextRoomIndicator.SetActive(useNextRoomIndicator);
         }
 
         private void SetPlayerHpBar()
