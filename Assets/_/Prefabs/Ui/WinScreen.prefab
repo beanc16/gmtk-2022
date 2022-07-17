@@ -144,7 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 131267102650364473}
   m_Layer: 0
-  m_Name: GameOverScreen
+  m_Name: WinScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 7337783587278467710}
   - component: {fileID: 7173018687661804770}
   m_Layer: 0
-  m_Name: YourScoreText
+  m_Name: YourTimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Your Score
+  m_text: Your Time
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 67c8c75da2fa9b041bf8f26a0825e637, type: 2}
   m_sharedMaterial: {fileID: 8938081737869390967, guid: 67c8c75da2fa9b041bf8f26a0825e637,
@@ -418,9 +418,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6433009720358977682}
-  - component: {fileID: 330628316791416969}
+  - component: {fileID: 8482330723885186497}
   m_Layer: 0
-  m_Name: GameOverScoreHandler
+  m_Name: WinTimeHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -441,7 +441,7 @@ Transform:
   m_Father: {fileID: 131267102650364473}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &330628316791416969
+--- !u!114 &8482330723885186497
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -450,10 +450,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2453031880610141581}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 402ba03074571e872993664c53dac2ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c004c0be3877358ba845886c78d0819, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 3870578554334576366}
+  timeText: {fileID: 3870578554334576366}
 --- !u!1 &2586446697991344951
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 5240951065752639945}
   - component: {fileID: 1400532344787132638}
   m_Layer: 0
-  m_Name: GameOverPanel
+  m_Name: WinPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -688,7 +688,7 @@ MonoBehaviour:
     m_Top: 50
     m_Bottom: 50
   m_ChildAlignment: 4
-  m_Spacing: 10
+  m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 8315230536476904851}
   - component: {fileID: 5652881129891132553}
   m_Layer: 0
-  m_Name: GameOverText
+  m_Name: WinText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -762,7 +762,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: GAME OVER
+  m_text: YOU WIN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ee0ace1ee9d895db2a20e4fec5c1a6e2, type: 2}
   m_sharedMaterial: {fileID: -4432543146501026875, guid: ee0ace1ee9d895db2a20e4fec5c1a6e2,
@@ -844,7 +844,7 @@ GameObject:
   - component: {fileID: 7322375251762021371}
   - component: {fileID: 3870578554334576366}
   m_Layer: 0
-  m_Name: ScoreText
+  m_Name: TimeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -898,7 +898,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ee0ace1ee9d895db2a20e4fec5c1a6e2, type: 2}
   m_sharedMaterial: {fileID: -4432543146501026875, guid: ee0ace1ee9d895db2a20e4fec5c1a6e2,
