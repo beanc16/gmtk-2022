@@ -162,6 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5339709438232996240}
   - component: {fileID: 6320291416174750225}
+  - component: {fileID: 7159656499998519061}
   m_Layer: 0
   m_Name: Enemy_Idle_Front
   m_TagString: Untagged
@@ -226,7 +227,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 500
   m_Sprite: {fileID: 21300000, guid: 50230553571284741a60cbf41a5d8e0e, type: 3}
-  m_Color: {r: 0.42778412, g: 0.616, b: 0.389312, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -236,6 +237,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7159656499998519061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420079198236755806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.3023529, y: -0.16930962, z: 0}
+  - {x: -0.2937603, y: 0.58751917, z: 0}
+  - {x: 0.30521774, y: 0.58751917, z: 0}
+  - {x: 0.31953812, y: -0.1635809, z: 0}
+  m_ShapePathHash: 1400341461
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -1330374
 --- !u!1 &2851480265467546355
 GameObject:
   m_ObjectHideFlags: 0
