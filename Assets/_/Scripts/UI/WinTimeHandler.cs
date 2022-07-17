@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 
@@ -5,8 +6,9 @@ public class WinTimeHandler : MonoBehaviour
 {
     [SerializeField] private TMP_Text timeText;
 
-    public void SetTimeText(string time = "00:00")
+    public void SetTimeText(float timeInSeconds)
     {
-        timeText.SetText(time);
+        var span = TimeSpan.FromSeconds(timeInSeconds);
+        timeText.SetText(span.ToString("g"));
     }
 }

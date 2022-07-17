@@ -1,4 +1,5 @@
-﻿using _.Scripts.HealthSystem.Interfaces;
+﻿using System;
+using _.Scripts.HealthSystem.Interfaces;
 using UnityEngine;
 
 namespace _.Scripts.HealthSystem
@@ -7,19 +8,21 @@ namespace _.Scripts.HealthSystem
     {
         private readonly float _healthPoints;
         private float _currentHeathPoints;
+        private Action onDamage;
         
         public float GetHealthPoints() => _healthPoints;
         public float GetCurrentHealthPoints() => _currentHeathPoints;
 
-        public Health(float healthPoints)
+        public Health(float healthPoints, Action damageAction = null)
         {
             _healthPoints = healthPoints;
             _currentHeathPoints = healthPoints;
+            onDamage = damageAction;
         }
 
         public void Damage(float damageAmount)
         {
-            Debug.Log("Current Health points : " + _currentHeathPoints);
+            onDamage?.Invoke();
             _currentHeathPoints -= damageAmount;
         }
     }

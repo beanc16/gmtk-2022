@@ -29,6 +29,10 @@ namespace _.Scripts.Enemy
 
         private Transform _playerTransform;
         private Health _health;
+        
+        private float damageFlashTimeRemaining;
+        private float deathAnimationTimeRemaining;
+        
 
         public Health GetHeath() => _health;
 
@@ -37,7 +41,7 @@ namespace _.Scripts.Enemy
             _playerTransform = PlayerController.Instance.transform;
             enemySpeed = Random.Range(enemyData.EnemySpeedMin, enemyData.EnemySpeedMax);
             agent.speed = enemySpeed;
-            _health = new Health(enemyData.EnemyHp);
+            _health = new Health(enemyData.EnemyHp, OnDamageTaken);
             agent.updateRotation = false;
             agent.updateUpAxis = false;
             GameController.Instance.RegisterEnemyInArea(enemyRoomIndex);
@@ -73,6 +77,13 @@ namespace _.Scripts.Enemy
             {
                 return;
             }
+
+            if (DoDeath())
+            {
+                return;
+            }
+
+            DamageFlash();
             
             agent.SetDestination(_playerTransform.position);
             
@@ -173,10 +184,46 @@ namespace _.Scripts.Enemy
             enemySprite.sprite = spriteToDirection[3];
         }
 
+        private void DamageFlash()
+        {
+            if (damageFlashTimeRemaining <= 0)
+            {
+                enemySprite.color = Color.white;
+                return;
+            }
+
+            enemySprite.color = Color.red;
+            damageFlashTimeRemaining -= Time.deltaTime;
+        }
+
+        private bool DoDeath()
+        {
+            if (deathAnimationTimeRemaining <= 0)
+            {
+                return false;
+            }
+
+            deathAnimationTimeRemaining -= Time.deltaTime;
+            float scale = deathAnimationTimeRemaining / 0.4f;
+
+            transform.localScale = new Vector3(scale, scale, scale);
+
+            if (deathAnimationTimeRemaining <= 0)
+            {
+                GameController.Instance.UnregisterEnemyInArea(enemyRoomIndex);
+                Destroy(gameObject);
+            }
+            return true;
+        }
+
         private void Die()
         {
-            GameController.Instance.UnregisterEnemyInArea(enemyRoomIndex);
-            Destroy(gameObject);
+            deathAnimationTimeRemaining = 0.4f;
+        }
+
+        private void OnDamageTaken()
+        {
+            damageFlashTimeRemaining = 0.15f;
         }
     }
 }

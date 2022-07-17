@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using _.Scripts.Enemy;
 using _.Scripts.Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -10,6 +11,7 @@ namespace _.Scripts.Core
         public static GameController Instance { get; private set; }
 
         [SerializeField] private GameObject gameOverPrefab;
+        [SerializeField] private GameObject gameWonPrefab;
         [SerializeField] private GameObject pauseScreen;
         [SerializeField] private float initialDelay;
 
@@ -19,6 +21,9 @@ namespace _.Scripts.Core
         public PlayerAttackType CurrentPlayerAttackType;
         public int AreaActive = 1;
         public Dictionary<int, int> EnemiesInArea = new Dictionary<int, int>();
+
+        private bool gameWon;
+        private float timeSpent; 
 
         private void Awake()
         {
@@ -42,6 +47,11 @@ namespace _.Scripts.Core
 
         private void Update()
         {
+            if (gameWon == true)
+            {
+                return;
+            }
+            
             if (initialDelay > 0)
             {
                 initialDelay -= Time.deltaTime;
@@ -53,9 +63,19 @@ namespace _.Scripts.Core
                 return;
             }
 
+            if (EnemyAi.EnemiesAlive <= 0)
+            {
+                WinGame();
+                return;
+            }
+
+            if (IsGameActive)
+            {
+                timeSpent += Time.deltaTime;
+            }
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                //SceneManager.LoadScene(Constants.MainScene);
                 pauseScreen.SetActive(!pauseScreen.activeSelf);
                 IsGameActive = !IsGameActive;
             }
@@ -118,6 +138,14 @@ namespace _.Scripts.Core
         public void UnregisterEnemyInArea(int area)
         {
             EnemiesInArea[area]--;
+        }
+
+        private void WinGame()
+        {
+            gameWon = true;
+            IsGameActive = !IsGameActive;
+            
+            Instantiate(gameWonPrefab).GetComponentInChildren<WinTimeHandler>().SetTimeText(timeSpent);
         }
     }
 }
