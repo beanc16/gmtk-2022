@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackToIcons:
   - AttackType: 0
-    AttackIcon: {fileID: 21300000, guid: 6468034db4f49d516832c3362cb030ef, type: 3}
+    AttackIcon: {fileID: 21300000, guid: 103461e4f1f195adca2e2f65c3e473e4, type: 3}
   - AttackType: 1
-    AttackIcon: {fileID: 21300000, guid: d69e3b95c03777018a3c0929b317941c, type: 3}
+    AttackIcon: {fileID: 21300000, guid: acf6cecbd07823f75834b7afcad4588e, type: 3}
   - AttackType: 2
-    AttackIcon: {fileID: 21300000, guid: ef017770f0ce33ca2a5f8a8b56b82e23, type: 3}
+    AttackIcon: {fileID: 21300000, guid: 94df8c7325e192cd9b90e6cf533d44e3, type: 3}
