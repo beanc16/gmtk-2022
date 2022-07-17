@@ -8,6 +8,10 @@ namespace _.Scripts.World
         [SerializeField] private int openOnWaveComplete;
         [SerializeField] private GameObject closedDoorPrev;
         [SerializeField] private GameObject closedDoorNext;
+        [SerializeField] private SpriteRenderer closedDoorNextRend;
+        [SerializeField] private SpriteRenderer closedDoorPrevRend;
+        [SerializeField] private Sprite openDoorSprite;
+        [SerializeField] private Sprite closedDoorSprite;
         [SerializeField] private DoorTrigger prevTrigger;
         [SerializeField] private DoorTrigger nextTrigger;
 
@@ -22,13 +26,15 @@ namespace _.Scripts.World
         private void OnBetweenRooms()
         {
             closedDoorPrev.SetActive(true);
+            closedDoorPrevRend.sprite = closedDoorSprite;
             closedDoorNext.SetActive(false);
+            closedDoorNextRend.sprite = openDoorSprite;
         }
         
         private void OnNextRoom()
         {
             closedDoorNext.SetActive(true);
-            
+            closedDoorNextRend.sprite = closedDoorSprite;
             GameController.Instance.UpdateAreaActive(openOnWaveComplete + 1);
         }
 
@@ -44,6 +50,7 @@ namespace _.Scripts.World
                 if (GameController.Instance.EnemiesInArea[openOnWaveComplete] <= 0)
                 {
                     closedDoorPrev.SetActive(false);
+                    closedDoorPrevRend.sprite = openDoorSprite;
                     forcedClose = true;
                 }
             }
