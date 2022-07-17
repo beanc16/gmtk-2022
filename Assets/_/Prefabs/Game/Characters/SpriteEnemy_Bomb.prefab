@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2289018085336610559}
   - component: {fileID: 5651021083403123565}
   - component: {fileID: 6477175195209311133}
+  - component: {fileID: 7506417803461263616}
   m_Layer: 6
   m_Name: SpriteEnemy_Bomb
   m_TagString: Enemy
@@ -152,6 +153,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attacks:
   - {fileID: 11400000, guid: fe6f2848ca20305458d4f32818a69829, type: 2}
+--- !u!114 &7506417803461263616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347867838043487300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.33672714, y: 0.99955297, z: 0}
+  - {x: -0.34468842, y: 1.1472166, z: 0}
+  - {x: 0.0098724365, y: 1.6825386, z: 0}
+  - {x: 0.35104942, y: 1.1554798, z: 0}
+  - {x: 0.34850883, y: 0.98967177, z: 0}
+  - {x: 0.0044498444, y: 0.50400305, z: 0}
+  m_ShapePathHash: -1564648775
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -1344760
 --- !u!1 &1420079198236755806
 GameObject:
   m_ObjectHideFlags: 0
