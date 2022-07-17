@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3723500052948464815}
+  - component: {fileID: 3000669480842269802}
   m_Layer: 11
   m_Name: TestBomb
   m_TagString: PlayerProjectile
@@ -32,6 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3000669480842269802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744153610598438701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0c3661654e56a245aed16946708dad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toSpawn: {fileID: 5338733074269163338, guid: 63c976aa2c3717d46a25bdc2c90bbcc8, type: 3}
+  hasRandomRotation: 1
 --- !u!1 &856066964784172388
 GameObject:
   m_ObjectHideFlags: 0
