@@ -1764,13 +1764,13 @@ TextureImporter:
       Tilemap_19: -1410944217
       Tilemap_22: -1262446863
       Tilemap_25: 1055953210
-      Tilemap_64: 791103287
       Tilemap_72: 967233082
       Tilemap_47: -1581920766
       Tilemap_21: -454702666
       Tilemap_48: 589823513
       Tilemap_62: -176715297
       Tilemap_2: -1284809748
+      Tilemap_23: -1900565334
       Tilemap_67: -1467140748
       Tilemap_54: 919010141
       Tilemap_61: -1825941234
@@ -1831,7 +1831,7 @@ TextureImporter:
       Tilemap_66: -1739177073
       Tilemap_32: 1514738393
       Tilemap_63: -474448271
-      Tilemap_23: -1900565334
+      Tilemap_64: 791103287
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
