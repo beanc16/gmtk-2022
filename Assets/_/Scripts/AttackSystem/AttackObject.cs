@@ -16,8 +16,12 @@ namespace _.Scripts.AttackSystem
         private readonly AttackSoBase _attackData;
         private bool _finished;
         
-        public AttackObject(UnityAction<GameObject> onHitAction, GameObject thisObject, AttackSoBase attackData)
+        private bool doDamageOnce;
+        private bool hasDoneDamage;
+        
+        public AttackObject(UnityAction<GameObject> onHitAction, GameObject thisObject, AttackSoBase attackData, bool doDamageOnce = false)
         {
+            this.doDamageOnce = doDamageOnce;
             _onHitTarget = onHitAction;
             _thisObject = thisObject;
             _attackData = attackData;
@@ -31,7 +35,14 @@ namespace _.Scripts.AttackSystem
 
         private void OnHit(GameObject hit, IDamageable toDamage)
         {
-            if(_attackData.GetDamageOnHit()) toDamage.Damage(_attackData.GetDamage());
+            if (_attackData.GetDamageOnHit())
+            {
+                if (hasDoneDamage == false || doDamageOnce == false)
+                {
+                    toDamage.Damage(_attackData.GetDamage());
+                    hasDoneDamage = true;
+                }
+            }
             if (!_attackData.GetDestroyOnHit()) return;
             ReleaseAttack(hit);
         }

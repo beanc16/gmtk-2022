@@ -13,13 +13,14 @@ namespace _.Scripts.AttackSystem
         [SerializeField] private float lifeTime;
         [SerializeField] private float speed;
         [SerializeField] private bool attackPlayer;
+        [SerializeField] private bool doDamageOnce;
 
         public override void Shoot(Transform fromTransform)
         {
             //Debug.Log("Shoot Projectile");
             var projectile = Pool.Get();
             projectile.transform.position = fromTransform.position;
-            var attackObject = new AttackObject(ReleaseTarget, projectile, this);
+            var attackObject = new AttackObject(ReleaseTarget, projectile, this, doDamageOnce);
         }
         
         public override async void AttackUpdate(GameObject attackObject, UnityAction onAttackFinished)

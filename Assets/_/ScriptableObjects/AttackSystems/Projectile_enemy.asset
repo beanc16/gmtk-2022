@@ -18,8 +18,9 @@ MonoBehaviour:
   destroyOnHit: 1
   damageOnHit: 1
   attackCooldown: 2
-  damage: 1
+  damage: 2
   aoeRange: 0
   lifeTime: 4
   speed: 8
   attackPlayer: 1
+  doDamageOnce: 1

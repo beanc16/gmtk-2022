@@ -55,7 +55,10 @@ namespace _.Scripts.AttackSystem
 
         public virtual void OnRelease(GameObject obj)
         {
-            obj.SetActive(false);
+            if (obj != null)
+            {
+                obj.SetActive(false);
+            }
         }
 
         public abstract void Shoot(Transform fromTransform);
