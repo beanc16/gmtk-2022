@@ -58,6 +58,16 @@ MonoBehaviour:
   agent: {fileID: 2289018085336610559}
   enemyRoomIndex: 0
   attackSystem: {fileID: 6477175195209311133}
+  enemySprite: {fileID: 6320291416174750225}
+  spriteToDirection:
+  - {fileID: 21300000, guid: 5f75f408a9afd27468dfe2f73809d49f, type: 3}
+  - {fileID: 21300000, guid: 3bb2a51d454f6dd4294a2e9b37132311, type: 3}
+  - {fileID: 21300000, guid: e2fa0e69ce90ce74b9925c9fd147e497, type: 3}
+  - {fileID: 21300000, guid: 618fb10fbe7e11d498ee0395f51a531a, type: 3}
+  - {fileID: 21300000, guid: 50230553571284741a60cbf41a5d8e0e, type: 3}
+  - {fileID: 21300000, guid: 4425fab5aa3ee8c4c9938659a88ac390, type: 3}
+  - {fileID: 21300000, guid: 1583a7ebbfc06b8418771a8609e53f4d, type: 3}
+  - {fileID: 21300000, guid: 27afe469d9cf9114bb47a8667a2c6f1f, type: 3}
 --- !u!61 &1013830776218896160
 BoxCollider2D:
   m_ObjectHideFlags: 0

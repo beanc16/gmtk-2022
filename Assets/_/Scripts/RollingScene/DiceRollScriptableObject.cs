@@ -8,5 +8,8 @@ namespace _.Scripts.RollingScene
         public float TimeToRoll;
         public float TimeForFastChange;
         public float TimeToSlowdown;
+        public float FastChangeTime = 0.1f;
+        public float MediumChangeTime = 0.4f;
+        public float SlowChangeTime = 0.8f;
     }
 }

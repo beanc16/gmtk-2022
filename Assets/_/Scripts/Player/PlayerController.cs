@@ -44,7 +44,7 @@ namespace _.Scripts.Player
             if (timeTillNewAbility <= 0)
             {
                 timeTillNewAbility = rerollAbilityTime;
-                GameController.Instance.RollForRandomEffect();
+                RollDiceController.Instance.RollDie();
             }
             
             if (Input.GetMouseButtonDown(0))

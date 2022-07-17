@@ -16,6 +16,8 @@ namespace _.Scripts.UI
         [SerializeField] private Image playerTimeToRerollBar;
         [SerializeField] private Image currentAttackIcon;
         [SerializeField] private PlayerController playerController;
+        [SerializeField] private GameObject rollingAbilityContainer;
+        [SerializeField] private GameObject currentAbilityContainer;
 
         //private PlayerController playerController;
         private PlayerAttackType currentAttackIconType;
@@ -29,6 +31,9 @@ namespace _.Scripts.UI
         {
             SetPlayerHpBar();
             SetPlayerTimeToRerollBar();
+            
+            currentAbilityContainer.SetActive(GameController.Instance.IsRolling == false);
+            rollingAbilityContainer.SetActive(GameController.Instance.IsRolling);
 
             if (GameController.Instance.CurrentPlayerAttackType != currentAttackIconType)
             {
@@ -37,15 +42,8 @@ namespace _.Scripts.UI
                 currentAttackIconType = GameController.Instance.CurrentPlayerAttackType;
             }
             
-            if (EnemyAi.EnemiesAlive > 0)
-            {
-                nextWaveText.gameObject.SetActive(true);
-                nextWaveText.text = "Enemies Remaining: " + EnemyAi.EnemiesAlive.ToString("N0");
-                return;
-            }
-            
-            //nextWaveText.gameObject.SetActive(waveSpawner.TimeTillNextWave > 0);
-            //nextWaveText.text = "Next wave In: " + waveSpawner.TimeTillNextWave.ToString("N1");
+            nextWaveText.gameObject.SetActive(true); 
+            nextWaveText.text = "Enemies Remaining: " + EnemyAi.EnemiesAlive.ToString("N0");
         }
 
         private void SetPlayerHpBar()

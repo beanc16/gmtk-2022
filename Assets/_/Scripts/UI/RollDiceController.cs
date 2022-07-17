@@ -4,16 +4,11 @@ using _.Scripts.RollingScene;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RollDiceScreenHandler : MonoBehaviour
+public class RollDiceController : MonoBehaviour
 {
-    private const float FAST_CHANGE_TIME = 0.1f;
-    private const float MEDIUM_CHANGE_TIME = 0.4f;
-    private const float SLOW_CHANGE_TIME = 0.8f;
-    
-    [SerializeField] private GameObject DicePanel;
+    public static RollDiceController Instance { get; private set; }
+
     [SerializeField] private DiceRollScriptableObject diceRollData;
-    [SerializeField] private Button rollDie;
-    [SerializeField] private Image timeRemainingBar;
 
     private bool startRolling;
     private float timeRemaining;
@@ -27,7 +22,9 @@ public class RollDiceScreenHandler : MonoBehaviour
     
     public void Awake()
     {
-        var components = DicePanel.GetComponentsInChildren<DiceFace>();
+        Instance = this;
+        
+        var components = GetComponentsInChildren<DiceFace>();
 
         foreach (var face in components)
         {
@@ -44,20 +41,18 @@ public class RollDiceScreenHandler : MonoBehaviour
                 diceFaceMin = face.DiceValue;
             }
         }
-        
-        rollDie.onClick.AddListener(OnRollDie);
 
         currentFace = diceFaceMax;
         diceFaces[diceFaceMax].gameObject.SetActive(true);
-
-        timeRemainingBar.fillAmount = 1;
     }
     
-    private void OnRollDie()
+    public void RollDie()
     {
+        GameController.Instance.RollForRandomEffect();
+        
         startRolling = true;
         timeRemaining = diceRollData.TimeToRoll;
-        timeToChange = FAST_CHANGE_TIME;
+        timeToChange = diceRollData.FastChangeTime;
     }
     
     private void Update()
@@ -68,8 +63,6 @@ public class RollDiceScreenHandler : MonoBehaviour
         }
 
         timeRemaining -= Time.deltaTime;
-
-        timeRemainingBar.fillAmount = 1f - (diceRollData.TimeToRoll - timeRemaining) / diceRollData.TimeToRoll;
 
         if (timeRemaining <= 0)
         {
@@ -83,17 +76,18 @@ public class RollDiceScreenHandler : MonoBehaviour
         {
             if (timeRemaining > diceRollData.TimeForFastChange)
             {
-                timeToChange = FAST_CHANGE_TIME;
+                timeToChange = diceRollData.FastChangeTime;
             } else if (timeRemaining < diceRollData.TimeToSlowdown)
             {
-                timeToChange = SLOW_CHANGE_TIME;
+                timeToChange = diceRollData.SlowChangeTime;
             }
             else
             {
-                timeToChange = MEDIUM_CHANGE_TIME;
+                timeToChange = diceRollData.MediumChangeTime;
             }
                 
-            int randomFace = Random.Range(diceFaceMin, diceFaceMax);
+            //Need +1 since Random excludes the upper value
+            int randomFace = Random.Range(diceFaceMin, diceFaceMax + 1);
 
             if (randomFace == currentFace)
             {

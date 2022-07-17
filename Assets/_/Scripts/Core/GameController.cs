@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using _.Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,8 +11,10 @@ namespace _.Scripts.Core
         public static GameController Instance { get; private set; }
 
         [SerializeField] private GameObject gameOverPrefab;
+        [SerializeField] private GameObject pauseScreen;
 
         public bool IsGameActive;
+        public bool IsRolling;
         public double CurrentScore;
         public PlayerAttackType CurrentPlayerAttackType;
         public int AreaActive = 1;
@@ -26,16 +27,29 @@ namespace _.Scripts.Core
                 Destroy(Instance.gameObject);
             }
             Instance = this;
+            
+            pauseScreen.SetActive(false);
+        }
 
-            RollForRandomEffect();
+        private void Start()
+        {
+            RollFinished(Random.Range(1, 3));
+            IsGameActive = true;
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                SceneManager.LoadScene(Constants.MainScene);
+                //SceneManager.LoadScene(Constants.MainScene);
+                pauseScreen.SetActive(true);
+                IsGameActive = false;
             }
+        }
+
+        public void ResumeGame()
+        {
+            IsGameActive = true;
         }
         
         public void GameOver()
@@ -47,14 +61,12 @@ namespace _.Scripts.Core
 
         public void RollForRandomEffect()
         {
-            IsGameActive = false;
-            
-            this.RollFinished(Random.Range(1,7));
+            IsRolling = true;
         }
 
         public void RollFinished(int currentFace)
         {
-            IsGameActive = true;
+            IsRolling = false;
 
             CurrentPlayerAttackType = GetAttackTypeForRoll(currentFace);
         }
@@ -64,13 +76,10 @@ namespace _.Scripts.Core
             switch (roll)
             {
                 case 1:
-                case 2:
                     return PlayerAttackType.Projectile;
-                case 3:
-                case 4:
+                case 2:
                     return PlayerAttackType.Melee;
-                case 5:
-                case 6:
+                case 3:
                     return PlayerAttackType.Bomb;
             }
 
