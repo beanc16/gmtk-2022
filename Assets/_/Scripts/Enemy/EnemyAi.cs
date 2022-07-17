@@ -130,58 +130,69 @@ namespace _.Scripts.Enemy
             {
                 return;
             }
-            
-            var direction = transform.position - PlayerController.Instance.transform.position;
 
-            //We are facing left or right
-            if (Math.Abs(direction.y) < 0.24f)
+            var pos = transform.position;
+            var targetPos = PlayerController.Instance.transform.position;
+            var angle = Mathf.Atan2(targetPos.y-pos.y, targetPos.x-pos.x) * Mathf.Rad2Deg;
+
+            //Left
+            if (angle < -157.5 || angle > 157.5)
             {
-                if (direction.x < 0)
-                {
-                    enemySprite.sprite = spriteToDirection[6];
-                    return;
-                }
-                
-                enemySprite.sprite = spriteToDirection[2];
+                enemySprite.sprite = spriteToDirection[6];
                 return;
             }
-            
-            //We are facing up or down
-            if (Math.Abs(direction.x) < 0.24f)
+
+            if (angle >= 0)
             {
-                if (direction.y < 0)
+                //Up Left
+                if (angle > 112.5)
+                {
+                    enemySprite.sprite = spriteToDirection[7];
+                    return;
+                }
+
+                //Up
+                if (angle > 67.5)
                 {
                     enemySprite.sprite = spriteToDirection[0];
                     return;
                 }
                 
-                enemySprite.sprite = spriteToDirection[4];
+                //Up Right
+                if (angle > 22.5)
+                {
+                    enemySprite.sprite = spriteToDirection[1];
+                    return;
+                }
+
+                //Right
+                enemySprite.sprite = spriteToDirection[2];
                 return;
             }
 
-            //Up left
-            if (direction.x < 0 && direction.y < 0)
+            //Down Left
+            if (angle < -112.5)
             {
-                enemySprite.sprite = spriteToDirection[1];
+                enemySprite.sprite = spriteToDirection[5];
                 return;
             }
-            
-            //Down Left
-            if (direction.x < 0 && direction.y > 0)
+
+            //Down
+            if (angle < -67.5)
+            {
+                enemySprite.sprite = spriteToDirection[4];
+                return;
+            }
+                
+            //Down Right
+            if (angle < -22.5)
             {
                 enemySprite.sprite = spriteToDirection[3];
                 return;
             }
-            
-            //Up right
-            if (direction.x > 0 && direction.y < 0)
-            {
-                enemySprite.sprite = spriteToDirection[7];
-                return;
-            }
-            
-            //Down Right
-            enemySprite.sprite = spriteToDirection[5];
+
+            //Right
+            enemySprite.sprite = spriteToDirection[2];
         }
 
         private void DamageFlash()
