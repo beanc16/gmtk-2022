@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 8203856413669054465}
   - component: {fileID: 2778317405549689647}
   m_Layer: 5
-  m_Name: CurrentAttackContainer (1)
+  m_Name: CurrentAttackContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
