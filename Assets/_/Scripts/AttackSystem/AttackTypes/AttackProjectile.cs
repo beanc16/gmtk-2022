@@ -14,9 +14,9 @@ namespace _.Scripts.AttackSystem
 
         public override void Shoot(Transform fromTransform)
         {
-            //Debug.Log("Shoot Projectile");
+            if (!IsInLineOfSight(fromTransform.position)) return;
             var projectile = Pool.Get();
-            projectile.transform.position = fromTransform.position;
+            projectile.transform.position = attacker == Attacker.PlayerAttack ? fromTransform.position : fromTransform.position + Vector3.up ;
             var attackObject = new AttackObject(ReleaseTarget, projectile, this, doDamageOnce);
         }
         

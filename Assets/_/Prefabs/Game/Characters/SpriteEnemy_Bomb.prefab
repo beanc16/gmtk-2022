@@ -54,7 +54,7 @@ MonoBehaviour:
   enemySpeed: 0.4
   enemyHealthBarContainer: {fileID: 4359094521265109189}
   enemyHealthBar: {fileID: 2099088317675958711}
-  enemyData: {fileID: 11400000, guid: 66e03fb2d48b4d643ac6bbc9618f391a, type: 2}
+  enemyData: {fileID: 11400000, guid: 3b73ef8b40d5cab4ca611ea6e1f9b3fc, type: 2}
   agent: {fileID: 2289018085336610559}
   enemyRoomIndex: 0
   attackSystem: {fileID: 6477175195209311133}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attacks:
-  - {fileID: 11400000, guid: a50b1021cc403b9488ce4e197b54c268, type: 2}
+  - {fileID: 11400000, guid: fe6f2848ca20305458d4f32818a69829, type: 2}
 --- !u!1 &1420079198236755806
 GameObject:
   m_ObjectHideFlags: 0

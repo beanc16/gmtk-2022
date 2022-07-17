@@ -9,22 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0861ee28266a1554796bbe3669c7aa1f, type: 3}
-  m_Name: Projectile_enemy
+  m_Script: {fileID: 11500000, guid: d912c9ba30a24924b0ac7616ae002b91, type: 3}
+  m_Name: Melee_enemy
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 744153610598438701, guid: 2add394e4fff60e48973c9ad33b5d294,
+  attackPrefab: {fileID: 744153610598438701, guid: 21f7a3cbe401caf4aa199b5c50d6c34c,
     type: 3}
-  attackName: Projectile_Enemy
-  destroyOnHit: 1
+  attackName: MeleeAttack
+  destroyOnHit: 0
   damageOnHit: 1
-  attackCooldown: 2
-  damage: 2
+  attackCooldown: 0.2
+  damage: 1
   aoeRange: 0
   damagePlayer: 0
-  lifeTime: 4
-  speed: 8
+  lifeTime: 0.12
+  speed: 0
   attacker: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 3392
-  doDamageOnce: 1

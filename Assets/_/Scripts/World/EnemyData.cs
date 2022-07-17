@@ -10,6 +10,7 @@ namespace _.Scripts.World
         public float EnemySpeedMin;
         public float EnemySpeedMax;
         public float EnemyHp;
-        public float FireDistance;
+        public float StopDistance;
+        public float MaxRange;
     }
 }

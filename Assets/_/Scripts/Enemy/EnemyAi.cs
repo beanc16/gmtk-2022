@@ -29,7 +29,7 @@ namespace _.Scripts.Enemy
 
         private Transform _playerTransform;
         private Health _health;
-        
+        private Color _spriteColor;
         private float damageFlashTimeRemaining;
         private float deathAnimationTimeRemaining;
         
@@ -45,6 +45,7 @@ namespace _.Scripts.Enemy
             agent.updateRotation = false;
             agent.updateUpAxis = false;
             GameController.Instance.RegisterEnemyInArea(enemyRoomIndex);
+            _spriteColor = enemySprite.color;
         }
 
         private void OnEnable()
@@ -91,20 +92,13 @@ namespace _.Scripts.Enemy
 
             if (enemyData.HasRangeAttack)
             {
-                if (agent.remainingDistance < enemyData.FireDistance)
-                {
-                    agent.isStopped = true;
-                    attackSystem.Attack(0);
-                }
-                else
-                {
-                    agent.isStopped = false;
-                }
+                var inStopDistance = agent.remainingDistance < enemyData.StopDistance;
+                agent.isStopped = inStopDistance ? agent.isStopped = true : agent.isStopped = false;
             }
-            else
-            {
-                agent.isStopped = false;
-            }
+            else agent.isStopped = false;
+
+            if (enemyData.MaxRange > agent.remainingDistance &&
+               agent.remainingDistance > 0.1f) attackSystem.Attack(0);
 
             if (_health.GetHealthPoints() - _health.GetCurrentHealthPoints() < 0.01f)
             {
@@ -199,7 +193,7 @@ namespace _.Scripts.Enemy
         {
             if (damageFlashTimeRemaining <= 0)
             {
-                enemySprite.color = Color.white;
+                enemySprite.color = _spriteColor;
                 return;
             }
 

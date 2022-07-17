@@ -61,7 +61,7 @@ namespace _.Scripts.AttackSystem
         private void DoAoEDamage()
         {
             var pos = (Vector2)_thisObject.transform.position;
-            var hits = Physics2D.CircleCastAll(pos, _attackData.GetAoeRange(), Vector2.up);
+            var hits = Physics2D.CircleCastAll(pos, _attackData.GetAoeRange() / 2, Vector2.up);
             
             foreach (var hit in hits)
             {

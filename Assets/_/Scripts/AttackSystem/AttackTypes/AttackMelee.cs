@@ -10,6 +10,7 @@ namespace _.Scripts.AttackSystem
     {
         public override void Shoot(Transform fromTransform)
         {
+            if (!IsInLineOfSight(fromTransform.position)) return;
             if(!GameController.IsGameActive) return;
             Debug.Log("Melee Attack");
             var projectile = Pool.Get();

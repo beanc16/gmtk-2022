@@ -10,9 +10,11 @@ namespace _.Scripts.AttackSystem
         [SerializeField] private List<AttackSoBase> attacks;
 
         private readonly Dictionary<int, bool> _cooldownDictionary = new();
-
-        private void Start()
+        private bool _started;
+        private async UniTaskVoid Start()
         {
+            await UniTask.Delay(TimeSpan.FromSeconds(1), false,cancellationToken: this.GetCancellationTokenOnDestroy());
+            _started = true;
             for (var i = 0; i < attacks.Count; i++)
             {
                 var attack = attacks[i];
@@ -28,6 +30,7 @@ namespace _.Scripts.AttackSystem
 
         public void Attack(int attackNr)
         {
+            if (!_started) return;
             if (_cooldownDictionary[attackNr]) return;
             if (attackNr > attacks.Count + 1) return; // value out of bounds
             attacks[attackNr].Shoot(transform);

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725b8f9dcb534a36ac79ad7535811544, type: 3}
-  m_Name: Bomb
+  m_Name: Bomb _enemy
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 744153610598438701, guid: ff8f8aa82fd48584886cca9192d5b46c,
     type: 3}
-  attackName: Bomb
+  attackName: Bomb_Enemy
   destroyOnHit: 0
   damageOnHit: 0
   attackCooldown: 1
@@ -23,8 +23,11 @@ MonoBehaviour:
   damagePlayer: 1
   lifeTime: 2
   speed: 3
-  attacker: 0
-  travelTime: 0.5
+  attacker: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 3392
+  travelTime: 1.5
   travelDistance: 4
   travelCurve:
     serializedVersion: 2

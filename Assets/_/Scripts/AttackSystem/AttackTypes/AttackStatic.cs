@@ -15,6 +15,7 @@ namespace _.Scripts.AttackSystem
         
         public override void Shoot(Transform fromTransform)
         {
+            if (!IsInLineOfSight(fromTransform.position)) return;
             if(!GameController.IsGameActive) return;
             Debug.Log("Shoot Static");
             var projectile = Pool.Get();
@@ -29,8 +30,6 @@ namespace _.Scripts.AttackSystem
             
             var moveDirection = GetMoveDirection(position);
 
-            await UniTask.WaitForFixedUpdate();
-            
             var fromPosition = (Vector2)position;
             Debug.Log("From position = " + fromPosition);
             var toPosition =  (Vector2)position + (Vector2)moveDirection * travelDistance;

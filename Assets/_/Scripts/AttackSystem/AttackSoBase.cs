@@ -2,6 +2,7 @@
 using _.Scripts.Core;
 using _.Scripts.Player;
 using Cysharp.Threading.Tasks;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
@@ -27,6 +28,7 @@ namespace _.Scripts.AttackSystem
         [SerializeField] protected float lifeTime;
         [SerializeField] protected float speed;
         [SerializeField] protected Attacker attacker;
+        [SerializeField] private LayerMask layerMask;
         public string GetAttackName() => attackName;
         public bool GetDamagePlayer() => damagePlayer;
         public bool GetDestroyOnHit() => destroyOnHit;
@@ -86,6 +88,17 @@ namespace _.Scripts.AttackSystem
             var moveDirection = targetPosition - attackObject;
             moveDirection.z = 0;
             return moveDirection.normalized;
+        }
+
+        public bool IsInLineOfSight(Vector3 fromPos)
+        {
+            if (attacker == Attacker.PlayerAttack) return true;
+            var direction = GetMoveDirection(fromPos);
+            var layerMaskInvert = layerMask;
+            layerMaskInvert = ~layerMaskInvert;
+            var hit2d = Physics2D.Raycast(fromPos, direction, Mathf.Infinity,layerMaskInvert);
+            Debug.DrawRay(fromPos,direction * hit2d.distance, hit2d.transform.CompareTag("Player") ? Color.blue : Color.red, 2f);
+            return hit2d.transform.CompareTag("Player");
         }
     }
 }
