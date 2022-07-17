@@ -24,6 +24,7 @@ namespace _.Scripts.Enemy
         [SerializeField] private AttackSystem.AttackSystem attackSystem;
         
         [SerializeField] private SpriteRenderer enemySprite;
+        [SerializeField] private bool hasChangingSprite;
         [SerializeField] private Sprite[] spriteToDirection;
 
         private Transform _playerTransform;
@@ -77,10 +78,17 @@ namespace _.Scripts.Enemy
             
             DoFacing();
 
-            if (agent.remainingDistance < enemyData.FireDistance)
+            if (enemyData.HasRangeAttack)
             {
-                agent.isStopped = true;
-                attackSystem.Attack(0);
+                if (agent.remainingDistance < enemyData.FireDistance)
+                {
+                    agent.isStopped = true;
+                    attackSystem.Attack(0);
+                }
+                else
+                {
+                    agent.isStopped = false;
+                }
             }
             else
             {
@@ -107,6 +115,11 @@ namespace _.Scripts.Enemy
 
         private void DoFacing()
         {
+            if (hasChangingSprite == false)
+            {
+                return;
+            }
+            
             var direction = agent.velocity;
 
             //We are facing left or right

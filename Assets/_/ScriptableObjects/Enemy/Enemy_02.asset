@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec6b1638c180414baf2e20dde0d0b10b, type: 3}
-  m_Name: Enemy_01
+  m_Name: Enemy_02
   m_EditorClassIdentifier: 
-  HasRangeAttack: 1
-  EnemySpeedMin: 1
-  EnemySpeedMax: 4.5
-  EnemyHp: 2
-  FireDistance: 4
+  HasRangeAttack: 0
+  EnemySpeedMin: 3
+  EnemySpeedMax: 6
+  EnemyHp: 8
+  FireDistance: 0
