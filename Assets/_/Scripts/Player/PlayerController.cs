@@ -22,6 +22,7 @@ namespace _.Scripts.Player
         public float GetTimeTillNewAbility() => timeTillNewAbility;
 
         private Health _health;
+        public Health GetPlayerHealth() => _health;
         public float GetTotalHp() => _health.GetHealthPoints();
         public float GetCurrentHp() => _health.GetCurrentHealthPoints();
 

@@ -8,6 +8,11 @@ using UnityEngine.Pool;
 
 namespace _.Scripts.AttackSystem
 {
+    public enum Attacker
+    {
+        PlayerAttack,
+        EnemyAttack
+    }
     public abstract class AttackSoBase : ScriptableObject
     {
         [SerializeField] protected GameObject attackPrefab;
@@ -18,10 +23,12 @@ namespace _.Scripts.AttackSystem
         [SerializeField] protected float attackCooldown;
         [SerializeField] protected float damage;
         [SerializeField] protected float aoeRange;
-        [SerializeField] protected bool attackPlayer;
+        [SerializeField] protected bool damagePlayer;
         [SerializeField] protected float lifeTime;
         [SerializeField] protected float speed;
+        [SerializeField] protected Attacker attacker;
         public string GetAttackName() => attackName;
+        public bool GetDamagePlayer() => damagePlayer;
         public bool GetDestroyOnHit() => destroyOnHit;
         public bool GetDamageOnHit() => damageOnHit;
         public float GetAoeRange() => aoeRange;
@@ -70,8 +77,12 @@ namespace _.Scripts.AttackSystem
 
         protected Vector3 GetMoveDirection(Vector3 attackObject)
         {
-            var targetPosition = attackPlayer == false ? Camera.main.ScreenToWorldPoint(Input.mousePosition) : PlayerController.Instance.transform.position;
-            
+            var targetPosition = attacker switch
+            {
+                Attacker.PlayerAttack => Camera.main.ScreenToWorldPoint(Input.mousePosition),
+                Attacker.EnemyAttack => PlayerController.Instance.transform.position,
+                _ => new Vector3()
+            };
             var moveDirection = targetPosition - attackObject;
             moveDirection.z = 0;
             return moveDirection.normalized;

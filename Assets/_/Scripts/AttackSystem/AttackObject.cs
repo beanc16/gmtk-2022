@@ -1,5 +1,6 @@
 ﻿using _.Scripts.Enemy;
 using _.Scripts.HealthSystem.Interfaces;
+using _.Scripts.Player;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -60,17 +61,16 @@ namespace _.Scripts.AttackSystem
         private void DoAoEDamage()
         {
             var pos = (Vector2)_thisObject.transform.position;
-            var size = new Vector2(_attackData.GetAoeRange(), _attackData.GetAoeRange());
+            var hits = Physics2D.CircleCastAll(pos, _attackData.GetAoeRange(), Vector2.up);
             
-            var hits = Physics2D.BoxCastAll(pos, size, 0f, Vector2.up);
-            Debug.Log(hits.Length +  " <-- Hits!");
             foreach (var hit in hits)
             {
-                var damageable = hit.transform.GetComponent<IDamageable>();
-                if (hit.transform.TryGetComponent<EnemyAi>(out var health))
-                {
-                    health.GetHeath().Damage(_attackData.GetDamage());
-                }
+                //var damageable = hit.transform.GetComponent<IDamageable>();
+                if (hit.transform.TryGetComponent<EnemyAi>(out var enemyAi))
+                    enemyAi.GetHeath().Damage(_attackData.GetDamage());
+                    
+                if (hit.transform.TryGetComponent<PlayerController>(out var player) && _attackData.GetDamagePlayer())
+                    player.GetPlayerHealth().Damage(_attackData.GetDamage());
             }
         }
     }

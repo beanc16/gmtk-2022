@@ -16,11 +16,11 @@ public class PlayerAnimationController : MonoBehaviour
 
         if (velocity.x > 0f)
         {
-            renderer.flipX = false;
+            renderer.flipX = true;
         }
         else if (velocity.x < 0f)
         {
-            renderer.flipX = true;
+            renderer.flipX = false;
         }
 
         animator.SetBool(_running, velocity != Vector2.zero);

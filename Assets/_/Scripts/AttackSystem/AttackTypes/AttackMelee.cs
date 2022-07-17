@@ -8,8 +8,6 @@ namespace _.Scripts.AttackSystem
     [CreateAssetMenu(fileName = "Projectile", menuName = "GMTK2022/Attack/Melee", order = 0)]
     public class AttackMelee : AttackSoBase
     {
-        [SerializeField] private float lifeTime;
-        
         public override void Shoot(Transform fromTransform)
         {
             if(!GameController.IsGameActive) return;
@@ -24,9 +22,6 @@ namespace _.Scripts.AttackSystem
         {
             var time = 0f;
             Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var moveDirection = worldPosition - attackObject.transform.position;
-            moveDirection.z = 0;
-            moveDirection = moveDirection.normalized;
             
             attackObject.transform.rotation = Quaternion.LookRotation(Vector3.forward, worldPosition - attackObject.transform.position);
             attackObject.GetComponentInChildren<Animator>().Play("Swipe");
