@@ -7210,6 +7210,7 @@ GameObject:
   - component: {fileID: 8817689391215333812}
   - component: {fileID: 6635482356477425970}
   - component: {fileID: 876531103541814053}
+  - component: {fileID: 1694410122660987977}
   m_Layer: 0
   m_Name: Obstical
   m_TagString: Untagged
@@ -7274,6 +7275,33 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &1694410122660987977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5953238455085542873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: 0.7052908, y: -2.1235917, z: 0}
+  - {x: 0.7318883, y: 0.11297381, z: 0}
+  - {x: 2.9355807, y: 0.17946649, z: 0}
+  - {x: 2.920857, y: -2.0822706, z: 0}
+  m_ShapePathHash: 1715878045
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -44580
 --- !u!1 &6520048136861915607
 GameObject:
   m_ObjectHideFlags: 0
@@ -7496,6 +7524,7 @@ GameObject:
   - component: {fileID: 195695045915761955}
   - component: {fileID: 4843970088448563741}
   - component: {fileID: 3704394803022893561}
+  - component: {fileID: 5207537749500550400}
   m_Layer: 0
   m_Name: Obstical (1)
   m_TagString: Untagged
@@ -7560,6 +7589,33 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!114 &5207537749500550400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8545208760526877982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.47584295, y: -2.070397, z: 0}
+  - {x: -0.555634, y: -0.7081089, z: 0}
+  - {x: 5.7243943, y: -0.76130295, z: 0}
+  - {x: 5.8041854, y: -2.1368895, z: 0}
+  m_ShapePathHash: 19640013
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -49896
 --- !u!1 &8633484139122201601
 GameObject:
   m_ObjectHideFlags: 0
@@ -8039,7 +8095,7 @@ PrefabInstance:
     - target: {fileID: 7691920906815839951, guid: 96d2eb21b9e86e24e894e5dfcf774b31,
         type: 3}
       propertyPath: m_InstanceId
-      value: -37834
+      value: -44042
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d2eb21b9e86e24e894e5dfcf774b31, type: 3}
@@ -8124,7 +8180,7 @@ PrefabInstance:
     - target: {fileID: 7691920906815839951, guid: 96d2eb21b9e86e24e894e5dfcf774b31,
         type: 3}
       propertyPath: m_InstanceId
-      value: -37942
+      value: -44094
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d2eb21b9e86e24e894e5dfcf774b31, type: 3}
@@ -8209,7 +8265,7 @@ PrefabInstance:
     - target: {fileID: 7691920906815839951, guid: 96d2eb21b9e86e24e894e5dfcf774b31,
         type: 3}
       propertyPath: m_InstanceId
-      value: -37888
+      value: -44146
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d2eb21b9e86e24e894e5dfcf774b31, type: 3}
@@ -8239,7 +8295,7 @@ PrefabInstance:
     - target: {fileID: 2844384002647293276, guid: 1f8ed16ae38b4c349bcd04e075f79edd,
         type: 3}
       propertyPath: m_InstanceId
-      value: -38048
+      value: -44196
       objectReference: {fileID: 0}
     - target: {fileID: 2852515598199122922, guid: 1f8ed16ae38b4c349bcd04e075f79edd,
         type: 3}
