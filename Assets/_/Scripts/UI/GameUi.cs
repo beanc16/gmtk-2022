@@ -48,9 +48,9 @@ namespace _.Scripts.UI
 
         private void SetPlayerHpBar()
         {
-            float fill = 1f - (playerController.GetTotalHp() -playerController.GetCurrentHp()) / playerController.GetTotalHp();
+            float fill = 1f - (playerController.GetTotalHp() - playerController.GetCurrentHp()) / playerController.GetTotalHp();
 
-            if (Mathf.Abs(playerHealthBar.fillAmount - fill) < 0.1f)
+            if (Mathf.Abs(playerHealthBar.fillAmount - fill) < 0.01f)
             {
                 return;
             }

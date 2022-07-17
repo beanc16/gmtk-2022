@@ -106,7 +106,7 @@ namespace _.Scripts.Enemy
                 agent.isStopped = false;
             }
 
-            if (_health.GetHealthPoints() - _health.GetCurrentHealthPoints() < 0.1f)
+            if (_health.GetHealthPoints() - _health.GetCurrentHealthPoints() < 0.01f)
             {
                 enemyHealthBarContainer.SetActive(false);
             }
@@ -219,6 +219,7 @@ namespace _.Scripts.Enemy
         private void Die()
         {
             deathAnimationTimeRemaining = 0.4f;
+            PlayerController.Instance.RemoveDeadEnemies(gameObject);
         }
 
         private void OnDamageTaken()

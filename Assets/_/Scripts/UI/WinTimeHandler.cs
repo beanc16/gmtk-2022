@@ -9,6 +9,6 @@ public class WinTimeHandler : MonoBehaviour
     public void SetTimeText(float timeInSeconds)
     {
         var span = TimeSpan.FromSeconds(timeInSeconds);
-        timeText.SetText(span.ToString("g"));
+        timeText.SetText(span.ToString(@"hh\:mm\:ss"));
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using _.Scripts.AttackSystem;
 using _.Scripts.Core;
 using _.Scripts.HealthSystem;
@@ -15,9 +15,7 @@ namespace _.Scripts.Player
         [SerializeField] private Rigidbody2D playerBody2d;
         [SerializeField] private float rerollAbilityTime;
         public float GetRerollAbilityTotalTime() => rerollAbilityTime;
-
-        //private Vector2 currentMovement2d;
-        private float enemiesTouchingPlayer;
+        
         private float invulnerableTime;
         
         private float timeTillNewAbility;
@@ -26,6 +24,8 @@ namespace _.Scripts.Player
         private Health _health;
         public float GetTotalHp() => _health.GetHealthPoints();
         public float GetCurrentHp() => _health.GetCurrentHealthPoints();
+
+        private List<GameObject> enemiesTouching = new List<GameObject>(); 
 
         private void Awake()
         {
@@ -80,7 +80,7 @@ namespace _.Scripts.Player
             // Hit enemy
             if (col.gameObject.CompareTag(Constants.TagEnemy))
             {
-                enemiesTouchingPlayer++;
+                enemiesTouching.Add(col.gameObject);
             }
         }
 
@@ -89,7 +89,7 @@ namespace _.Scripts.Player
             // Enemy gotten away from
             if (other.gameObject.CompareTag(Constants.TagEnemy))
             {
-                enemiesTouchingPlayer--;
+                enemiesTouching.Remove(other.gameObject);
             }
         }
 
@@ -110,13 +110,31 @@ namespace _.Scripts.Player
             }
 
             invulnerableTime = playerData.InvulnerableTime;
-            if (enemiesTouchingPlayer == 0) return;
-            _health.Damage(enemiesTouchingPlayer);
+            
+            int count = enemiesTouching.Count;
+            if (count == 0) return;
+            _health.Damage(count);
+
+            for (int i = 0; i < count; i++)
+            {
+                if (enemiesTouching[i] == null)
+                {
+                    enemiesTouching.Remove(enemiesTouching[i]);
+                    count--;
+                    i--;
+                }
+            }
+            
             if (_health.GetCurrentHealthPoints() <= 0)
             {
                 //Game Over
                 GameController.Instance.GameOver();
             }
+        }
+
+        public void RemoveDeadEnemies(GameObject enemy)
+        {
+            enemiesTouching.Remove(enemy);
         }
     }
 }
