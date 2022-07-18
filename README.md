@@ -99,7 +99,7 @@
   * Programming
   * Level Design
 
-* Sara Bustamante - [Behance](https://www.behance.net/sarambustama)
+* Sara Bustamante - [Portfolio](https://sarambl.wordpress.com)
     * UI/UX Design
     * Marketing Specialist
 
